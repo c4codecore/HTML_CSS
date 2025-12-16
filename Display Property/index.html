@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Display Properties</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>CSS Display Properties Demo</h1>
+
+    <!-- Display Block -->
+    <section>
+        <h2>display: block</h2>
+        <p>Block elements take up the full width available and stack vertically.</p>
+        <div class="block-container">
+            <div class="block-item">Block Item 1</div>
+            <div class="block-item">Block Item 2</div>
+            <div class="block-item">Block Item 3</div>
+        </div>
+    </section>
+
+    <!-- Display Inline -->
+    <section>
+        <h2>display: inline</h2>
+        <p>Inline elements flow in the text and only take up as much width as necessary.</p>
+        <div class="inline-container">
+            <span class="inline-item">Inline Item 1</span>
+            <span class="inline-item">Inline Item 2</span>
+            <span class="inline-item">Inline Item 3</span>
+        </div>
+    </section>
+
+    <!-- Display Inline-Block -->
+    <section>
+        <h2>display: inline-block</h2>
+        <p>Inline-block elements flow inline but can have width and height set.</p>
+        <div class="inline-block-container">
+            <div class="inline-block-item">Inline-Block 1</div>
+            <div class="inline-block-item">Inline-Block 2</div>
+            <div class="inline-block-item">Inline-Block 3</div>
+        </div>
+    </section>
+
+    <!-- Display None -->
+    <section>
+        <h2>display: none</h2>
+        <p>Elements with display: none are completely hidden and take no space.</p>
+        <div class="none-container">
+            <div class="visible-item">Visible Item</div>
+            <div class="hidden-item">This is hidden</div>
+            <div class="visible-item">Another Visible Item</div>
+        </div>
+    </section>
+
+    <!-- Display Flex -->
+    <section>
+        <h2>display: flex</h2>
+        <p>Flex containers arrange children in a flexible layout.</p>
+        <div class="flex-container">
+            <div class="flex-item">Flex Item 1</div>
+            <div class="flex-item">Flex Item 2</div>
+            <div class="flex-item">Flex Item 3</div>
+        </div>
+    </section>
+
+    <!-- Display Inline-Flex -->
+    <section>
+        <h2>display: inline-flex</h2>
+        <p>Inline-flex containers flow inline but arrange children flexibly.</p>
+        <div class="inline-flex-demo">
+            <span>Before</span>
+            <div class="inline-flex-container">
+                <div class="inline-flex-item">Inline-Flex 1</div>
+                <div class="inline-flex-item">Inline-Flex 2</div>
+            </div>
+            <span>After</span>
+        </div>
+    </section>
+
+    <!-- Display Grid -->
+    <section>
+        <h2>display: grid</h2>
+        <p>Grid containers create a grid layout for children.</p>
+        <div class="grid-container">
+            <div class="grid-item">Grid Item 1</div>
+            <div class="grid-item">Grid Item 2</div>
+            <div class="grid-item">Grid Item 3</div>
+            <div class="grid-item">Grid Item 4</div>
+        </div>
+    </section>
+
+    <!-- Display Inline-Grid -->
+    <section>
+        <h2>display: inline-grid</h2>
+        <p>Inline-grid containers flow inline but create a grid layout.</p>
+        <div class="inline-grid-demo">
+            <span>Before</span>
+            <div class="inline-grid-container">
+                <div class="inline-grid-item">Inline-Grid 1</div>
+                <div class="inline-grid-item">Inline-Grid 2</div>
+                <div class="inline-grid-item">Inline-Grid 3</div>
+                <div class="inline-grid-item">Inline-Grid 4</div>
+            </div>
+            <span>After</span>
+        </div>
+    </section>
+
+    <!-- Display List-Item -->
+    <section>
+        <h2>display: list-item</h2>
+        <p>List-item elements behave like list items, generating a marker box.</p>
+        <div class="list-item-container">
+            <div class="list-item">List Item 1</div>
+            <div class="list-item">List Item 2</div>
+            <div class="list-item">List Item 3</div>
+        </div>
+    </section>
+
+    <!-- Display Flow-Root -->
+    <section>
+        <h2>display: flow-root</h2>
+        <p>Flow-root creates a new block formatting context, useful for containing floats.</p>
+        <div class="flow-root-container">
+            <div class="float-element">Floated Element</div>
+            <p>This text flows around the float within the flow-root container.</p>
+        </div>
+    </section>
+
+    <!-- Display Contents -->
+    <section>
+        <h2>display: contents</h2>
+        <p>Contents makes the element itself disappear, but its contents remain in the layout.</p>
+        <div class="contents-container">
+            <div class="contents-element">
+                <p>This paragraph is inside an element with display: contents.</p>
+                <p>The container element itself is not rendered.</p>
+            </div>
+            <p>This is outside the contents element.</p>
+        </div>
+    </section>
+
+    <!-- Global Display Keywords -->
+    <section>
+        <h2>Global Display Keywords</h2>
+        <p>Global keywords like inherit, initial, unset, and revert can be applied to display property.</p>
+        <div class="global-demo">
+            <div class="parent-with-display">
+                <div class="inherit-child">Child with display: inherit</div>
+                <div class="initial-child">Child with display: initial</div>
+                <div class="unset-child">Child with display: unset</div>
+                <div class="revert-child">Child with display: revert</div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
