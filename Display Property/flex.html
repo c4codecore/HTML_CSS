@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Flexbox – Complete Demo</title>
+  <link rel="stylesheet" href="flex.css">
+</head>
+<body>
+
+<h1>CSS Flexbox – Complete Practical Explanation</h1>
+<p class="note">
+  Har section me Flexbox ki ek property ko visual + comment ke saath explain kiya gaya hai.
+</p>
+
+<!-- ================= FLEX DIRECTION ================= -->
+<h2>1. flex-direction</h2>
+<div class="container row">
+  <div class="box">1</div>
+  <div class="box">2</div>
+  <div class="box">3</div>
+</div>
+<p>flex-direction: row (default)</p>
+
+<div class="container column">
+  <div class="box">1</div>
+  <div class="box">2</div>
+  <div class="box">3</div>
+</div>
+<p>flex-direction: column</p>
+
+<hr>
+
+<!-- ================= JUSTIFY CONTENT ================= -->
+<h2>2. justify-content (Main Axis)</h2>
+<div class="container justify-center">
+  <div class="box">A</div>
+  <div class="box">B</div>
+  <div class="box">C</div>
+</div>
+<p>justify-content: center</p>
+
+<div class="container justify-between">
+  <div class="box">A</div>
+  <div class="box">B</div>
+  <div class="box">C</div>
+</div>
+<p>justify-content: space-between</p>
+
+<hr>
+
+<!-- ================= ALIGN ITEMS ================= -->
+<h2>3. align-items (Cross Axis)</h2>
+<div class="container align-center height">
+  <div class="box small">1</div>
+  <div class="box big">2</div>
+  <div class="box small">3</div>
+</div>
+<p>align-items: center</p>
+
+<hr>
+
+<!-- ================= FLEX WRAP ================= -->
+<h2>4. flex-wrap</h2>
+<div class="container wrap">
+  <div class="box wide">1</div>
+  <div class="box wide">2</div>
+  <div class="box wide">3</div>
+  <div class="box wide">4</div>
+</div>
+<p>flex-wrap: wrap</p>
+
+<hr>
+
+<!-- ================= GAP ================= -->
+<h2>5. gap vs margin</h2>
+<div class="container gap-demo">
+  <div class="box">X</div>
+  <div class="box">Y</div>
+  <div class="box">Z</div>
+</div>
+<p>gap: 20px (recommended)</p>
+
+<hr>
+
+<!-- ================= ORDER ================= -->
+<h2>6. order (HTML order change kiye bina)</h2>
+<div class="container">
+  <div class="box order3">1 (order:3)</div>
+  <div class="box order1">2 (order:1)</div>
+  <div class="box order2">3 (order:2)</div>
+</div>
+
+<hr>
+
+<!-- ================= FLEX GROW ================= -->
+<h2>7. flex-grow</h2>
+<div class="container">
+  <div class="box grow1">1 (grow:1)</div>
+  <div class="box grow2">2 (grow:2)</div>
+  <div class="box grow1">3 (grow:1)</div>
+</div>
+<p>Middle box double space le raha hai</p>
+
+<hr>
+
+<!-- ================= FLEX SHRINK ================= -->
+<h2>8. flex-shrink</h2>
+<div class="container small-width">
+  <div class="box shrink0">Logo (shrink:0)</div>
+  <div class="box">Menu</div>
+  <div class="box">Button</div>
+</div>
+<p>Logo shrink nahi ho raha</p>
+
+<hr>
+
+<!-- ================= FLEX BASIS ================= -->
+<h2>9. flex-basis vs width</h2>
+<div class="container">
+  <div class="box basis">flex-basis:200px</div>
+  <div class="box">Auto</div>
+  <div class="box">Auto</div>
+</div>
+
+<hr>
+
+<!-- ================= FLEX SHORTHAND ================= -->
+<h2>10. flex (shorthand)</h2>
+<div class="container">
+  <div class="box flex1">flex:1</div>
+  <div class="box flex1">flex:1</div>
+  <div class="box flex1">flex:1</div>
+</div>
+<p>Teenon equal width</p>
+
+<hr>
+
+<!-- ================= ALIGN SELF ================= -->
+<h2>11. align-self (Individual item)</h2>
+<div class="container height align-start">
+  <div class="box">Normal</div>
+  <div class="box self-end">align-self:end</div>
+  <div class="box">Normal</div>
+</div>
+
+<hr>
+
+<h2>✔ Flexbox Summary</h2>
+<ul>
+  <li>justify-content → main axis</li>
+  <li>align-items → cross axis (all items)</li>
+  <li>align-self → cross axis (single item)</li>
+  <li>flex-grow/shrink/basis → sizing control</li>
+</ul>
+
+</body>
+</html>

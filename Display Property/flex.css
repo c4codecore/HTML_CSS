@@ -1,0 +1,140 @@
+/* ================= BASIC STYLES ================= */
+
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+h1 {
+  color: #2c3e50;
+}
+
+h2 {
+  margin-top: 40px;
+  color: #34495e;
+}
+
+.note {
+  background: #f1f1f1;
+  padding: 10px;
+}
+
+/* ================= FLEX CONTAINER ================= */
+
+.container {
+  display: flex;
+  border: 2px dashed #999;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* ================= FLEX ITEMS ================= */
+
+.box {
+  background: #4aa3df;
+  color: white;
+  padding: 15px;
+  margin: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* ================= FLEX DIRECTION ================= */
+
+.row {
+  flex-direction: row;
+}
+
+.column {
+  flex-direction: column;
+}
+
+/* ================= JUSTIFY CONTENT ================= */
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+/* ================= ALIGN ITEMS ================= */
+
+.height {
+  height: 150px;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+.small {
+  height: 40px;
+}
+
+.big {
+  height: 80px;
+}
+
+/* ================= FLEX WRAP ================= */
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.wide {
+  width: 180px;
+}
+
+/* ================= GAP ================= */
+
+.gap-demo {
+  gap: 20px;
+}
+
+/* ================= ORDER ================= */
+
+.order1 { order: 1; }
+.order2 { order: 2; }
+.order3 { order: 3; }
+
+/* ================= FLEX GROW ================= */
+
+.grow1 { flex-grow: 1; }
+.grow2 { flex-grow: 2; }
+
+/* ================= FLEX SHRINK ================= */
+
+.small-width {
+  width: 300px;
+}
+
+.shrink0 {
+  flex-shrink: 0;
+  background: #e74c3c;
+}
+
+/* ================= FLEX BASIS ================= */
+
+.basis {
+  flex-basis: 200px;
+  background: #8e44ad;
+}
+
+/* ================= FLEX SHORTHAND ================= */
+
+.flex1 {
+  flex: 1;
+}
+
+/* ================= ALIGN SELF ================= */
+
+.self-end {
+  align-self: flex-end;
+  background: #27ae60;
+}
