@@ -1,0 +1,147 @@
+/* ===== GLOBAL STYLES ===== */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+section {
+  padding: 25px;
+  border-bottom: 2px dashed #ccc;
+}
+
+h2 {
+  margin-top: 40px;
+  color: #333;
+}
+
+.note {
+  background: #f9f9f9;
+  padding: 10px;
+  border-left: 4px solid #4CAF50;
+  margin-top: 10px;
+}
+
+/* ===== COMMON BOX ===== */
+.box {
+  width: 130px;
+  height: 130px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 0;
+}
+
+/* ===== STICKY NAVBAR ===== */
+.navbar {
+  position: sticky;
+  top: 0;
+  background: black;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+  z-index: 3;
+}
+
+/* ===== STATIC ===== */
+.static-box {
+  position: static;
+  background: #607D8B;
+}
+
+/* ===== RELATIVE ===== */
+.relative-box {
+  position: relative;
+  top: 20px;
+  left: 40px;
+  background: #FF9800;
+}
+
+/* ===== ABSOLUTE ===== */
+.parent {
+  position: relative; /* VERY IMPORTANT */
+  height: 220px;
+  background: #eee;
+  border: 2px solid #999;
+  padding: 10px;
+}
+
+.absolute-box {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #9C27B0;
+}
+
+/* ===== FIXED ===== */
+.fixed-box {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #E91E63;
+  z-index: 4;
+}
+
+/* ===== Z-INDEX ===== */
+.z-container {
+  position: relative;
+  height: 200px;
+  margin-top: 20px;
+}
+
+.z-low {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  background: red;
+  z-index: 1;
+}
+
+.z-high {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  background: blue;
+  z-index: 2;
+}
+
+/* ===== SCROLL AREA ===== */
+.scroll-area {
+  height: 900px;
+}
+
+
+.container {
+  padding: 20px;
+  background: #eee;
+}
+
+.box {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 20px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* STATIC */
+.static {
+  position: static;
+  background: steelblue;
+  top: 80px;   /* ❌ no effect */
+  left: 40px;
+}
+
+/* RELATIVE */
+.relative {
+  position: relative;
+  background: orange;
+  top: 40px;   /* ✅ moves */
+  left: 70px;
+}

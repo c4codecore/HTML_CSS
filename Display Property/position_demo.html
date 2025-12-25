@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Positioning – Complete Practical Demo</title>
+    <link rel="stylesheet" href="position_demo.css">
+</head>
+
+<body>
+
+    <!-- STATIC -->
+    <section>
+        <h2>1️⃣ position: static (Default)</h2>
+        <p>
+            Static element normal document flow me rehta hai.
+            Is par <b>top, left, right, bottom, z-index</b> ka koi effect nahi hota.
+        </p>
+
+        <div class="box static-box">Static</div>
+
+        <p class="note">
+            👉 Ye paragraph aur box page ke normal flow ke hisab se render ho rahe hain.
+        </p>
+    </section>
+
+    <!-- STICKY NAVBAR -->
+    <header class="navbar">
+        CSS Positioning Demo (Sticky Navbar)
+    </header>
+
+    <div class="container">
+        <div class="box static">Static</div>
+        <div class="box relative">Relative</div>
+    </div>
+
+    <!-- RELATIVE -->
+    <section>
+        <h2>2️⃣ position: relative</h2>
+        <p>
+            Relative element apni original jagah se move hota hai,
+            lekin uski original space reserve rehti hai.
+        </p>
+
+        <div class="box relative-box">Relative</div>
+
+        <p class="note">
+            👉 Dekho box move ho gaya, lekin uski jagah koi aur element nahi le raha.
+        </p>
+    </section>
+
+    <!-- ABSOLUTE -->
+    <section>
+        <h2>3️⃣ position: absolute</h2>
+        <p>
+            Absolute element document flow se bahar ho jata hai
+            aur nearest positioned parent ke according position leta hai.
+        </p>
+
+        <div class="parent">
+            Parent (position: relative)
+
+            <div class="box absolute-box">
+                Absolute
+            </div>
+        </div>
+
+        <p class="note">
+            👉 Parent ko relative na banaya hota to ye box body ke according move hota.
+        </p>
+    </section>
+
+    <!-- FIXED -->
+    <section>
+        <h2>4️⃣ position: fixed</h2>
+        <p>
+            Fixed element viewport (screen) ke according fix hota hai.
+            Scroll karne par bhi apni jagah nahi chhodta.
+        </p>
+
+        <p class="note">
+            👉 Screen ke bottom-right me pink box dekho.
+        </p>
+    </section>
+
+    <!-- FIXED BUTTON -->
+    <div class="box fixed-box">
+        Fixed
+    </div>
+
+    <!-- Z-INDEX -->
+    <section>
+        <h2>5️⃣ z-index (Layer Control)</h2>
+        <p>
+            z-index overlapping elements ke upar–neeche order ko control karta hai.
+            Ye sirf positioned elements par kaam karta hai.
+        </p>
+
+        <div class="z-container">
+            <div class="box z-low">z-index: 1</div>
+            <div class="box z-high">z-index: 10</div>
+        </div>
+
+        <p class="note">
+            👉 Blue box red box ke upar dikh raha hai because z-index zyada hai.
+        </p>
+    </section>
+
+    <!-- EXTRA CONTENT -->
+    <section>
+        <h2>Scroll Area (Sticky + Fixed Test)</h2>
+        <p class="scroll-area">
+            Scroll karte raho aur observe karo:
+            <br><br>
+            ✔ Navbar top par chipki rahegi (sticky)<br>
+            ✔ Fixed box screen ke corner me rahega
+        </p>
+    </section>
+
+</body>
+
+</html>
