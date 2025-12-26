@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Typing Practice | Code Core Computer Center</title>
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --primary-color: #2563eb;
+            --success-color: #22c55e;
+            --error-color: #ef4444;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+        }
+
+        body.dark-mode {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f1f5f9;
+        }
+
+        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            transition: background 0.3s ease;
+        }
+
+        /* Header */
+        header { text-align: center; margin: 2rem 0; }
+        h1 { margin: 0; color: var(--primary-color); }
+        p.subtitle { opacity: 0.8; }
+
+        /* Main Container */
+        .container {
+            width: 90%;
+            max-width: 900px;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+
+        /* Controls Row */
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        select, button {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        button.primary { background: var(--primary-color); color: white; border: none; }
+        button.primary:hover { background: #1d4ed8; }
+
+        /* Stats Panel */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--bg-color);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        .stat-value { font-size: 1.5rem; font-weight: bold; color: var(--primary-color); }
+        .stat-label { font-size: 0.8rem; text-transform: uppercase; }
+
+        /* Typing Area */
+        .display-text {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.4rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            padding: 15px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            user-select: none; /* Prevent copy-paste */
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .correct { color: var(--success-color); }
+        .incorrect { color: var(--error-color); background: #fee2e2; border-radius: 2px; }
+        .current { text-decoration: underline; background: #dbeafe; }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.2rem;
+            padding: 15px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            resize: none;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        textarea:focus { border-color: var(--primary-color); }
+
+        /* Modal Results */
+        #resultModal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            justify-content: center; align-items: center;
+            z-index: 100;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .performance-msg { font-size: 1.2rem; margin: 1rem 0; font-weight: bold; }
+
+        /* Utility */
+        .dark-toggle { position: absolute; top: 20px; right: 20px; }
+
+        @media (max-width: 600px) {
+            .display-text { font-size: 1.1rem; }
+            .controls { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="dark-toggle" onclick="toggleDarkMode()">🌓 Toggle Mode</button>
+
+    <header>
+        <h1>Code Core Typing Practice</h1>
+        <p class="subtitle">Improve your typing speed and accuracy</p>
+    </header>
+
+    <div class="container">
+        <div class="controls">
+            <div>
+                <label>Level:</label>
+                <select id="levelSelect" onchange="loadParagraph()">
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                </select>
+            </div>
+            <div>
+                <label>Time:</label>
+                <select id="timeSelect">
+                    <option value="60">1 Minute</option>
+                    <option value="180">3 Minutes</option>
+                    <option value="300">5 Minutes</option>
+                </select>
+            </div>
+            <button class="primary" onclick="resetTest()">Reset Test</button>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-card">
+                <div class="stat-label">Time Left</div>
+                <div class="stat-value" id="timer">60s</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">WPM</div>
+                <div class="stat-value" id="wpm">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Accuracy</div>
+                <div class="stat-value" id="accuracy">100%</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Errors</div>
+                <div class="stat-value" id="errors">0</div>
+            </div>
+        </div>
+
+        <div id="textDisplay" class="display-text"></div>
+
+        <textarea 
+            id="textInput" 
+            placeholder="Start typing here when you are ready..."
+            onpaste="return false;"
+            ondrop="return false;"
+            autocomplete="off"
+        ></textarea>
+    </div>
+
+    <div id="resultModal">
+        <div class="modal-content">
+            <h2>Test Complete!</h2>
+            <div id="finalStats"></div>
+            <p id="performanceMsg" class="performance-msg"></p>
+            <button class="primary" onclick="closeModal()">Try Again</button>
+        </div>
+    </div>
+
+    <script>
+        /* --- JAVASCRIPT LOGIC --- */
+
+        const paragraphs = {
+            beginner: [
+                "The cat sat on the mat. The sun is hot today. I like to eat apples and bananas.",
+                "A quick brown fox jumps over the lazy dog. Birds fly in the blue sky above us.",
+                "Open the door and look at the flowers. We can go to the park to play ball."
+            ],
+            intermediate: [
+                "Learning to type is a fundamental skill in the digital age. It requires patience and consistent practice to master the keyboard layout.",
+                "Computer education helps students understand how technology works. This knowledge is essential for many modern career paths and opportunities.",
+                "The internet connects millions of people around the world. We can share information and communicate with others instantly using our computers."
+            ],
+            advanced: [
+                "Success is not final; failure is not fatal: it is the courage to continue that counts. In the realm of technology, innovation is the only constant.",
+                "Programming is the art of telling another human what one wants the computer to do. It requires precision, logic, and a deep understanding of syntax.",
+                "The rapid evolution of artificial intelligence has transformed how we interact with machines, creating new paradigms in both ethics and productivity."
+            ]
+        };
+
+        let timeLeft, timerInterval;
+        let isTyping = false;
+        let totalChars = 0;
+        let errors = 0;
+        let currentParagraph = "";
+
+        const textDisplay = document.getElementById('textDisplay');
+        const textInput = document.getElementById('textInput');
+        const timerEl = document.getElementById('timer');
+        const wpmEl = document.getElementById('wpm');
+        const accuracyEl = document.getElementById('accuracy');
+        const errorEl = document.getElementById('errors');
+        const levelSelect = document.getElementById('levelSelect');
+        const timeSelect = document.getElementById('timeSelect');
+
+        // Initialize
+        function loadParagraph() {
+            const level = levelSelect.value;
+            const levelParas = paragraphs[level];
+            currentParagraph = levelParas[Math.floor(Math.random() * levelParas.length)];
+            
+            // Wrap each character in a span for highlighting
+            textDisplay.innerHTML = currentParagraph.split('').map(char => `<span>${char}</span>`).join('');
+            resetStats();
+        }
+
+        function resetStats() {
+            clearInterval(timerInterval);
+            isTyping = false;
+            timeLeft = parseInt(timeSelect.value);
+            timerEl.innerText = timeLeft + "s";
+            textInput.value = "";
+            textInput.disabled = false;
+            wpmEl.innerText = "0";
+            accuracyEl.innerText = "100%";
+            errorEl.innerText = "0";
+            errors = 0;
+            totalChars = 0;
+            
+            // Remove highlighting
+            const spans = textDisplay.querySelectorAll('span');
+            spans.forEach(s => s.className = '');
+            spans[0].className = 'current';
+        }
+
+        function startTimer() {
+            isTyping = true;
+            timerInterval = setInterval(() => {
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    timerEl.innerText = timeLeft + "s";
+                    calculateStats();
+                } else {
+                    endTest();
+                }
+            }, 1000);
+        }
+
+        textInput.addEventListener('input', () => {
+            if (!isTyping && textInput.value.length > 0) {
+                startTimer();
+            }
+
+            const inputChars = textInput.value.split('');
+            const displaySpans = textDisplay.querySelectorAll('span');
+            errors = 0;
+
+            displaySpans.forEach((span, index) => {
+                const char = inputChars[index];
+                
+                if (char == null) {
+                    span.className = (index === inputChars.length) ? 'current' : '';
+                } else if (char === span.innerText) {
+                    span.className = 'correct';
+                } else {
+                    span.className = 'incorrect';
+                    errors++;
+                }
+            });
+
+            totalChars = inputChars.length;
+            calculateStats();
+
+            // Auto-end if paragraph is finished early
+            if (inputChars.length === currentParagraph.length) {
+                endTest();
+            }
+        });
+
+        function calculateStats() {
+            const timePassed = (parseInt(timeSelect.value) - timeLeft) / 60; // in minutes
+            
+            // WPM = (Total Chars / 5) / Time
+            const wpm = timePassed > 0 ? Math.round((totalChars / 5) / timePassed) : 0;
+            const accuracy = totalChars > 0 ? Math.round(((totalChars - errors) / totalChars) * 100) : 100;
+
+            wpmEl.innerText = wpm;
+            accuracyEl.innerText = accuracy + "%";
+            errorEl.innerText = errors;
+        }
+
+        function endTest() {
+            clearInterval(timerInterval);
+            textInput.disabled = true;
+            showResults();
+        }
+
+        function showResults() {
+            const finalWpm = wpmEl.innerText;
+            const finalAcc = accuracyEl.innerText;
+            const modal = document.getElementById('resultModal');
+            const statsDiv = document.getElementById('finalStats');
+            const msg = document.getElementById('performanceMsg');
+
+            statsDiv.innerHTML = `
+                <p>Speed: <strong>${finalWpm} WPM</strong></p>
+                <p>Accuracy: <strong>${finalAcc}</strong></p>
+                <p>Total Errors: <strong>${errors}</strong></p>
+            `;
+
+            if (finalWpm > 50) msg.innerText = "Excellent Speed 🚀";
+            else if (finalWpm > 30) msg.innerText = "Good Job 👍";
+            else msg.innerText = "Keep Practicing 💪";
+
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('resultModal').style.display = 'none';
+            resetTest();
+        }
+
+        function resetTest() {
+            resetStats();
+            loadParagraph();
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // Initialize on page load
+        window.onload = loadParagraph;
+    </script>
+</body>
+</html>

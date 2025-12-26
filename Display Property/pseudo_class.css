@@ -1,0 +1,92 @@
+/* Basic page styling */
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+/* -------------------------
+   PSEUDO-CLASSES
+-------------------------- */
+
+/* Hover */
+.btn:hover {
+    background-color: rgb(125, 204, 125);
+    color: rgb(218, 50, 209);
+}
+
+/* Active */
+.btn:active {
+    background-color: rgb(207, 206, 148);
+    color: black;
+    transform: scale(0.95);
+}
+
+/* Button base */
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Focus */
+input:focus {
+    outline: none;
+    border: 2px solid blue;
+    background-color: #eef;
+}
+
+/* Visited */
+a:visited {
+    color: rgb(219, 124, 219);
+}
+
+/* Checked */
+input:checked + label {
+    color: green;
+    font-weight: bold;
+}
+
+/* nth-of-type */
+p:nth-of-type(2) {
+    color: red;
+    font-weight: bold;
+}
+
+/* -------------------------
+   PSEUDO-ELEMENTS
+-------------------------- */
+
+/* Before */
+h2::before {
+    content: "👉 ";
+    color: orange;
+}
+
+/* After */
+h2::after {
+    content: " ✔";
+    color: green;
+}
+
+/* First letter */
+.story::first-letter {
+    font-size: 40px;
+    color: red;
+    font-weight: bold;
+}
+
+/* First line */
+.story::first-line {
+    color: blue;
+    font-weight: bold;
+}
+
+/* Selection */
+.story::selection {
+    background-color: rgb(221, 226, 176);
+    color: rgb(214, 15, 115);
+}
