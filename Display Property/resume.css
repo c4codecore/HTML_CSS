@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 20px;
+}
+
+.resume {
+    max-width: 700px;
+    background: #ffffff;
+    margin: auto;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+header {
+    text-align: center;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 15px;
+}
+
+header h1 {
+    margin: 0;
+    color: #333;
+}
+
+.title {
+    color: #555;
+    font-size: 16px;
+}
+
+section {
+    margin-top: 25px;
+}
+
+section h2 {
+    color: #2c3e50;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+ul li {
+    margin-bottom: 5px;
+}
