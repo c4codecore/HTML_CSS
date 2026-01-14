@@ -5,9 +5,36 @@
     <meta charset="UTF-8">
     <title>CSS Positioning – Complete Practical Demo</title>
     <link rel="stylesheet" href="position_demo.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
+    <div class="main-nav">
+        <a href="../index.html" class="brand">
+            <span class="brand-mark" aria-hidden="true">&#127968</span>
+            <span class="brand-name">Code Core</span>
+        </a>
+
+        <button class="nav-toggle" aria-expanded="false" aria-controls="primary-menu">
+            <span class="sr-only">Menu</span>
+            <span class="hamburger" aria-hidden="true"></span>
+        </button>
+
+        <nav id="primary-menu" class="nav-links" aria-label="Primary">
+            <ul>
+                <li><a href="display.html">Display</a></li>
+                <li><a href="flex.html">Flexbox</a></li>
+                <li><a href="grid.html">Grid</a></li>
+                <li><a href="position_demo.html">Position</a></li>
+                <li><a href="pseudo_class.html">Pseudo</a></li>
+                <li><a href="../Bootstrap/first_example.html">Bootstrap</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav-actions">
+            <a class="btn primary" href="typing.html">Start Typing</a>
+        </div>
+    </div>
 
     <!-- STATIC -->
     <section>
@@ -120,3 +147,15 @@
 </body>
 
 </html>
+<script>
+    (function(){
+        var btn = document.querySelector('.nav-toggle');
+        var main = document.querySelector('.main-nav');
+        if(!btn || !main) return;
+        btn.addEventListener('click', function(){
+            var expanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', String(!expanded));
+            main.classList.toggle('open');
+        });
+    })();
+</script>

@@ -6,9 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSS Grid — Examples and Properties</title>
     <link rel="stylesheet" href="grid.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
+    <div class="main-nav">
+        <a href="../index.html" class="brand">
+            <span class="brand-mark" aria-hidden="true">&#127968</span>
+            <span class="brand-name">Code Core</span>
+        </a>
+
+        <button class="nav-toggle" aria-expanded="false" aria-controls="primary-menu">
+            <span class="sr-only">Menu</span>
+            <span class="hamburger" aria-hidden="true"></span>
+        </button>
+
+        <nav id="primary-menu" class="nav-links" aria-label="Primary">
+            <ul>
+                <li><a href="display.html">Display</a></li>
+                <li><a href="flex.html">Flexbox</a></li>
+                <li><a href="grid.html">Grid</a></li>
+                <li><a href="position_demo.html">Position</a></li>
+                <li><a href="pseudo_class.html">Pseudo</a></li>
+                <li><a href="../Bootstrap/first_example.html">Bootstrap</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav-actions">
+            <a class="btn primary" href="typing.html">Start Typing</a>
+        </div>
+    </div>
+
     <div class="page">
         <aside class="toc">
             <div class="toc-inner">
@@ -54,7 +82,8 @@
                 <header class="card-head">
                     <h2>display</h2>
                     <p class="muted">Make an element a grid container with <code>display: grid</code> or
-                        <code>inline-grid</code>.</p>
+                        <code>inline-grid</code>.
+                    </p>
                 </header>
                 <div class="card-body">
                     <div class="ex-grid ex-display">
@@ -72,7 +101,8 @@
                 <header class="card-head">
                     <h2>grid-template-columns / grid-template-rows</h2>
                     <p class="muted">Define explicit tracks. Use <code>fr</code>, fixed sizes, or functions like
-                        <code>repeat()</code>.</p>
+                        <code>repeat()</code>.
+                    </p>
                 </header>
                 <div class="card-body">
                     <div class="ex-grid ex-template">
@@ -146,7 +176,8 @@
                 <header class="card-head">
                     <h2>Alignment</h2>
                     <p class="muted">Use <code>justify-items</code>, <code>align-items</code> for item alignment;
-                        <code>justify-content</code> and <code>align-content</code> for the grid as a whole.</p>
+                        <code>justify-content</code> and <code>align-content</code> for the grid as a whole.
+                    </p>
                 </header>
                 <div class="card-body">
                     <div class="ex-grid ex-align">

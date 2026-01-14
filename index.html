@@ -9,9 +9,38 @@
 
 <body>
 
-    <header class="header">
-        <h1>Welcome to CSS Practice Lab</h1>
-        <p>Click on any topic to start learning</p>
+    <header class="site-header">
+        <div class="main-nav">
+            <a href="index.html" class="brand">
+                <span class="brand-mark" aria-hidden="true">&#127968</span>
+                <span class="brand-name">Code Core</span>
+            </a>
+
+            <button class="nav-toggle" aria-expanded="false" aria-controls="primary-menu">
+                <span class="sr-only">Menu</span>
+                <span class="hamburger" aria-hidden="true"></span>
+            </button>
+
+            <nav id="primary-menu" class="nav-links" aria-label="Primary">
+                <ul>
+                    <li><a href="Display-property/display.html">Display</a></li>
+                    <li><a href="Display-property/flex.html">Flexbox</a></li>
+                    <li><a href="Display-property/grid.html">Grid</a></li>
+                    <li><a href="Display-property/position_demo.html">Position</a></li>
+                    <li><a href="Display-property/pseudo_class.html">Pseudo</a></li>
+                    <li><a href="Bootstrap/first_example.html">Bootstrap</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <a class="btn primary" href="Display-property/typing.html">Start Typing</a>
+            </div>
+        </div>
+
+        <div class="header">
+            <h1>Welcome to CSS Practice Lab</h1>
+            <p>Click on any topic to start learning</p>
+        </div>
     </header>
 
     <main class="container">
@@ -61,26 +90,6 @@
     <footer class="footer">
         <p>© Code Core Computer Center | CSS Practice</p>
     </footer>
-
-
-    Display
-    ↓
-    Position
-    ↓
-    Flexbox
-    ↓
-    Grid
-    ↓
-    Pseudo classes / elements
-    ↓
-    Transition + Transform
-    ↓
-    Animation
-    ↓
-    Responsive Design
-    ↓
-    Mini Projects
-
 </body>
 
 </html>
