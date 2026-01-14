@@ -1,79 +1,299 @@
+.root {
+    box-sizing: border-box
+}
+
+:root {
+    --bg: #f7f8fb;
+    --card: #ffffff;
+    --muted: #6b7280;
+    --accent: #0f62fe;
+    --accent-2: #0b5ed7;
+    --success: #16a34a;
+    --gap: 18px;
+    --radius: 8px;
+    --max-width: 1100px;
+}
+
+*,
+:before,
+:after {
+    box-sizing: inherit
+}
+
+body {
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    margin: 24px;
+    color: #111827;
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+}
+
+.page {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 32px;
+    align-items: start
+}
+
 .toc {
-    background:#fff;
-    border:1px solid #e0e0e0;
-    padding:10px;
-    max-width:320px;
-    margin:10px 0;
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 18px;
+    border: 1px solid rgba(16, 24, 40, 0.06);
+    box-shadow: 0 6px 18px rgba(16, 24, 40, 0.03)
 }
 
-body{
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    margin:16px;
-    color:#222;
+.toc-inner h1 {
+    font-size: 1.05rem;
+    margin: 0 0 8px
 }
 
-.example{margin:22px 0;padding:12px;border:1px dashed #e6e6e6;background:#fafafa}
-.example h2{margin:0 0 8px 0;font-size:1.1rem}
-.example p{margin:0 0 12px 0;color:#444;font-size:0.95rem}
+.lead {
+    margin: 0 0 12px;
+    color: var(--muted);
+    font-size: 0.95rem
+}
 
-.ex-grid{display:grid;background:#fff;border:1px solid #ddd;padding:8px;align-items:start}
-.ex{background:#4CAF50;color:#fff;padding:12px;text-align:center;font-weight:600}
+.muted {
+    color: var(--muted);
+    font-size: 0.9rem
+}
 
-/* display example */
-.ex-display{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.toc a {
+    color: var(--accent-2);
+    text-decoration: none
+}
 
-/* template example */
-.ex-template{grid-template-columns:120px 1fr 2fr;grid-auto-rows:60px;gap:8px}
+.content {
+    padding: 0
+}
 
-/* template areas example */
-.ex-areas{grid-template-columns:200px 1fr;grid-template-rows:60px 1fr 40px;grid-template-areas:
-    "header header"
-    "sidebar content"
-    "footer footer";gap:8px}
-.ex-areas > .a{grid-area:header;background:#1976d2}
-.ex-areas > .b{grid-area:sidebar;background:#0288d1}
-.ex-areas > .c{grid-area:content;background:#03a9f4}
-.ex-areas > .d{grid-area:footer;background:#01579b}
+.card {
+    background: var(--card);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 18px;
+    border: 1px solid rgba(16, 24, 40, 0.04);
+    box-shadow: 0 2px 6px rgba(16, 24, 40, 0.02)
+}
 
-/* auto-flow and implicit tracks */
-.ex-auto-flow{grid-template-columns:repeat(3,120px);grid-auto-rows:80px;grid-auto-flow:row;gap:8px}
+.card-head h2 {
+    margin: 0;
+    font-size: 1.05rem
+}
 
-/* gap example */
-.ex-gap{grid-template-columns:repeat(4,1fr);gap:20px}
+.card-head .muted {
+    margin-top: 6px
+}
 
-/* align and justify examples */
-.ex-align{grid-template-columns:repeat(4,1fr);grid-auto-rows:90px;justify-items:center;align-items:center;gap:8px}
-.ex-align .ex.small{background:#6a1b9a;padding:8px;width:50px}
+.card-body {
+    margin-top: 12px
+}
 
-/* shorthand example (grid shorthand) */
-.ex-shorthand{grid: auto / auto 1fr 2fr;gap:8px}
+.example {
+    background: transparent;
+    padding: 0;
+    border: none
+}
 
-/* lines example: place item with lines */
-.ex-lines{grid-template-columns:repeat(3,1fr);gap:8px}
-.ex-lines .item-wide{grid-column:1 / 3;background:#ef6c00}
+.ex-grid {
+    display: grid;
+    background: linear-gradient(180deg, #ffffff, #fbfcfd);
+    border: 1px solid rgba(16, 24, 40, 0.04);
+    padding: 10px;
+    align-items: start
+}
 
-/* areas-2 + grid-area on items */
-.ex-areas-2{grid-template-columns:200px 1fr;grid-template-rows:60px 1fr 40px;grid-template-areas:
-    "head head"
-    "side cont"
-    "foot foot";gap:8px}
-.ex-areas-2 .head{grid-area:head;background:#8e24aa}
-.ex-areas-2 .side{grid-area:side;background:#7b1fa2}
-.ex-areas-2 .cont{grid-area:cont;background:#ba68c8}
-.ex-areas-2 .foot{grid-area:foot;background:#6a1b9a}
+.ex {
+    background: var(--accent);
+    color: #fff;
+    padding: 12px;
+    text-align: center;
+    font-weight: 600;
+    border-radius: 6px
+}
 
-/* self alignment */
-.ex-self{grid-template-columns:repeat(3,1fr);grid-auto-rows:80px;align-items:start;gap:8px}
-.ex-self .left{justify-self:start;background:#2e7d32}
-.ex-self .center{justify-self:center;background:#43a047}
-.ex-self .right{justify-self:end;background:#66bb6a}
+.ex-grid .ex {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04)
+}
 
-/* repeat, minmax, fr helpers */
-.ex-repeat{grid-template-columns:repeat(3,1fr);gap:8px}
-.ex-minmax{grid-template-columns:repeat(3,minmax(100px,1fr));gap:8px}
-.ex-fr{grid-template-columns:1fr 2fr;gap:8px}
+/* specific example rules (kept concise) */
+.ex-display {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px
+}
+
+.ex-template {
+    grid-template-columns: 120px 1fr 2fr;
+    grid-auto-rows: 60px;
+    gap: 10px
+}
+
+.ex-areas {
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 60px 1fr 40px;
+    grid-template-areas: "header header" "sidebar content" "footer footer";
+    gap: 10px
+}
+
+.ex-areas>.a {
+    grid-area: header;
+    background: #1976d2
+}
+
+.ex-areas>.b {
+    grid-area: sidebar;
+    background: #0288d1
+}
+
+.ex-areas>.c {
+    grid-area: content;
+    background: #03a9f4
+}
+
+.ex-areas>.d {
+    grid-area: footer;
+    background: #01579b
+}
+
+.ex-auto-flow {
+    grid-template-columns: repeat(3, 120px);
+    grid-auto-rows: 80px;
+    grid-auto-flow: row;
+    gap: 10px
+}
+
+.ex-gap {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px
+}
+
+.ex-align {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 90px;
+    justify-items: center;
+    align-items: center;
+    gap: 10px
+}
+
+.ex-align .ex.small {
+    background: #6a1b9a;
+    padding: 8px;
+    width: 58px
+}
+
+.ex-shorthand {
+    grid: auto / auto 1fr 2fr;
+    gap: 10px
+}
+
+.ex-lines {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px
+}
+
+.ex-lines .item-wide {
+    grid-column: 1 / 3;
+    background: #ef6c00
+}
+
+.ex-areas-2 {
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 60px 1fr 40px;
+    grid-template-areas: "head head" "side cont" "foot foot";
+    gap: 10px
+}
+
+.ex-areas-2 .head {
+    grid-area: head;
+    background: #8e24aa
+}
+
+.ex-areas-2 .side {
+    grid-area: side;
+    background: #7b1fa2
+}
+
+.ex-areas-2 .cont {
+    grid-area: cont;
+    background: #ba68c8
+}
+
+.ex-areas-2 .foot {
+    grid-area: foot;
+    background: #6a1b9a
+}
+
+.ex-self {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 80px;
+    align-items: start;
+    gap: 10px
+}
+
+.ex-self .left {
+    justify-self: start;
+    background: #2e7d32
+}
+
+.ex-self .center {
+    justify-self: center;
+    background: #43a047
+}
+
+.ex-self .right {
+    justify-self: end;
+    background: #66bb6a
+}
+
+.ex-repeat {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px
+}
+
+.ex-minmax {
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+    gap: 10px
+}
+
+.ex-fr {
+    grid-template-columns: 1fr 2fr;
+    gap: 10px
+}
 
 /* small utilities */
-.ex-grid .ex{border-radius:4px}
+.code {
+    margin-top: 12px;
+    background: #0b1220;
+    color: #e6eef8;
+    padding: 12px;
+    border-radius: 6px;
+    overflow: auto
+}
 
-footer{margin-top:20px;color:#666}
+.code code {
+    display: block;
+    white-space: pre;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+    font-size: 0.9rem
+}
+
+footer {
+    margin-top: 18px;
+    color: var(--muted);
+    font-size: 0.95rem
+}
+
+@media (max-width:860px) {
+    .page {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 12px
+    }
+
+    .toc {
+        max-width: none
+    }
+}
