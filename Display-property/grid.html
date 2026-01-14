@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid — Examples and Properties</title>
+    <link rel="stylesheet" href="grid.css">
+</head>
+
+<body>
+    <div class="page">
+        <aside class="toc">
+            <div class="toc-inner">
+                <h1>CSS Grid — Properties & Examples</h1>
+                <p class="lead">Concise, practical examples showing container and item properties with code snippets and visuals.</p>
+                <nav aria-label="Table of contents">
+                    <ul>
+                        <li><strong>Container</strong>
+                            <ul>
+                                <li><a href="#display">display</a></li>
+                                <li><a href="#template">grid-template-columns / rows</a></li>
+                                <li><a href="#areas">grid-template-areas</a></li>
+                                <li><a href="#auto">grid-auto-rows / columns / flow</a></li>
+                                <li><a href="#gap">gap</a></li>
+                                <li><a href="#align-justify">alignment</a></li>
+                                <li><a href="#shorthand">grid (shorthand)</a></li>
+                            </ul>
+                        </li>
+                        <li><strong>Item</strong>
+                            <ul>
+                                <li><a href="#lines">grid-column / grid-row</a></li>
+                                <li><a href="#area">grid-area</a></li>
+                                <li><a href="#self">justify-self / align-self</a></li>
+                            </ul>
+                        </li>
+                        <li><strong>Helpers</strong>
+                            <ul>
+                                <li><a href="#repeat">repeat()</a></li>
+                                <li><a href="#minmax">minmax()</a></li>
+                                <li><a href="#fr">fr</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <p class="muted">Files: <a href="grid.css">grid.css</a></p>
+            </div>
+        </aside>
+
+        <main class="content">
+        <!-- Display -->
+        <section id="display" class="example card">
+            <header class="card-head">
+                <h2>display</h2>
+                <p class="muted">Make an element a grid container with <code>display: grid</code> or <code>inline-grid</code>.</p>
+            </header>
+            <div class="card-body">
+                <div class="ex-grid ex-display">
+                    <div class="ex">A</div>
+                    <div class="ex">B</div>
+                    <div class="ex">C</div>
+                </div>
+                <pre class="code"><code>/* container */
+ .ex-display { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }</code></pre>
+            </div>
+        </section>
+
+        <!-- Template columns / rows -->
+        <section id="template" class="example card">
+            <header class="card-head">
+                <h2>grid-template-columns / grid-template-rows</h2>
+                <p class="muted">Define explicit tracks. Use <code>fr</code>, fixed sizes, or functions like <code>repeat()</code>.</p>
+            </header>
+            <div class="card-body">
+                <div class="ex-grid ex-template">
+                    <div class="ex">1</div>
+                    <div class="ex">2</div>
+                    <div class="ex">3</div>
+                    <div class="ex">4</div>
+                </div>
+                <pre class="code"><code>.ex-template { grid-template-columns: 120px 1fr 2fr; grid-auto-rows: 60px; }</code></pre>
+            </div>
+        </section>
+
+        <!-- Areas -->
+        <section id="areas" class="example card">
+            <header class="card-head">
+                <h2>grid-template-areas</h2>
+                <p class="muted">Name areas and place items by name using <code>grid-area</code>.</p>
+            </header>
+            <div class="card-body">
+                <div class="ex-grid ex-areas">
+                    <div class="a">header</div>
+                    <div class="b">sidebar</div>
+                    <div class="c">content</div>
+                    <div class="d">footer</div>
+                </div>
+                <pre class="code"><code>grid-template-areas:
+  "header header"
+  "sidebar content"
+  "footer footer";</code></pre>
+            </div>
+        </section>
+
+        <!-- Auto flow / auto rows/cols -->
+        <section id="auto" class="example card">
+            <header class="card-head"><h2>grid-auto-rows / grid-auto-columns / grid-auto-flow</h2>
+                <p class="muted">Controls implicit tracks and auto-placement direction.</p>
+            </header>
+            <div class="card-body">
+                <div class="ex-grid ex-auto-flow">
+                    <div class="ex">1</div>
+                    <div class="ex">2</div>
+                    <div class="ex">3</div>
+                    <div class="ex">4</div>
+                    <div class="ex">5</div>
+                </div>
+                <pre class="code"><code>.ex-auto-flow { grid-auto-rows: 80px; grid-auto-flow: row; }</code></pre>
+            </div>
+        </section>
+
+        <!-- Gap -->
+        <section id="gap" class="example">
+            <h2>gap / row-gap / column-gap</h2>
+            <p>Space between grid tracks (rows and columns).</p>
+            <div class="ex-grid ex-gap">
+                <div class="ex">A</div>
+                <div class="ex">B</div>
+                <div class="ex">C</div>
+                <div class="ex">D</div>
+            </div>
+        </section>
+
+        <!-- Align & justify -->
+        <section id="align-justify" class="example">
+            <h2>justify-items / align-items / place-items / justify-content / align-content / place-content</h2>
+            <p>Control alignment of items inside their grid areas and distribution of the whole grid.</p>
+            <div class="ex-grid ex-align">
+                <div class="ex small">1</div>
+                <div class="ex small">2</div>
+                <div class="ex small">3</div>
+                <div class="ex small">4</div>
+            </div>
+        </section>
+
+        <!-- Shorthand grid -->
+        <section id="shorthand" class="example">
+            <h2>grid (shorthand)</h2>
+            <p>Shorthand for <code>grid-template-rows</code>, <code>grid-template-columns</code>, and <code>grid-template-areas</code>.</p>
+            <div class="ex-grid ex-shorthand">
+                <div class="ex">1</div>
+                <div class="ex">2</div>
+                <div class="ex">3</div>
+            </div>
+        </section>
+
+        <!-- Item: lines -->
+        <section id="lines" class="example">
+            <h2>grid-column / grid-row (lines)</h2>
+            <p>Place items by line numbers or names: <code>grid-column: 1 / 3;</code></p>
+            <div class="ex-grid ex-lines">
+                <div class="ex item-wide">wide (1 / 3)</div>
+                <div class="ex">a</div>
+                <div class="ex">b</div>
+            </div>
+        </section>
+
+        <!-- Item: area -->
+        <section id="area" class="example">
+            <h2>grid-area</h2>
+            <p>Assign an item to a named area defined by <code>grid-template-areas</code>.</p>
+            <div class="ex-grid ex-areas-2">
+                <div class="ex head">H</div>
+                <div class="ex side">S</div>
+                <div class="ex cont">C</div>
+                <div class="ex foot">F</div>
+            </div>
+        </section>
+
+        <!-- Item self alignment -->
+        <section id="self" class="example">
+            <h2>justify-self / align-self / place-self</h2>
+            <p>Override container alignment per item.</p>
+            <div class="ex-grid ex-self">
+                <div class="ex left">left</div>
+                <div class="ex center">center</div>
+                <div class="ex right">right</div>
+            </div>
+        </section>
+
+        <!-- Helpers: repeat, minmax, fr -->
+        <section id="repeat" class="example">
+            <h2>repeat()</h2>
+            <p>Saves repetition in track lists: <code>repeat(3, 1fr)</code>.</p>
+            <div class="ex-grid ex-repeat">
+                <div class="ex">1</div>
+                <div class="ex">2</div>
+                <div class="ex">3</div>
+            </div>
+        </section>
+
+        <section id="minmax" class="example">
+            <h2>minmax()</h2>
+            <p>Define a track with a minimum and maximum size: <code>minmax(100px, 1fr)</code>.</p>
+            <div class="ex-grid ex-minmax">
+                <div class="ex">alpha</div>
+                <div class="ex">beta</div>
+                <div class="ex">gamma</div>
+            </div>
+        </section>
+
+        <section id="fr" class="example">
+            <h2>fr unit</h2>
+            <p>Fractional unit to distribute free space. Example: <code>1fr 2fr</code>.</p>
+            <div class="ex-grid ex-fr">
+                <div class="ex">one</div>
+                <div class="ex">two</div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>See the source CSS for exact rules used in each example.</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+.toc {
+    background:#fff;
+    border:1px solid #e0e0e0;
+    padding:10px;
+    max-width:320px;
+    margin:10px 0;
+}
+
+body{
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    margin:16px;
+    color:#222;
+}
+
+.example{margin:22px 0;padding:12px;border:1px dashed #e6e6e6;background:#fafafa}
+.example h2{margin:0 0 8px 0;font-size:1.1rem}
+.example p{margin:0 0 12px 0;color:#444;font-size:0.95rem}
+
+.ex-grid{display:grid;background:#fff;border:1px solid #ddd;padding:8px;align-items:start}
+.ex{background:#4CAF50;color:#fff;padding:12px;text-align:center;font-weight:600}
+
+/* display example */
+.ex-display{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+
+/* template example */
+.ex-template{grid-template-columns:120px 1fr 2fr;grid-auto-rows:60px;gap:8px}
+
+/* template areas example */
+.ex-areas{grid-template-columns:200px 1fr;grid-template-rows:60px 1fr 40px;grid-template-areas:
+    "header header"
+    "sidebar content"
+    "footer footer";gap:8px}
+.ex-areas > .a{grid-area:header;background:#1976d2}
+.ex-areas > .b{grid-area:sidebar;background:#0288d1}
+.ex-areas > .c{grid-area:content;background:#03a9f4}
+.ex-areas > .d{grid-area:footer;background:#01579b}
+
+/* auto-flow and implicit tracks */
+.ex-auto-flow{grid-template-columns:repeat(3,120px);grid-auto-rows:80px;grid-auto-flow:row;gap:8px}
+
+/* gap example */
+.ex-gap{grid-template-columns:repeat(4,1fr);gap:20px}
+
+/* align and justify examples */
+.ex-align{grid-template-columns:repeat(4,1fr);grid-auto-rows:90px;justify-items:center;align-items:center;gap:8px}
+.ex-align .ex.small{background:#6a1b9a;padding:8px;width:50px}
+
+/* shorthand example (grid shorthand) */
+.ex-shorthand{grid: auto / auto 1fr 2fr;gap:8px}
+
+/* lines example: place item with lines */
+.ex-lines{grid-template-columns:repeat(3,1fr);gap:8px}
+.ex-lines .item-wide{grid-column:1 / 3;background:#ef6c00}
+
+/* areas-2 + grid-area on items */
+.ex-areas-2{grid-template-columns:200px 1fr;grid-template-rows:60px 1fr 40px;grid-template-areas:
+    "head head"
+    "side cont"
+    "foot foot";gap:8px}
+.ex-areas-2 .head{grid-area:head;background:#8e24aa}
+.ex-areas-2 .side{grid-area:side;background:#7b1fa2}
+.ex-areas-2 .cont{grid-area:cont;background:#ba68c8}
+.ex-areas-2 .foot{grid-area:foot;background:#6a1b9a}
+
+/* self alignment */
+.ex-self{grid-template-columns:repeat(3,1fr);grid-auto-rows:80px;align-items:start;gap:8px}
+.ex-self .left{justify-self:start;background:#2e7d32}
+.ex-self .center{justify-self:center;background:#43a047}
+.ex-self .right{justify-self:end;background:#66bb6a}
+
+/* repeat, minmax, fr helpers */
+.ex-repeat{grid-template-columns:repeat(3,1fr);gap:8px}
+.ex-minmax{grid-template-columns:repeat(3,minmax(100px,1fr));gap:8px}
+.ex-fr{grid-template-columns:1fr 2fr;gap:8px}
+
+/* small utilities */
+.ex-grid .ex{border-radius:4px}
+
+footer{margin-top:20px;color:#666}
