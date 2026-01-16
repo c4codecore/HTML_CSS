@@ -140,22 +140,26 @@ body {
 
 .ex-areas>.a {
     grid-area: header;
-    background: #1976d2
+    background: #1976d2;
+    color: white;
 }
 
 .ex-areas>.b {
     grid-area: sidebar;
-    background: #0288d1
+    background: #0288d1;
+    color: white;
 }
 
 .ex-areas>.c {
     grid-area: content;
-    background: #03a9f4
+    background: #03a9f4;
+    color: white;
 }
 
 .ex-areas>.d {
     grid-area: footer;
-    background: #01579b
+    background: #01579b;
+    color: white;
 }
 
 .ex-auto-flow {
