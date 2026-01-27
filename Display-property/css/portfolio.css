@@ -239,10 +239,9 @@ body {
 ======================= */
 .hero-image {
     position: relative;
-    background: linear-gradient(135deg, #1e293b, #0f172a);
-    padding: 1.2rem;
+    background: linear-gradient(135deg, #4d6164, #0f172a);
+    padding: 18px;
     border-radius: 28px;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
     max-width: 360px;
 }
 
