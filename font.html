@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>CSS Fonts & Text Demo</title>
@@ -8,8 +9,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="font.css">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <div class="main-nav">
+        <a href="../index.html" class="brand">
+            <span class="brand-mark" aria-hidden="true">&#127968</span>
+            <span class="brand-name">Code Core</span>
+        </a>
+
+        <button class="nav-toggle" aria-expanded="false" aria-controls="primary-menu">
+            <span class="sr-only">Menu</span>
+            <span class="hamburger" aria-hidden="true"></span>
+        </button>
+
+        <nav id="primary-menu" class="nav-links" aria-label="Primary">
+            <ul>
+                <li><a href="display.html">Display</a></li>
+                <li><a href="flex.html">Flexbox</a></li>
+                <li><a href="grid.html">Grid</a></li>
+                <li><a href="position_demo.html">Position</a></li>
+                <li><a href="pseudo_class.html">Pseudo</a></li>
+                <li><a href="../Bootstrap/first_example.html">Bootstrap</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav-actions">
+            <a class="btn primary" href="typing.html">Start Typing</a>
+        </div>
+    </div>
 
     <h1>CSS Fonts & Text Styling Demo</h1>
 
@@ -60,4 +89,5 @@
     </section>
 
 </body>
+
 </html>
