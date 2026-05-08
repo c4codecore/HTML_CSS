@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Box Model</title>
+    <link rel="stylesheet" href="box-model.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <div class="main-nav">
+        <a href="../index.html" class="brand">
+            <span class="brand-mark" aria-hidden="true">&#127968</span>
+            <span class="brand-name">Code Core</span>
+        </a>
+
+        <button class="nav-toggle" aria-expanded="false" aria-controls="primary-menu">
+            <span class="sr-only">Menu</span>
+            <span class="hamburger" aria-hidden="true"></span>
+        </button>
+
+        <nav id="primary-menu" class="nav-links" aria-label="Primary">
+            <ul>
+                <li><a href="display.html">Display</a></li>
+                <li><a href="flex.html">Flexbox</a></li>
+                <li><a href="grid.html">Grid</a></li>
+                <li><a href="box-model.html">Box Model</a></li>
+                <li><a href="position_demo.html">Position</a></li>
+                <li><a href="pseudo_class.html">Pseudo</a></li>
+                <li><a href="../Bootstrap/first_example.html">Bootstrap</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav-actions">
+            <a class="btn primary" href="typing.html">Start Typing</a>
+        </div>
+    </div>
+
+    <h1>📦 CSS Box Model Examples</h1>
+
+    <section class="card box-card">
+        <h2>Box Model Overview Card</h2>
+        <p>This card shows how content, padding, border, and margin work together in the CSS box model.</p>
+        <ul>
+            <li><strong>Content</strong> is the innermost area.</li>
+            <li><strong>Padding</strong> adds space inside the border.</li>
+            <li><strong>Border</strong> surrounds the padding and content.</li>
+            <li><strong>Margin</strong> adds space outside the border.</li>
+        </ul>
+    </section>
+
+    <!-- Basic Box Model -->
+    <section>
+        <h2>1) Basic Box Model</h2>
+
+        <div class="basic-box">
+            This box contains content, padding, border, and margin.
+        </div>
+    </section>
+
+    <!-- Padding Shorthand -->
+    <section>
+        <h2>2) Padding Shorthand</h2>
+
+        <div class="padding-one">padding: 20px;</div>
+
+        <div class="padding-two">padding: 10px 30px;</div>
+
+        <div class="padding-three">padding: 10px 20px 30px;</div>
+
+        <div class="padding-four">padding: 10px 20px 30px 40px;</div>
+    </section>
+
+    <!-- Margin Shorthand -->
+    <section>
+        <h2>3) Margin Shorthand</h2>
+
+        <div class="margin-box margin-one">margin: 20px;</div>
+
+        <div class="margin-box margin-two">margin: 10px 40px;</div>
+
+        <div class="margin-box margin-three">margin: 10px 20px 30px;</div>
+
+        <div class="margin-box margin-four">margin: 10px 20px 30px 40px;</div>
+    </section>
+
+    <!-- Border Styles -->
+    <section>
+        <h2>4) Border Examples</h2>
+
+        <div class="border-solid">Solid Border</div>
+
+        <div class="border-dashed">Dashed Border</div>
+
+        <div class="border-dotted">Dotted Border</div>
+
+        <div class="border-double">Double Border</div>
+    </section>
+
+    <!-- Individual Side Properties -->
+    <section>
+        <h2>5) Individual Side Properties</h2>
+
+        <div class="individual-sides">
+            Different padding, margin and border on each side.
+        </div>
+    </section>
+
+    <!-- Content Box -->
+    <section>
+        <h2>6) box-sizing: content-box</h2>
+
+        <div class="content-box">
+            Width becomes larger because padding and border are added separately.
+        </div>
+    </section>
+
+    <!-- Border Box -->
+    <section>
+        <h2>7) box-sizing: border-box</h2>
+
+        <div class="border-box">
+            Final width remains exactly 300px.
+        </div>
+    </section>
+
+    <script>
+        (function(){
+            var btn = document.querySelector('.nav-toggle');
+            var main = document.querySelector('.main-nav');
+            if(!btn || !main) return;
+            btn.addEventListener('click', function(){
+                var expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', String(!expanded));
+                main.classList.toggle('open');
+            });
+        })();
+    </script>
+</body>
+</html>
