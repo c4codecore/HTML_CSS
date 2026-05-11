@@ -35,24 +35,28 @@ div {
     padding: 20px;
     background-color: lightyellow;
     border: 2px solid black;
+    width: 300px;
 }
 
 .padding-two {
     padding: 10px 30px;
     background-color: lightgreen;
     border: 2px solid black;
+    width: 300px;
 }
 
 .padding-three {
     padding: 10px 20px 30px;
     background-color: lightpink;
     border: 2px solid black;
+    width: 300px;
 }
 
 .padding-four {
     padding: 10px 20px 30px 40px;
     background-color: lightgray;
     border: 2px solid black;
+    width: 300px;
 }
 
 /* 3) Margin Shorthand */
