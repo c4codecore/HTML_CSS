@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Model — Code Core</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/box-model.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="../index.html" class="brand">🏠 Code Core</a>
+        <ul>
+            <li><a href="../pages/font.html">Fonts</a></li>
+            <li><a href="../pages/box-model.html" class="active">Box Model</a></li>
+            <li><a href="../pages/display.html">Display</a></li>
+            <li><a href="../pages/flex.html">Flexbox</a></li>
+            <li><a href="../pages/grid.html">Grid</a></li>
+            <li><a href="../pages/position.html">Position</a></li>
+            <li><a href="../pages/pseudo.html">Pseudo</a></li>
+            <li><a href="../pages/effects.html">Effects</a></li>
+            <li><a href="../pages/portfolio.html">Portfolio</a></li>
+        </ul>
+    </nav>
+
+    <div class="page-header">
+        <h1>📦 CSS Box Model</h1>
+        <p>CSS mein har element ek rectangular box hoti hai — Content → Padding → Border → Margin. Yeh chaar layers milke ek element banate hain.</p>
+    </div>
+
+    <div class="container">
+
+        <!-- ── VISUAL DIAGRAM ── -->
+        <div class="section">
+            <h2>Box Model — Visual Diagram</h2>
+            <p class="desc">
+                Har element mein 4 layers hoti hain. Bahar se andar jaate hain to:
+                <strong>Margin → Border → Padding → Content</strong>
+            </p>
+
+            <!-- Color coded nested boxes showing the model -->
+            <div style="display:inline-block; text-align:center;">
+                <div class="visual-margin">
+                    <small style="display:block; color:#92400e; font-weight:bold; margin-bottom:6px;">MARGIN (transparent — page background dikhta hai)</small>
+                    <div class="visual-border">
+                        <small style="display:block; color:#92400e; font-weight:bold; padding:4px;">BORDER</small>
+                        <div class="visual-padding">
+                            <small style="display:block; color:#14532d; font-weight:bold; margin-bottom:6px;">PADDING (background color dikhti hai)</small>
+                            <div class="visual-content">
+                                CONTENT<br>(text / image yahan hota hai)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <pre class="code-block">/* Box model ka formula (default) */
+Total Width  = width + padding-left + padding-right + border-left + border-right
+Total Height = height + padding-top + padding-bottom + border-top + border-bottom</pre>
+        </div>
+
+        <!-- ── 1. CONTENT ── -->
+        <div class="section">
+            <h2>1. Content — Actual text ya image</h2>
+            <p class="desc">
+                <code>width</code> aur <code>height</code> se content area ka size set karte hain.
+            </p>
+
+            <div class="content-demo demo-box">
+                Yeh content area hai — width: 300px, height: 80px set ki hai
+            </div>
+
+            <pre class="code-block">div {
+    width: 300px;       /* content ka width */
+    height: 80px;       /* content ka height */
+    background: lightblue;
+}</pre>
+        </div>
+
+        <!-- ── 2. PADDING ── -->
+        <div class="section">
+            <h2>2. Padding — Content aur border ke beech ka space</h2>
+            <p class="desc">
+                Padding andar ka space hai. Background color padding mein bhi dikhti hai.
+                Padding se content "breathe" karta hai — text border se chipka nahi lagta.
+            </p>
+
+            <span class="label-note">Shorthand Rule → charon values ghadi ki direction mein: Top → Right → Bottom → Left</span>
+
+            <div class="padding-1 demo-box">padding: 20px — Charon taraf 20px</div>
+            <div class="padding-2 demo-box">padding: 10px 30px — Top+Bottom=10px, Left+Right=30px</div>
+            <div class="padding-3 demo-box">padding: 10px 20px 30px — Top=10, L+R=20, Bottom=30</div>
+            <div class="padding-4 demo-box">padding: 10px 20px 30px 40px — Top=10, Right=20, Bottom=30, Left=40</div>
+
+            <hr class="divider">
+            <span class="label-note">Individual sides</span>
+            <div class="padding-individual demo-box">padding-top:20 | padding-right:40 | padding-bottom:10 | padding-left:60</div>
+
+            <pre class="code-block">/* Shorthand — ek value */
+div { padding: 20px; }                /* charon taraf 20px */
+
+/* Shorthand — do values */
+div { padding: 10px 30px; }           /* top+bottom, left+right */
+
+/* Shorthand — teen values */
+div { padding: 10px 20px 30px; }      /* top, left+right, bottom */
+
+/* Shorthand — char values (Top Right Bottom Left — TRBL) */
+div { padding: 10px 20px 30px 40px; }
+
+/* Individual sides */
+div {
+    padding-top:    20px;
+    padding-right:  40px;
+    padding-bottom: 10px;
+    padding-left:   60px;
+}</pre>
+        </div>
+
+        <!-- ── 3. BORDER ── -->
+        <div class="section">
+            <h2>3. Border — Element ke charon taraf line</h2>
+            <p class="desc">
+                Border ek visible line hai jo element ke around lagti hai.
+                Shorthand: <code>border: width style color;</code>
+                — style likhna zaroori hai (solid, dashed, dotted, double).
+            </p>
+
+            <span class="label-before">Border Styles</span>
+            <div class="border-solid  demo-box">border: 4px solid red — solid line</div>
+            <div class="border-dashed demo-box">border: 4px dashed blue — dashed line</div>
+            <div class="border-dotted demo-box">border: 4px dotted green — dotted line</div>
+            <div class="border-double demo-box">border: 8px double purple — double line</div>
+
+            <hr class="divider">
+            <span class="label-note">Individual sides — har taraf alag border</span>
+            <div class="border-sides demo-box">Top=solid-red | Right=dashed-blue | Bottom=dotted-green | Left=double-orange</div>
+
+            <hr class="divider">
+            <span class="label-note">border-radius — corners ko round karo</span>
+            <div class="border-radius-demo radius-small  demo-box">border-radius: 4px — thoda round</div>
+            <div class="border-radius-demo radius-medium demo-box">border-radius: 12px — medium round</div>
+            <div class="border-radius-demo radius-large  demo-box">border-radius: 24px — zyada round (pill shape)</div>
+            <div class="border-radius-demo radius-circle demo-box" style="width:100px;height:100px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:12px;">border-radius: 50% = circle</div>
+
+            <pre class="code-block">/* Shorthand */
+div { border: 4px solid red; }     /* width style color — teeno zaroori */
+
+/* Alag alag styles */
+div { border: 4px dashed blue; }
+div { border: 4px dotted green; }
+div { border: 8px double purple; }
+
+/* Individual sides */
+div {
+    border-top:    4px solid red;
+    border-right:  4px dashed blue;
+    border-bottom: 4px dotted green;
+    border-left:   4px double orange;
+}
+
+/* Border radius */
+div { border-radius: 4px; }    /* thoda round */
+div { border-radius: 50%; }    /* circle */</pre>
+        </div>
+
+        <!-- ── 4. MARGIN ── -->
+        <div class="section">
+            <h2>4. Margin — Element ke bahar ka space</h2>
+            <p class="desc">
+                Margin element ke bahar hoti hai — dusre elements se door karne ke liye.
+                Margin transparent hoti hai — page background dikhti hai.
+                <br>
+                Special trick: <code>margin: auto</code> se element center ho jaata hai!
+            </p>
+
+            <div class="margin-demo margin-1">margin: 20px — Charon taraf 20px space</div>
+            <div class="margin-demo margin-2">margin: 10px 40px — Top+Bottom=10, Left+Right=40</div>
+            <div class="margin-demo margin-4">margin: 10px 20px 30px 40px — Top Right Bottom Left</div>
+
+            <hr class="divider">
+            <span class="label-after">margin: auto — Element ko center karna</span>
+            <div class="margin-auto">
+                margin: 20px auto; — Yeh box center mein hai!<br>
+                (Width set karna zaroori hai)
+            </div>
+
+            <pre class="code-block">/* Shorthand — padding jaisa hi */
+div { margin: 20px; }                /* charon taraf */
+div { margin: 10px 40px; }           /* top+bottom, left+right */
+div { margin: 10px 20px 30px 40px; } /* top right bottom left */
+
+/* Center karna — left+right auto */
+div {
+    width: 300px;        /* width zaroori hai */
+    margin: 0 auto;      /* left+right auto = center mein */
+}
+
+/* Individual sides */
+div {
+    margin-top:    20px;
+    margin-right:  40px;
+    margin-bottom: 10px;
+    margin-left:   60px;
+}</pre>
+        </div>
+
+        <!-- ── 5. BOX-SIZING ── -->
+        <div class="section">
+            <h2>5. box-sizing — SABSE IMPORTANT concept</h2>
+            <p class="desc">
+                <strong>Yeh bahut confusing hota hai beginners ke liye!</strong>
+                <br>
+                Default mein padding aur border width ke UPAR se add hoti hai — actual size badi ho jaati hai.
+                <code>border-box</code> se yeh problem solve hoti hai.
+            </p>
+
+            <span class="label-before">box-sizing: content-box (DEFAULT — confusing!)</span>
+            <div class="box-content-box demo-box">
+                width: 200px set ki — lekin actual width 250px render hogi!<br>
+                <small>(200 content + 40 padding + 10 border = 250px)</small>
+            </div>
+
+            <span class="label-after">box-sizing: border-box (RECOMMENDED — predictable)</span>
+            <div class="box-border-box demo-box">
+                width: 200px set ki — actual width exactly 200px rahegi!<br>
+                <small>(padding + border andar fit hote hain)</small>
+            </div>
+
+            <pre class="code-block">/* DEFAULT — content-box (confusing) */
+.box {
+    box-sizing: content-box;   /* default — mention karna zaroori nahi */
+    width: 200px;
+    padding: 20px;
+    border: 5px solid red;
+    /* ACTUAL WIDTH = 200 + 40 + 10 = 250px  ← unexpected! */
+}
+
+/* RECOMMENDED — border-box (predictable) */
+.box {
+    box-sizing: border-box;    /* width = total width */
+    width: 200px;
+    padding: 20px;
+    border: 5px solid green;
+    /* ACTUAL WIDTH = 200px exactly  ← expected! */
+}
+
+/* Best practice — sabhi elements par laga do */
+* {
+    box-sizing: border-box;
+}</pre>
+        </div>
+
+        <!-- ── SUMMARY ── -->
+        <div class="section">
+            <h2>📋 Summary — Box Model</h2>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Layer</th>
+                        <th>Kya hai</th>
+                        <th>Background dikhti hai?</th>
+                        <th>Size control</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Content</strong></td>
+                        <td>Actual text / image</td>
+                        <td>✅ Haan</td>
+                        <td>width, height</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Padding</strong></td>
+                        <td>Content aur border ke beech andar ka space</td>
+                        <td>✅ Haan</td>
+                        <td>padding</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Border</strong></td>
+                        <td>Element ke around line / frame</td>
+                        <td>Border khud visible hoti hai</td>
+                        <td>border</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Margin</strong></td>
+                        <td>Element ke bahar ka space</td>
+                        <td>❌ Transparent</td>
+                        <td>margin</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        © Code Core Computer Center — CSS Practice Lab
+    </footer>
+
+</body>
+</html>

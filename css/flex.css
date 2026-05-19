@@ -1,0 +1,269 @@
+/* ================================================
+   flex.css — CSS Flexbox
+   
+   Flexbox ek 1D layout system hai.
+   Iska matlab — items ko EK LINE mein
+   (row ya column) arrange karna.
+   
+   Sirf ek property se shuru hota hai:
+   .container { display: flex; }
+   
+   Iske baad container ke andar ke sab
+   elements "flex items" ban jaate hain.
+   
+   DO types ke properties hain:
+   1. Container properties  → parent par lagate hain
+   2. Item properties       → individual child par lagate hain
+================================================ */
+
+
+/* ================================================
+   CONTAINER BASE STYLE — sab examples mein use
+================================================ */
+.flex-container {
+    display: flex;              /* yeh hona zaroori hai */
+    border: 2px dashed #64748b;
+    padding: 10px;
+    background: #f8fafc;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    min-height: 80px;
+}
+
+/* Flex items ka base style */
+.item {
+    background: #3b82f6;
+    color: #ffffff;
+    padding: 14px 18px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Alag alag colors for variety */
+.item-a { background: #3b82f6; }   /* blue */
+.item-b { background: #10b981; }   /* green */
+.item-c { background: #f59e0b; color: #1c1917; }   /* orange */
+.item-d { background: #8b5cf6; }   /* purple */
+.item-e { background: #ef4444; }   /* red */
+
+/* ================================================
+   CONTAINER PROPERTY 1: flex-direction
+   
+   Items ka direction set karta hai.
+   
+   row           → left se right (default)
+   row-reverse   → right se left
+   column        → upar se neeche
+   column-reverse→ neeche se upar
+================================================ */
+
+.direction-row            { flex-direction: row; }            /* default */
+.direction-row-reverse    { flex-direction: row-reverse; }
+.direction-column         { flex-direction: column; min-height: 180px; }
+.direction-column-reverse { flex-direction: column-reverse; min-height: 180px; }
+
+/* ================================================
+   CONTAINER PROPERTY 2: justify-content
+   
+   MAIN AXIS par items ko kaise distribute karein.
+   (Agar direction=row hai to main axis = horizontal)
+   
+   flex-start    → sab left side (default)
+   flex-end      → sab right side
+   center        → beech mein
+   space-between → first aur last edge par, beech mein equal gap
+   space-around  → har item ke dono taraf equal space
+   space-evenly  → sab gaps exactly equal
+================================================ */
+
+.jc-flex-start    { justify-content: flex-start; }    /* default */
+.jc-flex-end      { justify-content: flex-end; }
+.jc-center        { justify-content: center; }
+.jc-space-between { justify-content: space-between; }
+.jc-space-around  { justify-content: space-around; }
+.jc-space-evenly  { justify-content: space-evenly; }
+
+/* ================================================
+   CONTAINER PROPERTY 3: align-items
+   
+   CROSS AXIS par items ko kaise rakhein.
+   (Agar direction=row hai to cross axis = vertical)
+   
+   stretch     → puri height tak stretch karo (default)
+   flex-start  → upar se align
+   flex-end    → neeche se align
+   center      → vertically center
+================================================ */
+
+.tall { min-height: 140px; }  /* align-items ka effect dikhne ke liye height chahiye */
+
+.ai-stretch    { align-items: stretch; }    /* default */
+.ai-flex-start { align-items: flex-start; }
+.ai-flex-end   { align-items: flex-end; }
+.ai-center     { align-items: center; }
+
+/* ================================================
+   CONTAINER PROPERTY 4: flex-wrap
+   
+   Jab items container se baahar jaane lage tab kya karein?
+   
+   nowrap → sab ek hi line mein (default) — overflow hoga
+   wrap   → agla item neeche wali line mein chala jaayega
+================================================ */
+
+.wrap-nowrap { flex-wrap: nowrap; overflow: hidden; } /* default */
+.wrap-wrap   { flex-wrap: wrap; }
+
+/* Wide items — wrap demonstrate karne ke liye */
+.item-wide { width: 160px; }
+
+/* ================================================
+   CONTAINER PROPERTY 5: gap
+   
+   Items ke beech ki jagah — row aur column dono.
+   
+   gap: 20px            → dono directions mein 20px
+   gap: 10px 30px       → row-gap: 10px, column-gap: 30px
+   
+   Pehle margin se karte the — gap zyada clean hai.
+================================================ */
+
+.gap-none   { gap: 0; }
+.gap-small  { gap: 8px; }
+.gap-medium { gap: 20px; }
+.gap-large  { gap: 40px; }
+
+/* ================================================
+   ITEM PROPERTY 1: order
+   
+   HTML order badlaye bina visual order change kar sakte hain.
+   Default order = 0. Chhota number pehle aata hai.
+================================================ */
+
+.order-demo .item:nth-child(1) { order: 3; background: #ef4444; }
+.order-demo .item:nth-child(2) { order: 1; background: #10b981; }
+.order-demo .item:nth-child(3) { order: 2; background: #f59e0b; color:#1c1917; }
+
+/* ================================================
+   ITEM PROPERTY 2: flex-grow
+   
+   Available extra space kitna lena hai.
+   
+   Default = 0 (koi extra space nahi lega)
+   flex-grow: 1 → bachi hui jagah barabar baant lo
+   flex-grow: 2 → is item ko baaki ke 2 guna space milega
+   
+   Sochna aise: yeh "share" hai jitna extra space milega.
+================================================ */
+
+.grow-demo .item-a { flex-grow: 1; }   /* ek hissa */
+.grow-demo .item-b { flex-grow: 2; }   /* do hisse — double space */
+.grow-demo .item-c { flex-grow: 1; }   /* ek hissa */
+
+/* ================================================
+   ITEM PROPERTY 3: flex-shrink
+   
+   Jab container chhota ho to item kitna shrink kare.
+   
+   Default = 1 (sab barabar shrink karenge)
+   flex-shrink: 0 → yeh item bilkul shrink NAHI karega
+   
+   Use case: Logo ya button jo chhota nahi hona chahiye.
+================================================ */
+
+.shrink-demo { width: 350px; }  /* container chhota rakha — shrinking dikhane ke liye */
+.shrink-demo .item-a { flex-shrink: 0; background: #ef4444; } /* shrink nahi karega */
+.shrink-demo .item-b { flex-shrink: 1; }  /* default — shrink karega */
+.shrink-demo .item-c { flex-shrink: 1; }  /* default — shrink karega */
+
+/* ================================================
+   ITEM PROPERTY 4: flex-basis
+   
+   Item ki DEFAULT size set karta hai (grow/shrink se pehle).
+   Width ki jagah flex-basis use karna better hai flex mein.
+================================================ */
+
+.basis-demo .item-a { flex-basis: 200px; background: #8b5cf6; }  /* 200px se shuru */
+.basis-demo .item-b { flex-basis: 100px; }                        /* 100px se shuru */
+.basis-demo .item-c { flex-basis: auto; background: #10b981; }   /* content ke hisab se */
+
+/* ================================================
+   ITEM PROPERTY 5: flex (shorthand)
+   
+   flex: grow shrink basis  → teeno ek saath
+   
+   Common shortcuts:
+   flex: 1       → flex: 1 1 0%   (equal space lo)
+   flex: auto    → flex: 1 1 auto
+   flex: none    → flex: 0 0 auto (fixed size)
+================================================ */
+
+.shorthand-demo .item-a { flex: 1; }    /* barabar hissa */
+.shorthand-demo .item-b { flex: 2; }    /* double hissa */
+.shorthand-demo .item-c { flex: 1; }    /* barabar hissa */
+
+/* ================================================
+   ITEM PROPERTY 6: align-self
+   
+   Sirf EK item ki cross-axis alignment change karna.
+   Container ke align-items ko override kar deta hai.
+================================================ */
+
+.align-self-demo { align-items: flex-start; min-height: 140px; }
+
+.as-auto        { align-self: auto; }         /* container follow karega */
+.as-flex-start  { align-self: flex-start; }   /* upar */
+.as-flex-end    { align-self: flex-end; background: #ef4444; }     /* neeche */
+.as-center      { align-self: center; background: #10b981; }       /* center */
+.as-stretch     { align-self: stretch; background: #8b5cf6; }      /* full height */
+
+/* ================================================
+   REAL WORLD EXAMPLE — Navbar
+   Flexbox ka sabse common use case
+================================================ */
+
+.demo-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;  /* logo left, links right */
+    background: #1e293b;
+    padding: 14px 20px;
+    border-radius: 8px;
+}
+
+.demo-navbar .logo {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.demo-navbar .nav-links {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+}
+
+.demo-navbar .nav-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.demo-navbar .nav-links a:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+}
+
+.demo-navbar .cta {
+    background: #3b82f6;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}

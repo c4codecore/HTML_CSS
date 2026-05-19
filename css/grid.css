@@ -1,0 +1,220 @@
+/* ================================================
+   grid.css — CSS Grid Layout
+   
+   CSS Grid ek 2D layout system hai.
+   Matlab — rows AUR columns dono ek saath control kar sakte hain.
+   
+   Flexbox vs Grid:
+   - Flexbox → 1D (ek direction — row ya column)
+   - Grid    → 2D (rows + columns dono)
+   
+   Grid ka use: Page layouts, image galleries,
+   dashboard cards — jahan rows aur columns dono ho.
+   
+   Shuru karna:
+   .container { display: grid; }
+================================================ */
+
+/* ── Grid container base ── */
+.grid-container {
+    display: grid;
+    border: 2px dashed #64748b;
+    padding: 10px;
+    background: #f8fafc;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+/* ── Grid items ── */
+.g-item {
+    background: #3b82f6;
+    color: #fff;
+    padding: 16px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+/* Color variety */
+.g-item:nth-child(2)  { background: #10b981; }
+.g-item:nth-child(3)  { background: #f59e0b; color: #1c1917; }
+.g-item:nth-child(4)  { background: #8b5cf6; }
+.g-item:nth-child(5)  { background: #ef4444; }
+.g-item:nth-child(6)  { background: #0ea5e9; }
+.g-item:nth-child(7)  { background: #84cc16; color: #1a2e05; }
+.g-item:nth-child(8)  { background: #f97316; }
+.g-item:nth-child(9)  { background: #a855f7; }
+
+/* ================================================
+   1. grid-template-columns
+   
+   Columns ka structure define karta hai.
+   
+   px values  → fixed size columns
+   fr unit    → fractional unit — available space ka hissa
+                1fr 1fr = dono equal
+                1fr 2fr = doosra do guna bada
+   repeat()   → shorthand for repeating tracks
+                repeat(3, 1fr) = 1fr 1fr 1fr
+   auto       → content ke hisaab se
+================================================ */
+
+/* Fixed columns */
+.cols-fixed {
+    grid-template-columns: 100px 200px 100px;
+    gap: 10px;
+}
+
+/* fr unit — equal columns */
+.cols-equal {
+    grid-template-columns: 1fr 1fr 1fr;  /* = repeat(3, 1fr) */
+    gap: 10px;
+}
+
+/* fr unit — unequal */
+.cols-unequal {
+    grid-template-columns: 1fr 2fr 1fr;  /* beech wala do guna */
+    gap: 10px;
+}
+
+/* repeat() shorthand */
+.cols-repeat {
+    grid-template-columns: repeat(4, 1fr);  /* 4 equal columns */
+    gap: 10px;
+}
+
+/* Mixed */
+.cols-mixed {
+    grid-template-columns: 150px 1fr 1fr;  /* pehla fixed, baaki equal */
+    gap: 10px;
+}
+
+/* ================================================
+   2. grid-template-rows
+   
+   Rows ka structure define karta hai.
+   Agar nahi likha to rows auto size hoti hain.
+================================================ */
+
+.rows-defined {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 80px 120px;       /* pehli row 80px, doosri 120px */
+    gap: 10px;
+}
+
+/* ================================================
+   3. gap (row-gap, column-gap)
+   
+   Grid cells ke beech ka space.
+   
+   gap: 20px          → dono direction mein 20px
+   gap: 10px 30px     → row-gap: 10px, column-gap: 30px
+   row-gap: 10px      → sirf rows ke beech
+   column-gap: 20px   → sirf columns ke beech
+================================================ */
+
+.gap-demo-1 { grid-template-columns: repeat(3, 1fr); gap: 4px; }
+.gap-demo-2 { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.gap-demo-3 { grid-template-columns: repeat(3, 1fr); row-gap: 6px; column-gap: 24px; }
+
+/* ================================================
+   4. grid-template-areas
+   
+   Named areas se layout banana — visual aur readable!
+   
+   Har cell ko ek naam dete hain.
+   "." ka matlab empty cell.
+   Same naam = merged cells.
+================================================ */
+
+.areas-layout {
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 60px 1fr 50px;
+    grid-template-areas:
+        "header  header"
+        "sidebar content"
+        "footer  footer";
+    gap: 10px;
+    min-height: 260px;
+}
+
+/* Har item ko uske named area mein daalo */
+.area-header  { grid-area: header;  background: #1e40af; color: #fff; }
+.area-sidebar { grid-area: sidebar; background: #1d4ed8; color: #fff; }
+.area-content { grid-area: content; background: #3b82f6; color: #fff; }
+.area-footer  { grid-area: footer;  background: #1e3a8a; color: #fff; }
+
+/* ================================================
+   5. auto-fit aur auto-fill with minmax()
+   
+   Responsive grid banane ka best tarika — bina media queries ke!
+   
+   auto-fit  → columns fit hote hain — extra columns collapse hote hain
+   auto-fill → extra empty columns bhi rakhta hai
+   
+   minmax(min, max):
+   minmax(200px, 1fr) → kam se kam 200px, zyada se zyada 1fr
+================================================ */
+
+.responsive-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+}
+
+/* ================================================
+   6. ITEM PROPERTIES — individual cells
+================================================ */
+
+/* grid-column: span — kitne columns cross karo */
+.span-2-cols { grid-column: span 2; background: #ef4444; }  /* 2 columns lega */
+.span-3-cols { grid-column: span 3; background: #8b5cf6; }  /* 3 columns lega */
+
+/* grid-column: line numbers se */
+.col-1-to-3  { grid-column: 1 / 3; background: #f59e0b; color: #1c1917; }  /* line 1 se line 3 tak */
+.col-1-to-end { grid-column: 1 / -1; background: #10b981; } /* pehle se aakhri tak */
+
+/* grid-row: span — kitni rows cross karo */
+.span-2-rows { grid-row: span 2; background: #ec4899; }
+
+/* justify-self — individual item ki horizontal alignment */
+.js-start  { justify-self: start; }
+.js-center { justify-self: center; }
+.js-end    { justify-self: end; }
+.js-stretch { justify-self: stretch; } /* default */
+
+/* align-self — individual item ki vertical alignment */
+.as-start  { align-self: start; }
+.as-center { align-self: center; }
+.as-end    { align-self: end; }
+
+/* ================================================
+   REAL WORLD — Blog Layout
+================================================ */
+
+.blog-layout {
+    grid-template-columns: 1fr 300px;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "hero     hero"
+        "article  sidebar"
+        "footer   footer";
+    gap: 16px;
+    min-height: 300px;
+}
+
+.blog-hero    { grid-area: hero;    background: #0f172a; color:#fff; padding:20px; border-radius:6px; }
+.blog-article { grid-area: article; background: #f1f5f9; padding:20px; border-radius:6px; }
+.blog-sidebar { grid-area: sidebar; background: #e2e8f0; padding:20px; border-radius:6px; }
+.blog-footer  { grid-area: footer;  background: #334155; color:#fff; padding:12px; border-radius:6px; text-align:center; font-size:13px; }
+
+.cell-label {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.cell-desc {
+    font-size: 13px;
+    opacity: 0.8;
+}

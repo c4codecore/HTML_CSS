@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fonts & Text — Code Core</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/font.css">
+</head>
+
+<body>
+
+    <!-- ── NAVBAR ── -->
+    <nav class="navbar">
+        <a href="../index.html" class="brand">🏠 Code Core</a>
+        <ul>
+            <li><a href="../pages/font.html" class="active">Fonts</a></li>
+            <li><a href="../pages/box-model.html">Box Model</a></li>
+            <li><a href="../pages/display.html">Display</a></li>
+            <li><a href="../pages/flex.html">Flexbox</a></li>
+            <li><a href="../pages/grid.html">Grid</a></li>
+            <li><a href="../pages/position.html">Position</a></li>
+            <li><a href="../pages/pseudo.html">Pseudo</a></li>
+            <li><a href="../pages/effects.html">Effects</a></li>
+            <li><a href="../pages/portfolio.html">Portfolio</a></li>
+        </ul>
+    </nav>
+
+    <!-- ── PAGE HEADER ── -->
+    <div class="page-header">
+        <h1>🔤 Fonts &amp; Text Styling</h1>
+        <p>CSS mein text ko style karne ki saari important properties — har ek ka live example neeche hai.</p>
+    </div>
+
+    <div class="container">
+
+        <!-- ── 1. FONT-FAMILY ── -->
+        <div class="section">
+            <h2>1. font-family</h2>
+            <p class="desc">
+                <strong>font-family</strong> se choose karte hain ki text kis font mein dikhe.
+                Hamesha 2-3 fonts likhein — agar pehla nahi mila to dusra use hoga.
+                <br>
+                Format: <code>font-family: PrimaryFont, FallbackFont, generic-family;</code>
+            </p>
+
+            <div class="demo-box font-arial">
+                Arial, sans-serif — <em>Yeh ek sans-serif font hai (letters ke upar/neeche chhoti lines nahi hoti)</em>
+            </div>
+            <div class="demo-box serif-demo font-times">
+                "Times New Roman", serif — <em>Yeh ek serif font hai (letters par decorative lines hoti hain)</em>
+            </div>
+            <div class="demo-box mono-demo font-courier">
+                "Courier New", monospace — <em>Yeh monospace hai — har letter same width ka hota hai (code likhne mein use)</em>
+            </div>
+            <div class="demo-box font-georgia">
+                Georgia, serif — <em>Serif font, reading ke liye comfortable</em>
+            </div>
+
+            <pre class="code-block">/* font-family: PrimaryFont, FallbackFont, generic; */
+
+.arial-text   { font-family: Arial, sans-serif; }
+.times-text   { font-family: "Times New Roman", serif; }
+.courier-text { font-family: "Courier New", monospace; }
+.georgia-text { font-family: Georgia, serif; }</pre>
+        </div>
+
+        <!-- ── 2. FONT-SIZE ── -->
+        <div class="section">
+            <h2>2. font-size</h2>
+            <p class="desc">
+                <strong>font-size</strong> text ka size set karta hai.
+                <strong>px</strong> fixed hota hai, <strong>em</strong> parent ke relative, <strong>rem</strong> root ke relative.
+            </p>
+
+            <div class="demo-box size-small">font-size: 12px — Chhota text (captions, footnotes)</div>
+            <div class="demo-box size-normal">font-size: 16px — Normal text (browser ka default)</div>
+            <div class="demo-box size-large">font-size: 24px — Bada text (subheadings)</div>
+            <div class="demo-box size-em">font-size: 2em — Parent ka 2 guna (yahan = 32px)</div>
+            <div class="demo-box size-rem">font-size: 1.5rem — Root ka 1.5 guna (= 24px)</div>
+
+            <pre class="code-block">/* px — fixed size */
+.small  { font-size: 12px; }
+.normal { font-size: 16px; }   /* browser default */
+.large  { font-size: 24px; }
+
+/* em — parent ke font-size ke relative */
+.em     { font-size: 2em; }    /* parent = 16px, to 2em = 32px */
+
+/* rem — html tag ke font-size ke relative (zyada predictable) */
+.rem    { font-size: 1.5rem; } /* html = 16px, to 1.5rem = 24px */</pre>
+        </div>
+
+        <!-- ── 3. FONT-WEIGHT ── -->
+        <div class="section">
+            <h2>3. font-weight</h2>
+            <p class="desc">
+                <strong>font-weight</strong> se text kitna mota ya patla dikhega.
+                100 se 900 tak values hain. 400 = normal, 700 = bold.
+            </p>
+
+            <div class="demo-box weight-100">font-weight: 100 — Thin (bahut patla)</div>
+            <div class="demo-box weight-400">font-weight: 400 — Normal (default)</div>
+            <div class="demo-box weight-700">font-weight: 700 — Bold (mota)</div>
+            <div class="demo-box weight-900">font-weight: 900 — Extra Bold (bahut mota)</div>
+
+            <pre class="code-block">/* Number values use kar sakte hain */
+.thin        { font-weight: 100; }
+.normal      { font-weight: 400; }   /* default */
+.bold        { font-weight: 700; }
+.extra-bold  { font-weight: 900; }
+
+/* Ya words bhi chal jaate hain */
+.normal-word { font-weight: normal; }  /* = 400 */
+.bold-word   { font-weight: bold; }    /* = 700 */</pre>
+        </div>
+
+        <!-- ── 4. FONT-STYLE ── -->
+        <div class="section">
+            <h2>4. font-style</h2>
+            <p class="desc">
+                <strong>font-style: italic</strong> text ko teda (slanted) kar deta hai.
+                Mostly quotes, terms, ya emphasis ke liye use hota hai.
+            </p>
+
+            <div class="demo-box style-normal">font-style: normal — Seedha text (default)</div>
+            <div class="demo-box style-italic">font-style: italic — Teda text (italicized)</div>
+
+            <pre class="code-block">.normal { font-style: normal; }  /* default */
+.italic { font-style: italic; }  /* teda kar do */</pre>
+        </div>
+
+        <!-- ── 5. LINE-HEIGHT ── -->
+        <div class="section">
+            <h2>5. line-height</h2>
+            <p class="desc">
+                <strong>line-height</strong> lines ke beech vertical space set karta hai.
+                Unit-less number likhna best hai (e.g. 1.5) — font-size ke relative hota hai.
+            </p>
+
+            <div class="demo-box lh-tight">
+                line-height: 1.0 — Cramped text<br>
+                Lines bahut paas hain.<br>
+                Padhna mushkil lagta hai.
+            </div>
+            <div class="demo-box lh-normal">
+                line-height: 1.5 — Comfortable reading<br>
+                Lines ke beech theek jagah hai.<br>
+                Padhne mein aasaan lagta hai.
+            </div>
+            <div class="demo-box lh-loose">
+                line-height: 2.2 — Very spacious<br>
+                Lines bahut door hain.<br>
+                Kabhi kabhi poetry mein use hota hai.
+            </div>
+
+            <pre class="code-block">/* Best practice: unit-less number likhein */
+.tight  { line-height: 1.0; }   /* crowded */
+.normal { line-height: 1.5; }   /* comfortable — recommended */
+.loose  { line-height: 2.2; }   /* very spacious */
+
+/* Pixel mein bhi de sakte hain */
+.px     { line-height: 24px; }</pre>
+        </div>
+
+        <!-- ── 6. TEXT-ALIGN ── -->
+        <div class="section">
+            <h2>6. text-align</h2>
+            <p class="desc">
+                <strong>text-align</strong> text ko container ke andar kahan rakhna hai ye batata hai.
+            </p>
+
+            <div class="demo-box align-left">text-align: left — Left se shuru (default)</div>
+            <div class="demo-box align-center">text-align: center — Beech mein</div>
+            <div class="demo-box align-right">text-align: right — Right side</div>
+            <div class="demo-box align-justify">
+                text-align: justify — Dono taraf equal margin. Newspaper mein aisa hota hai.
+                Jab text bahut lamba ho tab yeh useful hota hai kyunki dono edges bilkul seedhi lagti hain.
+            </div>
+
+            <pre class="code-block">.left    { text-align: left; }     /* default */
+.center  { text-align: center; }
+.right   { text-align: right; }
+.justify { text-align: justify; }  /* dono side equal — newspaper style */</pre>
+        </div>
+
+        <!-- ── 7. TEXT-DECORATION ── -->
+        <div class="section">
+            <h2>7. text-decoration</h2>
+            <p class="desc">
+                <strong>text-decoration</strong> text par line lagata ya hatata hai.
+                Links pe by default underline hoti hai — <code>none</code> se hata sakte hain.
+            </p>
+
+            <div class="demo-box deco-underline">text-decoration: underline — Neeche line</div>
+            <div class="demo-box deco-overline">text-decoration: overline — Upar line</div>
+            <div class="demo-box deco-linethrough">text-decoration: line-through — Beech se line (strikethrough)</div>
+            <div class="demo-box deco-none" style="border-left-color:#ef4444;">
+                text-decoration: none — Koi line nahi
+                (links ki default underline hatane ke liye use karo)
+            </div>
+
+            <pre class="code-block">.underline    { text-decoration: underline; }    /* neeche line */
+.overline     { text-decoration: overline; }     /* upar line */
+.linethrough  { text-decoration: line-through; } /* beech se kata */
+.none         { text-decoration: none; }         /* link ki underline hatao */</pre>
+        </div>
+
+        <!-- ── 8. TEXT-TRANSFORM ── -->
+        <div class="section">
+            <h2>8. text-transform</h2>
+            <p class="desc">
+                <strong>text-transform</strong> HTML mein jo bhi likha ho, uska case CSS se badal sakte hain.
+                Useful hai jab heading hamesha uppercase chaahiye — HTML mein normal likh sakte hain.
+            </p>
+
+            <div class="demo-box transform-upper">text-transform: uppercase — YEH TEXT SAB CAPITAL MEIN DIKHEGA</div>
+            <div class="demo-box transform-lower">text-transform: lowercase — YEH TEXT SAB CHHOTA MEIN DIKHEGA</div>
+            <div class="demo-box transform-capitalize">text-transform: capitalize — Har Word Ka Pehla Letter Capital</div>
+
+            <pre class="code-block">.upper      { text-transform: uppercase; }   /* SABS CAPS */
+.lower      { text-transform: lowercase; }   /* sab chhota */
+.capitalize { text-transform: capitalize; }  /* Har Word Capital */</pre>
+        </div>
+
+        <!-- ── 9. LETTER-SPACING & WORD-SPACING ── -->
+        <div class="section">
+            <h2>9. letter-spacing &amp; word-spacing</h2>
+            <p class="desc">
+                <strong>letter-spacing</strong> — har letter ke beech ki jagah.
+                <strong>word-spacing</strong> — har word ke beech ki jagah.
+            </p>
+
+            <div class="demo-box ls-tight">letter-spacing: -1px — Letters paas paas (tight)</div>
+            <div class="demo-box ls-normal">letter-spacing: normal — Default spacing</div>
+            <div class="demo-box ls-wide">letter-spacing: 4px — Letters door door (wide) — HEADINGS MEIN ACCHA LAGTA HAI</div>
+
+            <hr class="divider">
+
+            <div class="demo-box ws-normal">word-spacing: normal — Words ke beech normal gap</div>
+            <div class="demo-box ws-wide">word-spacing: 12px — Words ke beech zyada gap</div>
+
+            <pre class="code-block">/* Letter spacing */
+.tight  { letter-spacing: -1px; }   /* letters paas */
+.normal { letter-spacing: normal; } /* default */
+.wide   { letter-spacing: 4px; }    /* letters door */
+
+/* Word spacing */
+.ws-normal { word-spacing: normal; }
+.ws-wide   { word-spacing: 12px; }</pre>
+        </div>
+
+        <!-- ── SUMMARY TABLE ── -->
+        <div class="section">
+            <h2>📋 Quick Reference — Saari Properties</h2>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Kya karta hai</th>
+                        <th>Common Values</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>font-family</code></td>
+                        <td>Font choose karo</td>
+                        <td>Arial, "Times New Roman", monospace</td>
+                    </tr>
+                    <tr>
+                        <td><code>font-size</code></td>
+                        <td>Text ka size</td>
+                        <td>16px, 1.5rem, 2em</td>
+                    </tr>
+                    <tr>
+                        <td><code>font-weight</code></td>
+                        <td>Text kitna mota/patla</td>
+                        <td>100–900, normal, bold</td>
+                    </tr>
+                    <tr>
+                        <td><code>font-style</code></td>
+                        <td>Text teda karo</td>
+                        <td>normal, italic</td>
+                    </tr>
+                    <tr>
+                        <td><code>line-height</code></td>
+                        <td>Lines ke beech ka space</td>
+                        <td>1.5, 2, 24px</td>
+                    </tr>
+                    <tr>
+                        <td><code>text-align</code></td>
+                        <td>Text left/center/right</td>
+                        <td>left, center, right, justify</td>
+                    </tr>
+                    <tr>
+                        <td><code>text-decoration</code></td>
+                        <td>Underline, overline, strikethrough</td>
+                        <td>underline, overline, line-through, none</td>
+                    </tr>
+                    <tr>
+                        <td><code>text-transform</code></td>
+                        <td>Case change karo</td>
+                        <td>uppercase, lowercase, capitalize</td>
+                    </tr>
+                    <tr>
+                        <td><code>letter-spacing</code></td>
+                        <td>Letters ke beech space</td>
+                        <td>normal, 2px, -1px</td>
+                    </tr>
+                    <tr>
+                        <td><code>word-spacing</code></td>
+                        <td>Words ke beech space</td>
+                        <td>normal, 8px</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div><!-- /container -->
+
+    <footer class="footer">
+        © Code Core Computer Center — CSS Practice Lab
+    </footer>
+
+</body>
+</html>

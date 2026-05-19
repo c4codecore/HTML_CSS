@@ -1,0 +1,252 @@
+/* ================================================
+   display.css — CSS Display Property
+   
+   Display property ye batati hai ki ek element
+   page par KAISE render hoga — kitni jagah lega,
+   aur dusre elements ke saath kaise behave karega.
+   
+   Sabse zaroori baat: har HTML element ka ek
+   DEFAULT display hota hai — hum usse CSS se badal sakte hain.
+   
+   Default display values:
+   <div>, <p>, <h1>-<h6>, <ul>, <section> → block
+   <span>, <a>, <strong>, <em>            → inline
+================================================ */
+
+/* ── color sets for demo items ── */
+.red-item    { background: #fee2e2; border: 2px solid #dc2626; color: #7f1d1d; }
+.green-item  { background: #dcfce7; border: 2px solid #16a34a; color: #14532d; }
+.blue-item   { background: #dbeafe; border: 2px solid #2563eb; color: #1e3a8a; }
+.orange-item { background: #ffedd5; border: 2px solid #ea580c; color: #7c2d12; }
+.purple-item { background: #ede9fe; border: 2px solid #7c3aed; color: #2e1065; }
+.teal-item   { background: #ccfbf1; border: 2px solid #0d9488; color: #042f2e; }
+
+/* ================================================
+   1. display: block
+   
+   - Element puri available width leta hai
+   - Agla element neeche jaata hai (new line)
+   - Width aur height set ho sakti hai
+   
+   Default block: div, p, h1-h6, ul, li, section
+   
+   DEMO TRICK: <span> default mein INLINE hota hai.
+   Isko display:block lagao — tab farq nazar aayega.
+================================================ */
+
+/* Default span — inline (side-by-side) */
+.default-span span {
+    background: #fca5a5;
+    border: 2px solid #dc2626;
+    color: #7f1d1d;
+    padding: 6px 12px;
+    /* koi display nahi = browser default = inline */
+}
+
+/* Span ko block banaya */
+.block-span span {
+    display: block;         /* ← YAHI change kiya */
+    background: #86efac;
+    border: 2px solid #16a34a;
+    color: #14532d;
+    padding: 10px;
+    width: 280px;           /* ab width kaam karegi — block hone ki wajah se */
+    margin-bottom: 6px;
+}
+
+/* ================================================
+   2. display: inline
+   
+   - Sirf utni jagah jitni content ko chahiye
+   - Side-by-side rehta hai
+   - Width/Height SET NAHI HOTI (ignore hoti hai)
+   
+   Default inline: span, a, strong, em
+   
+   DEMO TRICK: <div> default mein BLOCK hota hai.
+   Isko display:inline karo — tab farq nazar aayega.
+================================================ */
+
+/* Default div — block (stack hote hain) */
+.default-div div {
+    background: #fde68a;
+    border: 2px solid #ca8a04;
+    color: #713f12;
+    padding: 8px 14px;
+    margin-bottom: 6px;
+    width: 200px;
+    /* koi display nahi = browser default = block */
+}
+
+/* Div ko inline banaya */
+.inline-div div {
+    display: inline;        /* ← YAHI change kiya */
+    background: #c4b5fd;
+    border: 2px solid #7c3aed;
+    color: #2e1065;
+    padding: 8px 14px;
+    margin: 4px;
+    /* width: 200px; likhne par bhi kaam NAHI karega — inline ka limitation */
+}
+
+/* ================================================
+   3. display: inline-block
+   
+   DONO ka fayda ek saath:
+   → Inline jaisa: side-by-side rehta hai
+   → Block jaisa:  width aur height set hoti hai
+   
+   Use case: nav buttons, image gallery, cards ek row mein
+   
+   DEMO TRICK: Span pe width/height nahi lagnti (inline default).
+   inline-block lagao — dono kaam kare.
+================================================ */
+
+/* Span — default inline, width/height nahi lagti */
+.span-no-size span {
+    background: #fde68a;
+    border: 2px solid #d97706;
+    color: #78350f;
+    padding: 10px;
+    width: 120px;    /* inline hone ki wajah se IGNORE ho jaata hai */
+    height: 60px;    /* inline hone ki wajah se IGNORE ho jaata hai */
+}
+
+/* Span — inline-block kiya, ab size bhi laga */
+.span-inline-block span {
+    display: inline-block;  /* ← YAHI change kiya */
+    background: #67e8f9;
+    border: 2px solid #0891b2;
+    color: #083344;
+    width: 120px;            /* ab kaam karega ✅ */
+    height: 60px;            /* ab kaam karega ✅ */
+    text-align: center;
+    line-height: 40px;
+    margin: 4px;
+    vertical-align: top;
+}
+
+/* ================================================
+   4. display: none  vs  visibility: hidden
+   
+   display: none      → element poori tarah gayab
+                        layout mein jagah bhi nahi lega
+   
+   visibility: hidden → dikhta nahi
+                        lekin layout mein jagah RESERVE rehti hai
+================================================ */
+
+.vis-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 10px;
+    background: #f8fafc;
+    border: 2px dashed #cbd5e1;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.vis-box {
+    padding: 12px 20px;
+    border: 2px solid;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.gone      { display: none; }       /* poora gayab — jagah bhi nahi */
+.invisible { visibility: hidden; }  /* dikhta nahi — jagah reserved hai */
+
+/* ================================================
+   5. display: flex
+   
+   - Container ke children ek ROW mein aate hain
+   - Alignment aur gap bahut aasaan ho jaata hai
+   - Poora flexbox → flex.html mein detail mein
+   
+   DEMO TRICK: Default mein divs block hain — stack hote hain.
+   display:flex lagao — ek row mein aa jaate hain.
+================================================ */
+
+.no-flex-wrap {
+    border: 2px dashed #94a3b8;
+    padding: 10px;
+    background: #f8fafc;
+    border-radius: 6px;
+}
+
+.no-flex-wrap div {
+    background: #cbd5e1;
+    border: 1px solid #64748b;
+    color: #1e293b;
+    padding: 10px;
+    margin-bottom: 6px;
+    /* display:block — default — stack ho rahe hain */
+}
+
+.flex-wrap {
+    display: flex;          /* ← YAHI change kiya */
+    gap: 10px;
+    align-items: center;
+    border: 2px dashed #0ea5e9;
+    padding: 10px;
+    background: #f0f9ff;
+    border-radius: 6px;
+}
+
+.flex-wrap div {
+    background: #38bdf8;
+    border: 1px solid #0369a1;
+    color: #082f49;
+    padding: 10px 16px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* ================================================
+   6. display: grid
+   
+   - 2D layout — rows + columns dono control
+   - Poora grid → grid.html mein detail mein
+   
+   DEMO TRICK: Default divs ek column mein hain.
+   display:grid + grid-template-columns lagao — multi-column!
+================================================ */
+
+.no-grid-wrap {
+    border: 2px dashed #94a3b8;
+    padding: 10px;
+    background: #f8fafc;
+    border-radius: 6px;
+}
+
+.no-grid-wrap div {
+    background: #d1d5db;
+    border: 1px solid #9ca3af;
+    color: #1f2937;
+    padding: 10px;
+    margin-bottom: 6px;
+    /* display:block — default — ek column mein hain */
+}
+
+.grid-wrap {
+    display: grid;                          /* ← YAHI change kiya */
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    gap: 10px;
+    border: 2px dashed #8b5cf6;
+    padding: 10px;
+    background: #faf5ff;
+    border-radius: 6px;
+}
+
+.grid-wrap div {
+    background: #c4b5fd;
+    border: 1px solid #7c3aed;
+    color: #2e1065;
+    padding: 12px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 4px;
+}

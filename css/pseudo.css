@@ -1,0 +1,255 @@
+/* ================================================
+   pseudo.css — Pseudo-Classes & Pseudo-Elements
+   
+   DO alag concepts hain:
+   
+   PSEUDO-CLASS  → element ki ek STATE ya POSITION target karna
+                   Syntax: element:pseudo-class
+                   Example: a:hover, input:focus, li:first-child
+   
+   PSEUDO-ELEMENT → element ke ek KHAAS HISSE ko style karna
+                    Ya fake content add karna
+                    Syntax: element::pseudo-element (double colon)
+                    Example: p::first-line, div::before
+   
+   YAAD RAKHNE KA TARIKA:
+   :  (single colon)  → state / position   → PSEUDO-CLASS
+   :: (double colon)  → element ka hissa   → PSEUDO-ELEMENT
+================================================ */
+
+/* ── Demo base styles ── */
+.demo-area {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 10px;
+}
+
+/* ================================================
+   PSEUDO-CLASSES
+================================================ */
+
+/* ── :hover — Mouse pointer element par aane par ── */
+.hover-btn {
+    background: #3b82f6;
+    color: #fff;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 4px;
+    text-decoration: none;
+}
+
+.hover-btn:hover {
+    background: #1d4ed8;       /* mouse aane par rung badla */
+}
+
+/* ── :active — Click karne par (mouse button dabate time) ── */
+.hover-btn:active {
+    background: #1e40af;       /* click ke waqt aur dark */
+    outline: 3px solid #93c5fd;  /* pressed feel ke liye outline */
+}
+
+/* ── :focus — Element focus mein ho (keyboard ya click se) ── */
+.focus-input {
+    padding: 10px 14px;
+    border: 2px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 15px;
+    outline: none;             /* default outline hata di */
+    width: 100%;
+    box-sizing: border-box;
+    background: #fff;
+}
+
+.focus-input:focus {
+    border-color: #3b82f6;     /* focus par blue border */
+    background: #eff6ff;       /* light blue background */
+    /* outline: none — custom style di hai, default nahi dikhna */
+}
+
+/* ── :visited — Link pehle visit ki ja chuki ho ── */
+.visited-link {
+    color: #3b82f6;
+    font-size: 15px;
+}
+
+.visited-link:visited {
+    color: #8b5cf6;    /* visit ki gayi link purple */
+}
+
+/* ── :checked — Checkbox ya radio checked ho ── */
+.check-label {
+    font-size: 15px;
+    cursor: pointer;
+    user-select: none;
+}
+
+input[type="checkbox"]:checked + .check-label {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+/* ── :disabled — Input disabled ho ── */
+.disabled-input {
+    padding: 10px 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 15px;
+    background: #f1f5f9;
+    color: #94a3b8;
+    cursor: not-allowed;
+    width: 100%;
+}
+
+/* ── Structural pseudo-classes ── */
+
+/* :first-child — pehla child */
+.list-demo li:first-child {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+/* :last-child — aakhri child */
+.list-demo li:last-child {
+    color: #2563eb;
+    font-weight: bold;
+}
+
+/* :nth-child(n) — n number wala child */
+.list-demo li:nth-child(2) {
+    background: #fef9c3;
+    border-radius: 4px;
+    padding: 2px 6px;
+}
+
+/* :nth-child(odd/even) — odd ya even positions */
+.table-demo tr:nth-child(even) {
+    background: #f8fafc;   /* alternate row color */
+}
+
+.table-demo tr:nth-child(odd) {
+    background: #ffffff;
+}
+
+.table-demo th {
+    background: #1e293b;
+    color: #fff;
+    padding: 10px;
+    text-align: left;
+}
+
+.table-demo td {
+    padding: 10px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* :not() — kisi specific element ko exclude karo */
+.cards-row .card-item:not(:last-child) {
+    border-right: 2px solid #e2e8f0;
+    margin-right: 12px;
+    padding-right: 12px;
+}
+
+.cards-row {
+    display: flex;
+    align-items: center;
+}
+
+.cards-row .card-item {
+    font-size: 14px;
+    color: #374151;
+}
+
+/* ================================================
+   PSEUDO-ELEMENTS
+================================================ */
+
+/* ── ::before — Content ke pehle fake element add karo ── */
+.before-demo::before {
+    content: "🔷 ";       /* yeh text element ke pehle aayega */
+    color: #3b82f6;
+}
+
+/* ── ::after — Content ke baad fake element add karo ── */
+.after-demo::after {
+    content: " ✅";        /* yeh text element ke baad aayega */
+    color: #16a34a;
+}
+
+/* ── Practical ::before / ::after — Decorative line ── */
+.section-title-demo {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1e293b;
+    text-align: center;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.section-title-demo::after {
+    content: "";           /* khaali string — sirf decoration */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 60px;
+    height: 3px;
+    background: #3b82f6;
+    border-radius: 2px;
+    margin: 0 auto;        /* center karne ka simple tarika */
+}
+
+/* ── ::first-letter — Pehla letter style ── */
+.first-letter-demo::first-letter {
+    font-size: 48px;
+    font-weight: bold;
+    color: #dc2626;
+    float: left;
+    margin-right: 4px;
+    line-height: 1;
+}
+
+/* ── ::first-line — Pehli line style ── */
+.first-line-demo::first-line {
+    color: #2563eb;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+/* ── ::selection — Text select karne par ── */
+.selection-demo::selection {
+    background: #fbbf24;   /* selection ka rung */
+    color: #1c1917;
+}
+
+/* ── ::placeholder — Input placeholder style ── */
+.placeholder-demo {
+    padding: 10px 14px;
+    border: 2px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.placeholder-demo::placeholder {
+    color: #94a3b8;
+    font-style: italic;
+}
+
+/* List style */
+.list-demo {
+    list-style: none;
+    padding: 0;
+}
+
+.list-demo li {
+    padding: 6px 8px;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 14px;
+}

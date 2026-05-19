@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudo Classes & Elements — Code Core</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/pseudo.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="../index.html" class="brand">🏠 Code Core</a>
+        <ul>
+            <li><a href="../pages/font.html">Fonts</a></li>
+            <li><a href="../pages/box-model.html">Box Model</a></li>
+            <li><a href="../pages/display.html">Display</a></li>
+            <li><a href="../pages/flex.html">Flexbox</a></li>
+            <li><a href="../pages/grid.html">Grid</a></li>
+            <li><a href="../pages/position.html">Position</a></li>
+            <li><a href="../pages/pseudo.html" class="active">Pseudo</a></li>
+            <li><a href="../pages/effects.html">Effects</a></li>
+            <li><a href="../pages/portfolio.html">Portfolio</a></li>
+        </ul>
+    </nav>
+
+    <div class="page-header">
+        <h1>🎭 Pseudo-Classes &amp; Pseudo-Elements</h1>
+        <p>
+            <strong>Pseudo-class</strong> (<code>:</code>) = element ki ek STATE ya POSITION target karo.<br>
+            <strong>Pseudo-element</strong> (<code>::</code>) = element ke ek KHAAS HISSE ko style karo ya content add karo.
+        </p>
+    </div>
+
+    <div class="container">
+
+        <!-- ════════════════════════════════════════
+             PSEUDO-CLASSES
+        ════════════════════════════════════════ -->
+        <div class="section">
+            <h2>PSEUDO-CLASSES — Element ki State target karo</h2>
+            <p class="desc">
+                Pseudo-classes kisi element ki <strong>current state ya position</strong> ke hisaab se style karte hain.
+                Single colon use hota hai: <code>element:state</code>
+            </p>
+        </div>
+
+        <!-- :hover -->
+        <div class="section">
+            <h2>1. :hover — Mouse element par aaye tab</h2>
+            <p class="desc">
+                Jab user mouse pointer element ke upar laaye tab style apply hoti hai.
+                <br>
+                Buttons, links, cards — sabme hover use hota hai interactivity ke liye.
+            </p>
+
+            <div class="demo-area">
+                <a class="hover-btn" href="#">Link Button — Hover karo 🖱️</a>
+                <a class="hover-btn" href="#">Doosra Button</a>
+            </div>
+
+            <pre class="code-block">/* Normal state */
+.btn {
+    background: #3b82f6;
+    color: white;
+    padding: 10px 24px;
+}
+
+/* Mouse aane par */
+.btn:hover {
+    background: #1d4ed8;         /* rung badal gaya */
+    transform: translateY(-2px); /* thoda upar uthega */
+}</pre>
+        </div>
+
+        <!-- :active -->
+        <div class="section">
+            <h2>2. :active — Click karte waqt (mouse button dabane par)</h2>
+            <p class="desc">
+                Jab element par mouse button dabaya jaaye tab apply hota hai.
+                Button press hone ka physical feel deta hai.
+            </p>
+
+            <div class="demo-area">
+                <button class="hover-btn">Click karo aur daba ke rakho — :active dekhne ke liye</button>
+            </div>
+
+            <pre class="code-block">.btn:active {
+    background: #1e40af;       /* click ke waqt aur dark */
+    transform: scale(0.97);    /* thoda chhota = pressed feel */
+}</pre>
+        </div>
+
+        <!-- :focus -->
+        <div class="section">
+            <h2>3. :focus — Element focus mein ho tab</h2>
+            <p class="desc">
+                Jab element active/selected ho — input click karo ya Tab key se navigate karo.
+                <br>
+                Accessibility ke liye bahut zaroori hai — keyboard users ke liye clearly dikhna chahiye.
+                <br>
+                <strong>Default browser outline hatao to khud custom style do!</strong>
+            </p>
+
+            <div class="demo-area">
+                <input class="focus-input" type="text" placeholder="Yahan click karo ya Tab key dabao — :focus dekhne ke liye">
+            </div>
+
+            <pre class="code-block">input {
+    border: 2px solid #cbd5e1;   /* normal border */
+    outline: none;               /* default browser outline hataya */
+}
+
+input:focus {
+    border-color: #3b82f6;       /* focus par blue border */
+    background: #eff6ff;         /* light blue background */
+    /* outline: none already set hai — apna style diya */
+}</pre>
+        </div>
+
+        <!-- :visited -->
+        <div class="section">
+            <h2>4. :visited — Visit ki ja chuki link</h2>
+            <p class="desc">
+                Jab user kisi link par pehle ja chuka ho to alag style.
+                Default mein visited links purple hoti hain — aap customize kar sakte hain.
+            </p>
+
+            <div class="demo-area">
+                <a href="https://google.com" target="_blank" class="visited-link">Google (ek baar visit karo — phir color badlega)</a>
+                <br><br>
+                <a href="https://example.com" target="_blank" class="visited-link">Example.com</a>
+            </div>
+
+            <pre class="code-block">a           { color: #3b82f6; }   /* unvisited — blue */
+a:visited   { color: #8b5cf6; }   /* visited — purple */</pre>
+        </div>
+
+        <!-- :checked -->
+        <div class="section">
+            <h2>5. :checked — Checkbox ya radio selected ho</h2>
+            <p class="desc">
+                Jab checkbox ya radio button select ki jaaye tab style apply hoti hai.
+                <code>+</code> selector se adjacent sibling (label) ko bhi style kar sakte hain.
+            </p>
+
+            <div class="demo-area">
+                <div style="margin-bottom:8px;">
+                    <input type="checkbox" id="cb1">
+                    <label class="check-label" for="cb1"> &nbsp;Check karo — label green ho jaayega</label>
+                </div>
+                <div style="margin-bottom:8px;">
+                    <input type="checkbox" id="cb2" checked>
+                    <label class="check-label" for="cb2"> &nbsp;Yeh pehle se checked hai</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="cb3">
+                    <label class="check-label" for="cb3"> &nbsp;Teen number</label>
+                </div>
+            </div>
+
+            <pre class="code-block">/* Checkbox checked hone par uske baad wale label ko style karo */
+input[type="checkbox"]:checked + label {
+    color: green;
+    font-weight: bold;
+}
+
+/* + matlab adjacent sibling (turant baad wala element) */</pre>
+        </div>
+
+        <!-- :disabled -->
+        <div class="section">
+            <h2>6. :disabled — Disabled input</h2>
+            <p class="desc">
+                <code>disabled</code> attribute wale form elements ko alag style dena.
+                User clearly samjhe ki yeh field fill nahi kar sakta.
+            </p>
+
+            <div class="demo-area">
+                <input class="focus-input" type="text" placeholder="Yeh normal input hai — click karo">
+                <br><br>
+                <input class="disabled-input" type="text" placeholder="Yeh disabled hai — click nahi hoga" disabled>
+            </div>
+
+            <pre class="code-block">input:disabled {
+    background: #f1f5f9;      /* grey background */
+    color: #94a3b8;           /* light text */
+    cursor: not-allowed;      /* no-entry cursor */
+    border-color: #e2e8f0;
+}</pre>
+        </div>
+
+        <!-- Structural pseudo-classes -->
+        <div class="section">
+            <h2>7. :first-child, :last-child, :nth-child() — Position ke hisaab se</h2>
+            <p class="desc">
+                Kisi parent ke andar position ke hisaab se elements target karo.
+                <br>
+                <code>:first-child</code> → pehla, <code>:last-child</code> → aakhri,
+                <code>:nth-child(n)</code> → nth number wala (1 se start hota hai).
+                <br>
+                <code>:nth-child(even)</code> → even numbers, <code>:nth-child(odd)</code> → odd numbers.
+            </p>
+
+            <span class="label-note">List — pehla red, doosra highlighted, aakhri blue</span>
+            <div class="demo-area">
+                <ul class="list-demo">
+                    <li>Pehla item — :first-child (red bold)</li>
+                    <li>Doosra item — :nth-child(2) (yellow background)</li>
+                    <li>Teesra item — normal</li>
+                    <li>Chautha item — normal</li>
+                    <li>Paanchwa item — :last-child (blue bold)</li>
+                </ul>
+            </div>
+
+            <hr class="divider">
+
+            <span class="label-note">Table — :nth-child(even) se alternate rows</span>
+            <div class="demo-area">
+                <table class="table-demo" style="width:100%; border-collapse:collapse;">
+                    <thead>
+                        <tr><th>Name</th><th>Subject</th><th>Marks</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Rahul</td><td>CSS</td><td>92</td></tr>
+                        <tr><td>Priya</td><td>HTML</td><td>88</td></tr>
+                        <tr><td>Amit</td><td>JavaScript</td><td>75</td></tr>
+                        <tr><td>Sneha</td><td>Python</td><td>95</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <pre class="code-block">li:first-child        { color: red; font-weight: bold; }
+li:last-child         { color: blue; font-weight: bold; }
+li:nth-child(2)       { background: yellow; }
+
+/* Even/odd rows */
+tr:nth-child(even)    { background: #f8fafc; }   /* 2, 4, 6... */
+tr:nth-child(odd)     { background: #ffffff; }   /* 1, 3, 5... */
+
+/* Formulae bhi chal te hain */
+/* :nth-child(3n)   → 3, 6, 9... (har teesra) */
+/* :nth-child(2n+1) → same as odd */</pre>
+        </div>
+
+        <!-- :not() -->
+        <div class="section">
+            <h2>8. :not() — Kisi ko exclude karo</h2>
+            <p class="desc">
+                <code>:not(selector)</code> se ek specific element ko style se bahar rakh sakte hain.
+            </p>
+
+            <div class="demo-area">
+                <div class="cards-row">
+                    <div class="card-item">Home</div>
+                    <div class="card-item">About</div>
+                    <div class="card-item">Services</div>
+                    <div class="card-item">Contact</div>
+                </div>
+                <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                    Aakhri item ko chhodkar sab ke beech divider line hai — <code>:not(:last-child)</code> se.
+                </p>
+            </div>
+
+            <pre class="code-block">/* Aakhri ko chhodkar sabke baad border */
+.item:not(:last-child) {
+    border-right: 2px solid #e2e8f0;
+    margin-right: 12px;
+    padding-right: 12px;
+}</pre>
+        </div>
+
+        <!-- ════════════════════════════════════════
+             PSEUDO-ELEMENTS
+        ════════════════════════════════════════ -->
+        <div class="section">
+            <h2>PSEUDO-ELEMENTS — Element ke hisse ko style karo</h2>
+            <p class="desc">
+                Pseudo-elements element ke ek <strong>specific part</strong> ko target karte hain,
+                ya fake content add karte hain.
+                Double colon use hota hai: <code>element::pseudo-element</code>
+            </p>
+        </div>
+
+        <!-- ::before -->
+        <div class="section">
+            <h2>9. ::before — Content ke PEHLE content add karo</h2>
+            <p class="desc">
+                Element ke content se pehle ek virtual element add karta hai.
+                <code>content: ""</code> property likhna zaroori hai (chahe khaali ho).
+                <br>
+                HTML change kiye bina decorative content add kar sakte hain.
+            </p>
+
+            <div class="demo-area">
+                <p class="before-demo">Yeh paragraph hai — pehle emoji add ki CSS se</p>
+                <p class="before-demo">Doosra paragraph — HTML same hai, CSS ne emoji add ki</p>
+            </div>
+
+            <pre class="code-block">.item::before {
+    content: "🔷 ";   /* yeh HTML mein nahi hai — CSS ne add kiya */
+    color: #3b82f6;
+}
+
+/* Content values:
+   content: "text"     → plain text
+   content: "🔷"       → emoji
+   content: ""         → khaali (decoration ke liye)
+   content: attr(data-x) → HTML attribute ki value */</pre>
+        </div>
+
+        <!-- ::after -->
+        <div class="section">
+            <h2>10. ::after — Content ke BAAD content add karo</h2>
+            <p class="desc">
+                Element ke content ke baad ek virtual element add karta hai.
+                Decorative elements, badges, labels ke liye use hota hai.
+            </p>
+
+            <div class="demo-area">
+                <p class="after-demo">Yeh text hai — baad mein checkmark add hua CSS se</p>
+                <p class="after-demo">Doosra paragraph bhi check ho gaya</p>
+            </div>
+
+            <pre class="code-block">.item::after {
+    content: " ✅";   /* element ke baad add hoga */
+    color: green;
+}</pre>
+        </div>
+
+        <!-- ::before decorative use -->
+        <div class="section">
+            <h2>11. ::before / ::after — Decorative use (underline effect)</h2>
+            <p class="desc">
+                Sirf decoration ke liye <code>content: ""</code> (khaali) likhte hain.
+                Decorative line, badge, ribbon — sab bina extra HTML ke banana possible hai.
+            </p>
+
+            <div class="demo-area">
+                <h3 class="section-title-demo">Heading with Underline via ::after</h3>
+            </div>
+
+            <pre class="code-block">.heading::after {
+    content: "";               /* khaali — sirf decoration */
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #3b82f6;       /* blue line */
+    margin: 8px auto 0;
+    border-radius: 2px;
+}
+
+/* Content khaali rakha — sirf ek coloured line chahiye thi */</pre>
+        </div>
+
+        <!-- ::first-letter -->
+        <div class="section">
+            <h2>12. ::first-letter — Pehla letter alag style</h2>
+            <p class="desc">
+                Paragraph ka sirf pehla letter style karo — newspaper ya book jaisa effect.
+                Drop cap effect kehte hain isse.
+            </p>
+
+            <div class="demo-area">
+                <p class="first-letter-demo">
+                    Yeh ek paragraph hai. Pehla letter bada aur red hai — ::first-letter se.
+                    Baaki text normal size mein hai. Yeh newspaper mein common hota hai.
+                </p>
+            </div>
+
+            <pre class="code-block">p::first-letter {
+    font-size: 48px;     /* bada letter */
+    font-weight: bold;
+    color: #dc2626;      /* red color */
+    float: left;         /* text ke saath wrap karne ke liye */
+    margin-right: 4px;
+    line-height: 1;
+}</pre>
+        </div>
+
+        <!-- ::first-line -->
+        <div class="section">
+            <h2>13. ::first-line — Pehli line alag style</h2>
+            <p class="desc">
+                Paragraph ki sirf pehli visible line ko style karo.
+                Screen ka size badlega to bhi pehli line automatically re-calculate hogi.
+            </p>
+
+            <div class="demo-area">
+                <p class="first-line-demo">
+                    Yeh pehli line hai — blue aur bold hai ::first-line se.<br>
+                    Yeh doosri line hai — normal style mein.<br>
+                    Teesri line bhi normal hai.
+                </p>
+            </div>
+
+            <pre class="code-block">p::first-line {
+    color: #2563eb;      /* pehli line blue */
+    font-weight: bold;
+    font-size: 17px;
+}</pre>
+        </div>
+
+        <!-- ::selection -->
+        <div class="section">
+            <h2>14. ::selection — Text select karne par</h2>
+            <p class="desc">
+                User jab text select kare (mouse drag kare) to selection ka color customize kar sakte hain.
+                Default browser selection blue hoti hai.
+                <br>
+                👇 Neeche ke text ko select karke dekho!
+            </p>
+
+            <div class="demo-area">
+                <p class="selection-demo">
+                    Is text ko mouse se select karo — selection ka color yellow ho jaayega!
+                    Normal text selection se alag experience milega.
+                </p>
+            </div>
+
+            <pre class="code-block">.text::selection {
+    background: #fbbf24;   /* selection ka background — yellow */
+    color: #1c1917;        /* selected text ka color — dark */
+}</pre>
+        </div>
+
+        <!-- ::placeholder -->
+        <div class="section">
+            <h2>15. ::placeholder — Input placeholder style</h2>
+            <p class="desc">
+                Input ya textarea ke placeholder text ko style karo.
+                Default grey boring hota hai — brand ke hisaab se customize kar sakte hain.
+            </p>
+
+            <div class="demo-area">
+                <input class="placeholder-demo" type="text" placeholder="Yeh styled placeholder hai — italic aur colored...">
+            </div>
+
+            <pre class="code-block">input::placeholder {
+    color: #94a3b8;       /* placeholder ka color */
+    font-style: italic;   /* italic */
+}</pre>
+        </div>
+
+        <!-- ── SUMMARY ── -->
+        <div class="section">
+            <h2>📋 Summary — Pseudo-Classes &amp; Pseudo-Elements</h2>
+            <table class="summary-table">
+                <thead>
+                    <tr><th>Selector</th><th>Type</th><th>Kab apply hota hai</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>:hover</code></td><td>Pseudo-class</td><td>Mouse pointer element par ho</td></tr>
+                    <tr><td><code>:active</code></td><td>Pseudo-class</td><td>Click karte waqt</td></tr>
+                    <tr><td><code>:focus</code></td><td>Pseudo-class</td><td>Element focused ho (keyboard/click)</td></tr>
+                    <tr><td><code>:visited</code></td><td>Pseudo-class</td><td>Link already visited ho</td></tr>
+                    <tr><td><code>:checked</code></td><td>Pseudo-class</td><td>Checkbox/radio selected ho</td></tr>
+                    <tr><td><code>:disabled</code></td><td>Pseudo-class</td><td>Form element disabled ho</td></tr>
+                    <tr><td><code>:first-child</code></td><td>Pseudo-class</td><td>Parent ka pehla child</td></tr>
+                    <tr><td><code>:last-child</code></td><td>Pseudo-class</td><td>Parent ka aakhri child</td></tr>
+                    <tr><td><code>:nth-child(n)</code></td><td>Pseudo-class</td><td>nth position wala child</td></tr>
+                    <tr><td><code>:not(x)</code></td><td>Pseudo-class</td><td>x ko chhodkar sab</td></tr>
+                    <tr><td><code>::before</code></td><td>Pseudo-element</td><td>Content ke pehle content add karo</td></tr>
+                    <tr><td><code>::after</code></td><td>Pseudo-element</td><td>Content ke baad content add karo</td></tr>
+                    <tr><td><code>::first-letter</code></td><td>Pseudo-element</td><td>Paragraph ka pehla letter</td></tr>
+                    <tr><td><code>::first-line</code></td><td>Pseudo-element</td><td>Paragraph ki pehli line</td></tr>
+                    <tr><td><code>::selection</code></td><td>Pseudo-element</td><td>User ka selected text</td></tr>
+                    <tr><td><code>::placeholder</code></td><td>Pseudo-element</td><td>Input placeholder text</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        © Code Core Computer Center — CSS Practice Lab
+    </footer>
+
+</body>
+</html>

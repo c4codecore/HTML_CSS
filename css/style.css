@@ -1,0 +1,265 @@
+/* ================================================
+   style.css — Shared Stylesheet
+   Yeh file poore project mein use hoti hai.
+   Isme sirf navbar, cards aur footer ka style hai.
+   Har topic ki apni alag CSS file hai.
+================================================ */
+
+/* ---------- CSS VARIABLES ----------
+   Ek jagah color define karo, poore project mein use karo.
+   Agar color change karna ho to sirf yahan badlo.
+*/
+:root {
+    --nav-bg: #1e293b;       /* navbar ka dark background */
+    --accent:  #3b82f6;      /* blue accent color */
+    --page-bg: #f1f5f9;      /* page ka light background */
+    --card-bg: #ffffff;      /* card ka white background */
+    --text:    #1e293b;      /* main text color */
+    --muted:   #64748b;      /* secondary / light text */
+    --border:  #e2e8f0;      /* border color */
+    --radius:  10px;         /* border-radius */
+}
+
+/* ---------- RESET ---------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--page-bg);
+    color: var(--text);
+    padding-bottom: 60px;
+}
+
+/* ================================================
+   NAVBAR
+   Position: sticky — scroll karne par bhi upar rahega
+================================================ */
+.navbar {
+    background: var(--nav-bg);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;          /* chhoti screen par wrap hoga */
+    position: sticky;
+    top: 0;
+    z-index: 100;             /* sab elements ke upar */
+}
+
+/* Brand / Logo */
+.navbar .brand {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* Nav links — ul ke andar li ke andar a */
+.navbar ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.navbar ul li a {
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* Hover state — link par mouse aane par */
+.navbar ul li a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+/* Active link — current page ko highlight karo */
+.navbar ul li a.active {
+    background: var(--accent);
+    color: #ffffff;
+}
+
+/* ================================================
+   PAGE HEADER — Topic pages ka title area
+================================================ */
+.page-header {
+    max-width: 900px;
+    margin: 36px auto 0;
+    padding: 0 20px;
+}
+
+.page-header h1 {
+    font-size: 28px;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+
+.page-header p {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* ================================================
+   MAIN CONTAINER — Content wrapper
+================================================ */
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* ================================================
+   TOPIC CARDS — Index page par topic links
+================================================ */
+.cards-grid {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+}
+
+.card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card .card-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.card h2 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: var(--accent);
+}
+
+.card p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+/* ================================================
+   SECTION — Har topic example ka wrapper box
+================================================ */
+.section {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 28px;
+}
+
+.section h2 {
+    font-size: 20px;
+    margin-bottom: 6px;
+    color: var(--accent);
+}
+
+.section .desc {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 18px;
+    line-height: 1.6;
+}
+
+/* BEFORE / AFTER labels */
+.label-before,
+.label-after,
+.label-note {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+}
+
+.label-before { background: #fee2e2; color: #991b1b; }   /* red  — default / galat */
+.label-after  { background: #dcfce7; color: #166534; }   /* green — fixed / correct */
+.label-note   { background: #fef9c3; color: #713f12; }   /* yellow — extra note */
+
+/* Divider between before and after */
+.divider {
+    border: none;
+    border-top: 2px dashed var(--border);
+    margin: 20px 0;
+}
+
+/* ================================================
+   CODE BLOCK — CSS code dikhane ke liye
+================================================ */
+.code-block {
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-family: "Courier New", monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-top: 16px;
+    overflow-x: auto;         /* horizontal scroll agar code lamba ho */
+    white-space: pre;
+}
+
+/* ================================================
+   SUMMARY TABLE — Section ke end mein summary
+================================================ */
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.summary-table th {
+    background: var(--nav-bg);
+    color: #ffffff;
+    padding: 10px 14px;
+    text-align: left;
+}
+
+.summary-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+}
+
+.summary-table tr:nth-child(even) td {
+    background: #f8fafc;      /* alternate row color */
+}
+
+/* ================================================
+   FOOTER
+================================================ */
+.footer {
+    text-align: center;
+    padding: 16px;
+    background: var(--nav-bg);
+    color: #94a3b8;
+    font-size: 13px;
+    margin-top: 60px;
+}

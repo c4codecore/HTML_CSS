@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid — Code Core</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/grid.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="../index.html" class="brand">🏠 Code Core</a>
+        <ul>
+            <li><a href="../pages/font.html">Fonts</a></li>
+            <li><a href="../pages/box-model.html">Box Model</a></li>
+            <li><a href="../pages/display.html">Display</a></li>
+            <li><a href="../pages/flex.html">Flexbox</a></li>
+            <li><a href="../pages/grid.html" class="active">Grid</a></li>
+            <li><a href="../pages/position.html">Position</a></li>
+            <li><a href="../pages/pseudo.html">Pseudo</a></li>
+            <li><a href="../pages/effects.html">Effects</a></li>
+            <li><a href="../pages/portfolio.html">Portfolio</a></li>
+        </ul>
+    </nav>
+
+    <div class="page-header">
+        <h1>⊞ CSS Grid Layout</h1>
+        <p>
+            Grid ek <strong>2D layout system</strong> hai — rows aur columns dono ek saath.
+            Page layouts, galleries, dashboards — sab Grid se banate hain.
+        </p>
+    </div>
+
+    <div class="container">
+
+        <!-- ── FLEX vs GRID ── -->
+        <div class="section">
+            <h2>Flexbox vs Grid — Kab kya use karein?</h2>
+            <table class="summary-table">
+                <thead><tr><th></th><th>Flexbox</th><th>Grid</th></tr></thead>
+                <tbody>
+                    <tr><td>Dimension</td><td>1D — row ya column</td><td>2D — rows + columns</td></tr>
+                    <tr><td>Direction</td><td>Ek direction mein items</td><td>Dono directions control</td></tr>
+                    <tr><td>Best for</td><td>Navbar, button group, card row</td><td>Page layout, gallery, dashboard</td></tr>
+                    <tr><td>Shuru</td><td><code>display: flex</code></td><td><code>display: grid</code></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ── 1. COLUMNS ── -->
+        <div class="section">
+            <h2>1. grid-template-columns — Columns define karo</h2>
+            <p class="desc">
+                Kitne columns honge aur har column kitna chauda hoga — yeh yahan decide hota hai.
+                <br>
+                <strong>fr unit</strong> = fractional unit = available space ka hissa (percentage se better).
+            </p>
+
+            <span class="label-note">Fixed columns: 100px 200px 100px</span>
+            <div class="grid-container cols-fixed" style="margin-bottom:14px;">
+                <div class="g-item">100px</div>
+                <div class="g-item">200px</div>
+                <div class="g-item">100px</div>
+            </div>
+
+            <span class="label-note">Equal columns: 1fr 1fr 1fr (ya repeat(3, 1fr))</span>
+            <div class="grid-container cols-equal" style="margin-bottom:14px;">
+                <div class="g-item">1fr</div>
+                <div class="g-item">1fr</div>
+                <div class="g-item">1fr</div>
+            </div>
+
+            <span class="label-note">Unequal: 1fr 2fr 1fr — beech wala do guna bada</span>
+            <div class="grid-container cols-unequal" style="margin-bottom:14px;">
+                <div class="g-item">1fr</div>
+                <div class="g-item">2fr (double)</div>
+                <div class="g-item">1fr</div>
+            </div>
+
+            <span class="label-note">repeat(4, 1fr) — 4 equal columns, shorthand</span>
+            <div class="grid-container cols-repeat" style="margin-bottom:14px;">
+                <div class="g-item">1</div>
+                <div class="g-item">2</div>
+                <div class="g-item">3</div>
+                <div class="g-item">4</div>
+                <div class="g-item">5</div>
+                <div class="g-item">6</div>
+                <div class="g-item">7</div>
+                <div class="g-item">8</div>
+            </div>
+
+            <span class="label-note">Mixed: 150px 1fr 1fr — pehla fixed, baaki equal</span>
+            <div class="grid-container cols-mixed">
+                <div class="g-item">150px</div>
+                <div class="g-item">1fr</div>
+                <div class="g-item">1fr</div>
+            </div>
+
+            <pre class="code-block">/* Fixed pixels */
+.grid { grid-template-columns: 100px 200px 100px; }
+
+/* fr unit — available space ke proportional */
+.grid { grid-template-columns: 1fr 1fr 1fr; }    /* 3 equal */
+.grid { grid-template-columns: 1fr 2fr 1fr; }    /* beech wala double */
+
+/* repeat() shorthand */
+.grid { grid-template-columns: repeat(3, 1fr); } /* = 1fr 1fr 1fr */
+.grid { grid-template-columns: repeat(4, 1fr); } /* 4 equal columns */
+
+/* Mixed */
+.grid { grid-template-columns: 150px 1fr 1fr; }  /* sidebar + content */</pre>
+        </div>
+
+        <!-- ── 2. ROWS ── -->
+        <div class="section">
+            <h2>2. grid-template-rows — Row heights define karo</h2>
+            <p class="desc">
+                Default mein rows content ke hisaab se auto size hoti hain.
+                <code>grid-template-rows</code> se specific height de sakte hain.
+            </p>
+
+            <span class="label-note">grid-template-rows: 80px 120px — pehli row 80px, doosri 120px</span>
+            <div class="grid-container rows-defined">
+                <div class="g-item">Row 1, Col 1 (80px)</div>
+                <div class="g-item">Row 1, Col 2</div>
+                <div class="g-item">Row 1, Col 3</div>
+                <div class="g-item">Row 2, Col 1 (120px)</div>
+                <div class="g-item">Row 2, Col 2</div>
+                <div class="g-item">Row 2, Col 3</div>
+            </div>
+
+            <pre class="code-block">.grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 80px 120px;    /* pehli row 80px, doosri 120px */
+}
+
+/* Agar nahi likha to rows auto height hoti hain (content ke hisaab se) */</pre>
+        </div>
+
+        <!-- ── 3. GAP ── -->
+        <div class="section">
+            <h2>3. gap — Cells ke beech space</h2>
+            <p class="desc">
+                Grid cells ke beech ki jagah. Flexbox ki gap property jaisa hi kaam karta hai.
+            </p>
+
+            <span class="label-note">gap: 4px — bahut kam</span>
+            <div class="grid-container gap-demo-1" style="margin-bottom:14px;">
+                <div class="g-item">A</div><div class="g-item">B</div><div class="g-item">C</div>
+                <div class="g-item">D</div><div class="g-item">E</div><div class="g-item">F</div>
+            </div>
+
+            <span class="label-note">gap: 16px — comfortable</span>
+            <div class="grid-container gap-demo-2" style="margin-bottom:14px;">
+                <div class="g-item">A</div><div class="g-item">B</div><div class="g-item">C</div>
+                <div class="g-item">D</div><div class="g-item">E</div><div class="g-item">F</div>
+            </div>
+
+            <span class="label-note">row-gap: 6px, column-gap: 24px — alag alag</span>
+            <div class="grid-container gap-demo-3">
+                <div class="g-item">A</div><div class="g-item">B</div><div class="g-item">C</div>
+                <div class="g-item">D</div><div class="g-item">E</div><div class="g-item">F</div>
+            </div>
+
+            <pre class="code-block">.grid { gap: 16px; }              /* dono directions mein same */
+.grid { gap: 10px 24px; }         /* row-gap: 10px, column-gap: 24px */
+.grid { row-gap: 6px; }           /* sirf rows ke beech */
+.grid { column-gap: 24px; }       /* sirf columns ke beech */</pre>
+        </div>
+
+        <!-- ── 4. GRID-TEMPLATE-AREAS ── -->
+        <div class="section">
+            <h2>4. grid-template-areas — Named layout</h2>
+            <p class="desc">
+                Cells ko naam deke layout banana — sabse readable aur maintainable tarika.
+                Same naam likhne se woh cells merge ho jaati hain.
+                <code>"."</code> ka matlab empty cell.
+            </p>
+
+            <div class="grid-container areas-layout">
+                <div class="g-item area-header" style="display:flex;align-items:center;justify-content:center;">HEADER</div>
+                <div class="g-item area-sidebar" style="display:flex;align-items:center;justify-content:center;">SIDEBAR</div>
+                <div class="g-item area-content" style="display:flex;align-items:center;justify-content:center;">CONTENT</div>
+                <div class="g-item area-footer" style="display:flex;align-items:center;justify-content:center;">FOOTER</div>
+            </div>
+
+            <pre class="code-block">.grid {
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 60px 1fr 50px;
+    grid-template-areas:
+        "header  header"    /* dono columns mein header */
+        "sidebar content"   /* pehle column mein sidebar, doosre mein content */
+        "footer  footer";   /* dono columns mein footer */
+    gap: 10px;
+}
+
+/* Har item ko uske naam se assign karo */
+.header  { grid-area: header; }
+.sidebar { grid-area: sidebar; }
+.content { grid-area: content; }
+.footer  { grid-area: footer; }</pre>
+        </div>
+
+        <!-- ── 5. AUTO-FIT + MINMAX ── -->
+        <div class="section">
+            <h2>5. auto-fit + minmax() — Responsive Grid (bina media queries)</h2>
+            <p class="desc">
+                Yeh combination bahut powerful hai — screen size ke hisaab se columns automatically adjust ho jaate hain.
+                <br>
+                <code>minmax(180px, 1fr)</code> = column kam se kam 180px, zyada se zyada 1fr.
+                <br>
+                Browser window chhoti-badi karo aur dekho columns badlenge.
+            </p>
+
+            <div class="grid-container responsive-grid">
+                <div class="g-item">Card 1</div>
+                <div class="g-item">Card 2</div>
+                <div class="g-item">Card 3</div>
+                <div class="g-item">Card 4</div>
+                <div class="g-item">Card 5</div>
+                <div class="g-item">Card 6</div>
+            </div>
+
+            <pre class="code-block">/* Responsive grid — bina media query ke! */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+}
+
+/* Kaise kaam karta hai:
+   - auto-fit  → jitne columns fit hoon utne banao
+   - minmax(180px, 1fr) → min 180px, max 1fr
+   
+   Screen wide ho → 4-5 columns
+   Screen narrow ho → 2-3 ya 1 column
+   Automatically adjust! */</pre>
+        </div>
+
+        <!-- ── 6. ITEM SPANNING ── -->
+        <div class="section">
+            <h2>6. grid-column / grid-row — Item ko multiple cells mein phailao</h2>
+            <p class="desc">
+                Ek item ek se zyada columns ya rows le sakta hai.
+                <code>span 2</code> = 2 cells cross karo. Ya line numbers se bhi kar sakte hain.
+            </p>
+
+            <span class="label-note">grid-column: span 2 — yeh item 2 columns lega</span>
+            <div class="grid-container cols-repeat" style="margin-bottom:14px;">
+                <div class="g-item span-2-cols">span 2 columns</div>
+                <div class="g-item">Normal</div>
+                <div class="g-item">Normal</div>
+                <div class="g-item">Normal</div>
+                <div class="g-item">Normal</div>
+                <div class="g-item">Normal</div>
+            </div>
+
+            <span class="label-note">grid-column: 1 / -1 — pehle se aakhri column tak (full width)</span>
+            <div class="grid-container cols-repeat">
+                <div class="g-item col-1-to-end">Full Width (1 / -1)</div>
+                <div class="g-item">Normal</div>
+                <div class="g-item">Normal</div>
+                <div class="g-item">Normal</div>
+                <div class="g-item">Normal</div>
+                <div class="g-item">Normal</div>
+                <div class="g-item">Normal</div>
+                <div class="g-item">Normal</div>
+            </div>
+
+            <pre class="code-block">/* Span — kitne cells cross karo */
+.wide-item { grid-column: span 2; }    /* 2 columns lega */
+.tall-item { grid-row: span 2; }       /* 2 rows lega */
+
+/* Line numbers se */
+.header    { grid-column: 1 / 3; }    /* line 1 se line 3 tak */
+.full      { grid-column: 1 / -1; }   /* first se last line tak = full width */</pre>
+        </div>
+
+        <!-- ── 7. justify-items / align-items ── -->
+        <div class="section">
+            <h2>7. justify-items &amp; align-items — Cells ke andar alignment</h2>
+            <p class="desc">
+                Grid mein <code>justify-items</code> horizontal aur <code>align-items</code> vertical alignment set karta hai
+                — har cell ke andar.
+                Default = stretch (poori cell bhar lena).
+            </p>
+
+            <span class="label-note">justify-items: start — items cell ke left mein</span>
+            <div class="grid-container cols-equal" style="justify-items: start; gap:10px; margin-bottom:14px;">
+                <div class="g-item">Item A</div>
+                <div class="g-item">Item B</div>
+                <div class="g-item">Item C</div>
+            </div>
+
+            <span class="label-note">justify-items: center — items cell ke center mein</span>
+            <div class="grid-container cols-equal" style="justify-items: center; gap:10px; margin-bottom:14px;">
+                <div class="g-item">Item A</div>
+                <div class="g-item">Item B</div>
+                <div class="g-item">Item C</div>
+            </div>
+
+            <span class="label-note">align-items: center — items vertically center (height chahiye)</span>
+            <div class="grid-container cols-equal" style="align-items: center; grid-auto-rows: 80px; gap:10px;">
+                <div class="g-item">Item A</div>
+                <div class="g-item">Item B</div>
+                <div class="g-item">Item C</div>
+            </div>
+
+            <pre class="code-block">.grid {
+    justify-items: stretch;  /* default — cell ki puri width */
+    justify-items: start;    /* cell ke left mein */
+    justify-items: center;   /* cell ke center mein */
+    justify-items: end;      /* cell ke right mein */
+    
+    align-items: stretch;    /* default — cell ki puri height */
+    align-items: center;     /* vertically center */
+}
+
+/* Ek item ke liye override */
+.item { justify-self: center; }
+.item { align-self: end; }</pre>
+        </div>
+
+        <!-- ── REAL WORLD ── -->
+        <div class="section">
+            <h2>✅ Real World Example — Blog Layout</h2>
+            <p class="desc">
+                Ek typical blog page ka layout — grid-template-areas se clearly define kiya.
+            </p>
+
+            <div class="grid-container blog-layout">
+                <div class="blog-hero">
+                    <div class="cell-label">Hero / Banner</div>
+                    <div class="cell-desc">grid-area: hero — Full width</div>
+                </div>
+                <div class="blog-article">
+                    <div class="cell-label">📄 Article</div>
+                    <div class="cell-desc">grid-area: article — Main content</div>
+                </div>
+                <div class="blog-sidebar">
+                    <div class="cell-label">📌 Sidebar</div>
+                    <div class="cell-desc">grid-area: sidebar — 300px fixed</div>
+                </div>
+                <div class="blog-footer">Footer — Full width</div>
+            </div>
+
+            <pre class="code-block">.page {
+    display: grid;
+    grid-template-columns: 1fr 300px;       /* content aur sidebar */
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "hero     hero"
+        "article  sidebar"
+        "footer   footer";
+    gap: 16px;
+}
+
+.hero    { grid-area: hero; }
+.article { grid-area: article; }
+.sidebar { grid-area: sidebar; }
+.footer  { grid-area: footer; }</pre>
+        </div>
+
+        <!-- ── SUMMARY ── -->
+        <div class="section">
+            <h2>📋 Summary — Grid Properties</h2>
+            <table class="summary-table">
+                <thead>
+                    <tr><th>Property</th><th>Lagate hain</th><th>Kya karta hai</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>display: grid</code></td><td>Container</td><td>Grid on karo</td></tr>
+                    <tr><td><code>grid-template-columns</code></td><td>Container</td><td>Columns define karo</td></tr>
+                    <tr><td><code>grid-template-rows</code></td><td>Container</td><td>Row heights define karo</td></tr>
+                    <tr><td><code>grid-template-areas</code></td><td>Container</td><td>Named layout</td></tr>
+                    <tr><td><code>gap</code></td><td>Container</td><td>Cells ke beech space</td></tr>
+                    <tr><td><code>justify-items</code></td><td>Container</td><td>Cells andar horizontal alignment</td></tr>
+                    <tr><td><code>align-items</code></td><td>Container</td><td>Cells andar vertical alignment</td></tr>
+                    <tr><td><code>grid-column</code></td><td>Item</td><td>Column span / position</td></tr>
+                    <tr><td><code>grid-row</code></td><td>Item</td><td>Row span / position</td></tr>
+                    <tr><td><code>grid-area</code></td><td>Item</td><td>Named area mein place karo</td></tr>
+                    <tr><td><code>justify-self</code></td><td>Item</td><td>Ek item ki horizontal alignment</td></tr>
+                    <tr><td><code>align-self</code></td><td>Item</td><td>Ek item ki vertical alignment</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        © Code Core Computer Center — CSS Practice Lab
+    </footer>
+
+</body>
+</html>

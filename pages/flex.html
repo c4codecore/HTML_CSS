@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox — Code Core</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/flex.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="../index.html" class="brand">🏠 Code Core</a>
+        <ul>
+            <li><a href="../pages/font.html">Fonts</a></li>
+            <li><a href="../pages/box-model.html">Box Model</a></li>
+            <li><a href="../pages/display.html">Display</a></li>
+            <li><a href="../pages/flex.html" class="active">Flexbox</a></li>
+            <li><a href="../pages/grid.html">Grid</a></li>
+            <li><a href="../pages/position.html">Position</a></li>
+            <li><a href="../pages/pseudo.html">Pseudo</a></li>
+            <li><a href="../pages/effects.html">Effects</a></li>
+            <li><a href="../pages/portfolio.html">Portfolio</a></li>
+        </ul>
+    </nav>
+
+    <div class="page-header">
+        <h1>↔️ CSS Flexbox</h1>
+        <p>
+            Flexbox ek <strong>1D layout system</strong> hai — items ko row ya column mein arrange karta hai.
+            Properties do tarah ki hain: <strong>Container</strong> par lagate hain, ya <strong>Item</strong> par.
+        </p>
+    </div>
+
+    <div class="container">
+
+        <!-- ── FLEX BASICS ── -->
+        <div class="section">
+            <h2>Flexbox Shuru Kaise Karte Hain?</h2>
+            <p class="desc">
+                Sirf parent (container) par <code>display: flex</code> likhna kaafi hai.
+                Iske baad container ke andar ke sab direct children automatically
+                <strong>flex items</strong> ban jaate hain aur ek row mein aa jaate hain.
+            </p>
+            <pre class="code-block">/* Container par yeh likhna kaafi hai shuru karne ke liye */
+.parent {
+    display: flex;
+}
+/* Ab .parent ke andar ke sab direct children ek row mein aa jayenge */</pre>
+        </div>
+
+        <!-- ════════════════════════════════════════
+             CONTAINER PROPERTIES
+        ════════════════════════════════════════ -->
+        <div class="section">
+            <h2>CONTAINER PROPERTIES — Parent par lagate hain</h2>
+            <p class="desc">Yeh properties container (parent) par lagate hain. Yeh andar ke sab items ko affect karti hain.</p>
+        </div>
+
+        <!-- 1. flex-direction -->
+        <div class="section">
+            <h2>1. flex-direction — Items ka direction</h2>
+            <p class="desc">
+                Items kis direction mein jaayenge — row (horizontal) ya column (vertical)?
+                Default = <code>row</code>.
+            </p>
+
+            <span class="label-note">flex-direction: row (default) — left se right</span>
+            <div class="flex-container direction-row" style="margin-bottom:14px;">
+                <div class="item item-a">1</div>
+                <div class="item item-b">2</div>
+                <div class="item item-c">3</div>
+            </div>
+
+            <span class="label-note">flex-direction: row-reverse — right se left</span>
+            <div class="flex-container direction-row-reverse" style="margin-bottom:14px;">
+                <div class="item item-a">1</div>
+                <div class="item item-b">2</div>
+                <div class="item item-c">3</div>
+            </div>
+
+            <span class="label-note">flex-direction: column — upar se neeche</span>
+            <div class="flex-container direction-column" style="margin-bottom:14px;">
+                <div class="item item-a">1</div>
+                <div class="item item-b">2</div>
+                <div class="item item-c">3</div>
+            </div>
+
+            <span class="label-note">flex-direction: column-reverse — neeche se upar</span>
+            <div class="flex-container direction-column-reverse">
+                <div class="item item-a">1</div>
+                <div class="item item-b">2</div>
+                <div class="item item-c">3</div>
+            </div>
+
+            <pre class="code-block">.container { flex-direction: row; }             /* default — left to right */
+.container { flex-direction: row-reverse; }    /* right to left */
+.container { flex-direction: column; }         /* top to bottom */
+.container { flex-direction: column-reverse; } /* bottom to top */</pre>
+        </div>
+
+        <!-- 2. justify-content -->
+        <div class="section">
+            <h2>2. justify-content — Main axis par space kaise divide karein</h2>
+            <p class="desc">
+                Main axis = <code>flex-direction: row</code> mein → <strong>horizontal axis</strong>.<br>
+                Yeh property items ke beech aur around ki space control karti hai.
+            </p>
+
+            <span class="label-note">flex-start (default) — sab left mein</span>
+            <div class="flex-container jc-flex-start" style="margin-bottom:10px;">
+                <div class="item item-a">A</div>
+                <div class="item item-b">B</div>
+                <div class="item item-c">C</div>
+            </div>
+
+            <span class="label-note">flex-end — sab right mein</span>
+            <div class="flex-container jc-flex-end" style="margin-bottom:10px;">
+                <div class="item item-a">A</div>
+                <div class="item item-b">B</div>
+                <div class="item item-c">C</div>
+            </div>
+
+            <span class="label-note">center — beech mein</span>
+            <div class="flex-container jc-center" style="margin-bottom:10px;">
+                <div class="item item-a">A</div>
+                <div class="item item-b">B</div>
+                <div class="item item-c">C</div>
+            </div>
+
+            <span class="label-note">space-between — pehla left edge, aakhri right edge, beech mein equal gap</span>
+            <div class="flex-container jc-space-between" style="margin-bottom:10px;">
+                <div class="item item-a">A</div>
+                <div class="item item-b">B</div>
+                <div class="item item-c">C</div>
+            </div>
+
+            <span class="label-note">space-around — har item ke dono taraf equal space</span>
+            <div class="flex-container jc-space-around" style="margin-bottom:10px;">
+                <div class="item item-a">A</div>
+                <div class="item item-b">B</div>
+                <div class="item item-c">C</div>
+            </div>
+
+            <span class="label-note">space-evenly — sab gaps exactly equal</span>
+            <div class="flex-container jc-space-evenly">
+                <div class="item item-a">A</div>
+                <div class="item item-b">B</div>
+                <div class="item item-c">C</div>
+            </div>
+
+            <pre class="code-block">.container { justify-content: flex-start; }    /* default */
+.container { justify-content: flex-end; }
+.container { justify-content: center; }
+.container { justify-content: space-between; } /* nav bar mein useful */
+.container { justify-content: space-around; }
+.container { justify-content: space-evenly; }</pre>
+        </div>
+
+        <!-- 3. align-items -->
+        <div class="section">
+            <h2>3. align-items — Cross axis par alignment</h2>
+            <p class="desc">
+                Cross axis = <code>flex-direction: row</code> mein → <strong>vertical axis</strong>.<br>
+                Items vertically kahan rahenge yeh control karta hai.
+                <br>
+                ⚡ Effect dekhne ke liye container ki height zaroori hai!
+            </p>
+
+            <span class="label-note">stretch (default) — items puri height tak phail jaate hain</span>
+            <div class="flex-container tall ai-stretch" style="margin-bottom:10px;">
+                <div class="item item-a">A</div>
+                <div class="item item-b">B</div>
+                <div class="item item-c">C</div>
+            </div>
+
+            <span class="label-note">flex-start — sab upar</span>
+            <div class="flex-container tall ai-flex-start" style="margin-bottom:10px;">
+                <div class="item item-a">A</div>
+                <div class="item item-b">B</div>
+                <div class="item item-c">C</div>
+            </div>
+
+            <span class="label-note">flex-end — sab neeche</span>
+            <div class="flex-container tall ai-flex-end" style="margin-bottom:10px;">
+                <div class="item item-a">A</div>
+                <div class="item item-b">B</div>
+                <div class="item item-c">C</div>
+            </div>
+
+            <span class="label-note">center — sab vertically center</span>
+            <div class="flex-container tall ai-center">
+                <div class="item item-a">A</div>
+                <div class="item item-b">B</div>
+                <div class="item item-c">C</div>
+            </div>
+
+            <pre class="code-block">.container {
+    min-height: 140px;           /* effect ke liye height chahiye */
+    align-items: stretch;        /* default — items puri height le lete hain */
+}
+.container { align-items: flex-start; }  /* upar */
+.container { align-items: flex-end; }    /* neeche */
+.container { align-items: center; }      /* vertically center — bahut useful! */</pre>
+        </div>
+
+        <!-- 4. flex-wrap -->
+        <div class="section">
+            <h2>4. flex-wrap — Items overflow karein ya wrap karein?</h2>
+            <p class="desc">
+                Jab items container se zyada ho jaayein to kya karein?
+                Default mein items ek hi line mein rehte hain aur overflow ho jaate hain.
+                <code>wrap</code> se neeche wali line mein chale jaate hain.
+            </p>
+
+            <span class="label-before">nowrap (default) — sab ek line mein, overflow hoga</span>
+            <div class="flex-container wrap-nowrap" style="margin-bottom:14px;">
+                <div class="item item-wide item-a">Item 1</div>
+                <div class="item item-wide item-b">Item 2</div>
+                <div class="item item-wide item-c">Item 3</div>
+                <div class="item item-wide item-d">Item 4</div>
+            </div>
+
+            <span class="label-after">wrap — jagah nahi to neeche wali line mein</span>
+            <div class="flex-container wrap-wrap">
+                <div class="item item-wide item-a">Item 1</div>
+                <div class="item item-wide item-b">Item 2</div>
+                <div class="item item-wide item-c">Item 3</div>
+                <div class="item item-wide item-d">Item 4</div>
+            </div>
+
+            <pre class="code-block">.container { flex-wrap: nowrap; }  /* default — ek line mein, shrink hoga */
+.container { flex-wrap: wrap; }    /* jagah na ho to neeche wali line mein */</pre>
+        </div>
+
+        <!-- 5. gap -->
+        <div class="section">
+            <h2>5. gap — Items ke beech space</h2>
+            <p class="desc">
+                <code>gap</code> items ke beech ki jagah set karta hai.
+                Pehle <code>margin</code> se karte the — <code>gap</code> zyada clean aur easy hai.
+            </p>
+
+            <span class="label-note">gap: 0 — koi gap nahi</span>
+            <div class="flex-container gap-none" style="margin-bottom:10px;">
+                <div class="item item-a">A</div>
+                <div class="item item-b">B</div>
+                <div class="item item-c">C</div>
+            </div>
+
+            <span class="label-note">gap: 8px</span>
+            <div class="flex-container gap-small" style="margin-bottom:10px;">
+                <div class="item item-a">A</div>
+                <div class="item item-b">B</div>
+                <div class="item item-c">C</div>
+            </div>
+
+            <span class="label-note">gap: 20px</span>
+            <div class="flex-container gap-medium" style="margin-bottom:10px;">
+                <div class="item item-a">A</div>
+                <div class="item item-b">B</div>
+                <div class="item item-c">C</div>
+            </div>
+
+            <span class="label-note">gap: 40px</span>
+            <div class="flex-container gap-large">
+                <div class="item item-a">A</div>
+                <div class="item item-b">B</div>
+                <div class="item item-c">C</div>
+            </div>
+
+            <pre class="code-block">.container { gap: 20px; }         /* dono directions mein 20px */
+.container { gap: 10px 30px; }    /* row-gap: 10px, column-gap: 30px */
+
+/* Pehle ka tarika — margin se (avoid karo) */
+.item { margin-right: 20px; }     /* edge items par bhi lag jaata tha — messy */</pre>
+        </div>
+
+        <!-- ════════════════════════════════════════
+             ITEM PROPERTIES
+        ════════════════════════════════════════ -->
+        <div class="section">
+            <h2>ITEM PROPERTIES — Individual child par lagate hain</h2>
+            <p class="desc">Yeh properties sirf ek specific item par lagate hain — baaki items affect nahi hote.</p>
+        </div>
+
+        <!-- 6. order -->
+        <div class="section">
+            <h2>6. order — Visual order change karo (HTML badlaye bina)</h2>
+            <p class="desc">
+                HTML mein jo order likha hai woh change kiye bina CSS se visual order badal sakte hain.
+                Default order = 0. Chhota number pehle aata hai.
+            </p>
+
+            <span class="label-note">HTML order: 1, 2, 3 — lekin CSS order: 3, 1, 2 — display mein Green pehle dikhega</span>
+            <div class="flex-container order-demo gap-medium">
+                <div class="item">1 (order:3)</div>
+                <div class="item">2 (order:1)</div>
+                <div class="item">3 (order:2)</div>
+            </div>
+
+            <pre class="code-block">/* HTML mein yeh order hai: 1, 2, 3 */
+/* CSS se visual order badal diya */
+
+.item:nth-child(1) { order: 3; }   /* pehla item teesre position par dikhega */
+.item:nth-child(2) { order: 1; }   /* doosra pehle dikhega */
+.item:nth-child(3) { order: 2; }   /* teesra doosre position par */</pre>
+        </div>
+
+        <!-- 7. flex-grow -->
+        <div class="section">
+            <h2>7. flex-grow — Bacha hua space kitna lo</h2>
+            <p class="desc">
+                Jab container mein extra space ho to kaun kitna lega?
+                Yeh <strong>shares</strong> ki tarah kaam karta hai.
+                Default = 0 (koi extra space nahi lega — items apne size ke hisaab se).
+            </p>
+
+            <span class="label-before">flex-grow: 0 (default) — items apne content size mein rehte hain</span>
+            <div class="flex-container gap-small" style="margin-bottom:14px;">
+                <div class="item item-a">A (0)</div>
+                <div class="item item-b">B (0)</div>
+                <div class="item item-c">C (0)</div>
+            </div>
+
+            <span class="label-after">grow: 1, 2, 1 — B ko double space milega kyunki uske 2 shares hain</span>
+            <div class="flex-container gap-small grow-demo">
+                <div class="item item-a">A (grow:1)</div>
+                <div class="item item-b">B (grow:2)</div>
+                <div class="item item-c">C (grow:1)</div>
+            </div>
+
+            <pre class="code-block">/* grow: 0 — default, extra space nahi lega */
+.item-a { flex-grow: 1; }   /* 1 share */
+.item-b { flex-grow: 2; }   /* 2 shares — double space milega */
+.item-c { flex-grow: 1; }   /* 1 share */
+
+/* Total shares = 4. Extra space 4 parts mein banta hai.
+   A = 1 part, B = 2 parts, C = 1 part */</pre>
+        </div>
+
+        <!-- 8. flex-shrink -->
+        <div class="section">
+            <h2>8. flex-shrink — Container chhota ho to kitna sikudo</h2>
+            <p class="desc">
+                Jab container chhota ho jaaye to items shrink hone lagte hain.
+                <code>flex-shrink: 0</code> se item shrink hona band kar dete hain.
+                <br>
+                Use case: Logo ya icon jo chhota nahi hona chahiye.
+            </p>
+
+            <span class="label-before">flex-shrink: 1 (default) — sab barabar shrink karte hain</span>
+            <div class="flex-container gap-small" style="margin-bottom:14px; width: 350px;">
+                <div class="item item-a">Shrinks</div>
+                <div class="item item-b">Shrinks</div>
+                <div class="item item-c">Shrinks</div>
+            </div>
+
+            <span class="label-after">Red item ko flex-shrink:0 diya — woh shrink NAHI karega</span>
+            <div class="flex-container gap-small shrink-demo">
+                <div class="item item-a">Logo (shrink:0)</div>
+                <div class="item item-b">Menu</div>
+                <div class="item item-c">Button</div>
+            </div>
+
+            <pre class="code-block">.logo  { flex-shrink: 0; }  /* yeh item kabhi chhota nahi hoga */
+.menu  { flex-shrink: 1; }  /* default — zaroorat padne par chhota hoga */</pre>
+        </div>
+
+        <!-- 9. flex-basis -->
+        <div class="section">
+            <h2>9. flex-basis — Item ki starting size</h2>
+            <p class="desc">
+                Item ki initial size set karta hai (flex-grow/shrink se pehle).
+                Flex mein <code>width</code> ki jagah <code>flex-basis</code> use karna better practice hai.
+            </p>
+
+            <div class="flex-container gap-small basis-demo">
+                <div class="item item-a">basis: 200px</div>
+                <div class="item item-b">basis: 100px</div>
+                <div class="item item-c">basis: auto</div>
+            </div>
+
+            <pre class="code-block">.item-a { flex-basis: 200px; }   /* 200px se shuru karega */
+.item-b { flex-basis: 100px; }   /* 100px se shuru karega */
+.item-c { flex-basis: auto; }    /* content ke hisaab se (default) */</pre>
+        </div>
+
+        <!-- 10. flex shorthand -->
+        <div class="section">
+            <h2>10. flex (shorthand) — grow + shrink + basis ek saath</h2>
+            <p class="desc">
+                <code>flex: grow shrink basis</code> — teeno ek jagah likh sakte hain.
+                Sabse common hai <code>flex: 1</code> — iska matlab hai barabar space lo.
+            </p>
+
+            <div class="flex-container gap-small shorthand-demo">
+                <div class="item item-a">flex: 1</div>
+                <div class="item item-b">flex: 2 (double)</div>
+                <div class="item item-c">flex: 1</div>
+            </div>
+
+            <pre class="code-block">/* flex: grow shrink basis */
+.item { flex: 1; }        /* = flex: 1 1 0% — barabar space lo */
+.item { flex: 2; }        /* double space lega compared to flex:1 */
+.item { flex: none; }     /* = flex: 0 0 auto — fixed size */
+.item { flex: auto; }     /* = flex: 1 1 auto */</pre>
+        </div>
+
+        <!-- 11. align-self -->
+        <div class="section">
+            <h2>11. align-self — Ek item ki khud ki alignment</h2>
+            <p class="desc">
+                Container ke <code>align-items</code> ko ek specific item ke liye override karta hai.
+                Baaki items pe koi asar nahi.
+            </p>
+
+            <span class="label-note">Container: align-items: flex-start — lekin individual items alag position mein</span>
+            <div class="flex-container align-self-demo gap-medium">
+                <div class="item item-a as-flex-start">flex-start (same as container)</div>
+                <div class="item item-b as-flex-end">align-self: flex-end</div>
+                <div class="item item-c as-center">align-self: center</div>
+                <div class="item item-d as-stretch">align-self: stretch</div>
+            </div>
+
+            <pre class="code-block">.container { align-items: flex-start; }   /* sab upar */
+
+/* Individual item ko override karo */
+.item-b { align-self: flex-end; }    /* sirf yeh neeche */
+.item-c { align-self: center; }      /* sirf yeh center mein */
+.item-d { align-self: stretch; }     /* sirf yeh puri height */</pre>
+        </div>
+
+        <!-- ── REAL WORLD: NAVBAR ── -->
+        <div class="section">
+            <h2>✅ Real World Example — Navbar</h2>
+            <p class="desc">
+                Flexbox ka sabse common use case — navbar banana.
+                <code>justify-content: space-between</code> se logo left mein aur CTA button right mein aa jaata hai.
+            </p>
+
+            <nav class="demo-navbar">
+                <div class="logo">🏠 MyBrand</div>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <a href="#" class="cta">Get Started</a>
+            </nav>
+
+            <pre class="code-block">.navbar {
+    display: flex;
+    align-items: center;           /* sab vertically center */
+    justify-content: space-between; /* logo left, button right */
+    padding: 14px 20px;
+}
+
+.nav-links {
+    display: flex;   /* links ek row mein */
+    gap: 8px;
+    list-style: none;
+}</pre>
+        </div>
+
+        <!-- ── SUMMARY ── -->
+        <div class="section">
+            <h2>📋 Summary — Flexbox Properties</h2>
+            <table class="summary-table">
+                <thead>
+                    <tr><th>Property</th><th>Lagate hain</th><th>Kya karta hai</th><th>Common values</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>display: flex</code></td><td>Container</td><td>Flexbox on karo</td><td>flex</td></tr>
+                    <tr><td><code>flex-direction</code></td><td>Container</td><td>Row ya column</td><td>row, column</td></tr>
+                    <tr><td><code>justify-content</code></td><td>Container</td><td>Main axis spacing</td><td>center, space-between, space-evenly</td></tr>
+                    <tr><td><code>align-items</code></td><td>Container</td><td>Cross axis alignment</td><td>center, flex-start, flex-end, stretch</td></tr>
+                    <tr><td><code>flex-wrap</code></td><td>Container</td><td>Wrap ya nahi</td><td>wrap, nowrap</td></tr>
+                    <tr><td><code>gap</code></td><td>Container</td><td>Items ke beech space</td><td>10px, 20px</td></tr>
+                    <tr><td><code>order</code></td><td>Item</td><td>Visual order badlo</td><td>0, 1, 2, -1</td></tr>
+                    <tr><td><code>flex-grow</code></td><td>Item</td><td>Extra space kitna lo</td><td>0, 1, 2</td></tr>
+                    <tr><td><code>flex-shrink</code></td><td>Item</td><td>Kitna chhota ho</td><td>0, 1</td></tr>
+                    <tr><td><code>flex-basis</code></td><td>Item</td><td>Starting size</td><td>auto, 200px</td></tr>
+                    <tr><td><code>flex</code></td><td>Item</td><td>grow+shrink+basis ek saath</td><td>1, auto, none</td></tr>
+                    <tr><td><code>align-self</code></td><td>Item</td><td>Khud ki cross-axis alignment</td><td>center, flex-end, stretch</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        © Code Core Computer Center — CSS Practice Lab
+    </footer>
+
+</body>
+</html>

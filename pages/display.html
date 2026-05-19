@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Property — Code Core</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/display.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="../index.html" class="brand">🏠 Code Core</a>
+        <ul>
+            <li><a href="../pages/font.html">Fonts</a></li>
+            <li><a href="../pages/box-model.html">Box Model</a></li>
+            <li><a href="../pages/display.html" class="active">Display</a></li>
+            <li><a href="../pages/flex.html">Flexbox</a></li>
+            <li><a href="../pages/grid.html">Grid</a></li>
+            <li><a href="../pages/position.html">Position</a></li>
+            <li><a href="../pages/pseudo.html">Pseudo</a></li>
+            <li><a href="../pages/effects.html">Effects</a></li>
+            <li><a href="../pages/portfolio.html">Portfolio</a></li>
+        </ul>
+    </nav>
+
+    <div class="page-header">
+        <h1>🖥️ CSS Display Property</h1>
+        <p>
+            Har HTML element ka ek <strong>default display</strong> hota hai.
+            Hum CSS se isko badal sakte hain. Har example mein pehle DEFAULT dikhaya hai, phir BADLAV ke baad kya hota hai.
+        </p>
+    </div>
+
+    <div class="container">
+
+        <!-- ── DEFAULT TABLE ── -->
+        <div class="section">
+            <h2>HTML Elements ke Default Display Values</h2>
+            <p class="desc">Yeh values yaad rakho — isi wajah se BEFORE/AFTER examples mein farq dikhta hai.</p>
+            <table class="summary-table">
+                <thead>
+                    <tr><th>Element</th><th>Default Display</th><th>Matlab</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>div, p, h1-h6, ul, section</code></td><td><strong>block</strong></td><td>Puri width, neeche jaata hai</td></tr>
+                    <tr><td><code>span, a, strong, em</code></td><td><strong>inline</strong></td><td>Sirf content ki width, side-by-side</td></tr>
+                    <tr><td><code>img, input, button</code></td><td><strong>inline-block</strong></td><td>Side-by-side + size set hoti hai</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ── 1. BLOCK ── -->
+        <div class="section">
+            <h2>1. display: block</h2>
+            <p class="desc">
+                Block element <strong>puri width leta hai</strong> aur agla element neeche jaata hai.
+                Width, height, margin, padding sab kaam karte hain.
+                <br>
+                ⚡ <strong>Trick:</strong> Hum <code>&lt;span&gt;</code> (jo inline hai) pe block lagayenge — tabhi impact dikhega!
+            </p>
+
+            <span class="label-before">❌ PEHLE — span ka default (inline): teeno ek hi line mein</span>
+            <div class="default-span" style="padding:10px; background:#fef2f2; border:1px solid #fecaca; border-radius:6px; margin-bottom:14px;">
+                <span>Span 1</span>
+                <span>Span 2</span>
+                <span>Span 3</span>
+            </div>
+
+            <span class="label-after">✅ BAAD MEIN — span ko display:block diya: har span apni puri row le raha hai</span>
+            <div class="block-span" style="padding:10px; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:6px;">
+                <span>Span 1 — ab block hai, puri width le raha hai</span>
+                <span>Span 2 — neeche aa gaya</span>
+                <span>Span 3 — width bhi set ho gayi</span>
+            </div>
+
+            <pre class="code-block">/* PEHLE — span ka default inline hai */
+span { /* kuch nahi — browser inline maan leta hai */ }
+
+/* BAAD MEIN — block bana diya */
+span {
+    display: block;    /* ← yeh ek line se sab badal gaya */
+    width: 280px;      /* ab width set hogi */
+    margin-bottom: 6px;
+}</pre>
+        </div>
+
+        <!-- ── 2. INLINE ── -->
+        <div class="section">
+            <h2>2. display: inline</h2>
+            <p class="desc">
+                Inline element sirf <strong>content jitni jagah</strong> leta hai aur side-by-side rehta hai.
+                <strong>Width aur height set nahi hoti</strong> — yeh inline ki sabse badi limitation hai.
+                <br>
+                ⚡ <strong>Trick:</strong> Hum <code>&lt;div&gt;</code> (jo block hai) pe inline lagayenge — tabhi farq dikhega!
+            </p>
+
+            <span class="label-before">❌ PEHLE — div ka default (block): ek ke neeche ek stack ho rahe hain</span>
+            <div class="default-div" style="padding:10px; background:#fffbeb; border:1px solid #fde68a; border-radius:6px; margin-bottom:14px;">
+                <div>Div 1</div>
+                <div>Div 2</div>
+                <div>Div 3</div>
+            </div>
+
+            <span class="label-after">✅ BAAD MEIN — div ko display:inline diya: teeno side-by-side aa gaye</span>
+            <div class="inline-div" style="padding:10px; background:#f5f3ff; border:1px solid #ddd6fe; border-radius:6px;">
+                <div>Div 1</div>
+                <div>Div 2</div>
+                <div>Div 3</div>
+            </div>
+            <p style="color:#b45309; font-size:13px; margin-top:8px;">
+                ⚠️ Note: Inline pe <code>width</code> set karo to bhi kaam NAHI karega. Yeh inline ki limitation hai.
+            </p>
+
+            <pre class="code-block">/* PEHLE — div ka default block hai */
+div { /* kuch nahi — browser block maan leta hai */ }
+
+/* BAAD MEIN — inline bana diya */
+div {
+    display: inline;    /* ← side-by-side aa gaye */
+    padding: 8px 14px;
+    /* width: 200px; — yeh likhne par bhi KAAM NAHI KAREGA */
+}</pre>
+        </div>
+
+        <!-- ── 3. INLINE-BLOCK ── -->
+        <div class="section">
+            <h2>3. display: inline-block</h2>
+            <p class="desc">
+                <code>inline-block</code> = inline + block ka combination.
+                <strong>Side-by-side bhi rehta hai</strong> aur <strong>width/height bhi set hoti hai</strong>.
+                <br>
+                Real use case: Navigation links, buttons, gallery items.
+            </p>
+
+            <span class="label-before">❌ PEHLE — span par width/height set ki, lekin kaam nahi ki (inline default)</span>
+            <div class="span-no-size" style="padding:10px; background:#fffbeb; border:1px solid #fde68a; border-radius:6px; margin-bottom:14px;">
+                <span>Box A (120×60 di, ignore hui)</span>
+                <span>Box B</span>
+                <span>Box C</span>
+            </div>
+
+            <span class="label-after">✅ BAAD MEIN — inline-block lagaya: size bhi lagi, side-by-side bhi hain</span>
+            <div class="span-inline-block" style="padding:10px; background:#ecfeff; border:1px solid #a5f3fc; border-radius:6px;">
+                <span>Box A</span>
+                <span>Box B</span>
+                <span>Box C</span>
+            </div>
+
+            <pre class="code-block">/* PEHLE — span inline hai, width/height kaam nahi karti */
+span {
+    width: 120px;   /* ignored */
+    height: 60px;   /* ignored */
+}
+
+/* BAAD MEIN — inline-block se dono kaam hote hain */
+span {
+    display: inline-block;   /* ← best of both worlds */
+    width: 120px;            /* ✅ ab kaam karega */
+    height: 60px;            /* ✅ ab kaam karega */
+}</pre>
+        </div>
+
+        <!-- ── 4. NONE vs HIDDEN ── -->
+        <div class="section">
+            <h2>4. display: none — vs — visibility: hidden</h2>
+            <p class="desc">
+                Dono element ko chhupate hain. Lekin <strong>ek zaroori farq</strong> hai — layout mein jagah ka!
+            </p>
+
+            <span class="label-before">display: none — Box 2 poori tarah gayab, jagah bhi nahi bachi</span>
+            <div class="vis-row" style="margin-bottom:14px;">
+                <div class="vis-box green-item">Box 1 ✅</div>
+                <div class="vis-box red-item gone">Box 2 — display:none</div>
+                <div class="vis-box blue-item">Box 3 ✅</div>
+            </div>
+            <p style="font-size:13px; color:#64748b; margin-bottom:16px;">
+                👆 Box 1 aur Box 3 directly adjacent hain — Box 2 ki jagah kisi ne nahi li.
+            </p>
+
+            <span class="label-after">visibility: hidden — Box 2 dikhta nahi, lekin jagah reserve hai</span>
+            <div class="vis-row">
+                <div class="vis-box green-item">Box 1 ✅</div>
+                <div class="vis-box orange-item invisible">Box 2 — visibility:hidden</div>
+                <div class="vis-box blue-item">Box 3 ✅</div>
+            </div>
+            <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                👆 Box 2 nazar nahi aata, lekin uski jagah bachi hai — isliye Box 3 door hai.
+            </p>
+
+            <pre class="code-block">/* Poora hata do — jagah bhi nahi lega */
+.gone      { display: none; }
+
+/* Sirf chhupao — jagah reserve rahegi */
+.invisible { visibility: hidden; }
+
+/* Kab kya use karein?
+   display:none      → menu/dropdown toggle, tabs
+   visibility:hidden → animation ke liye jagah bachani ho */</pre>
+        </div>
+
+        <!-- ── 5. FLEX ── -->
+        <div class="section">
+            <h2>5. display: flex</h2>
+            <p class="desc">
+                Flex container ke andar items automatically <strong>ek row mein</strong> aa jaate hain.
+                Alignment, gap, sizing — sab bahut aasaan ho jaata hai.
+                <br>
+                → Flex ka poora detail: <a href="../pages/flex.html">flex.html</a> mein dekho.
+            </p>
+
+            <span class="label-before">❌ PEHLE — bina flex ke: divs block hain, ek ke neeche ek stack ho rahe hain</span>
+            <div class="no-flex-wrap" style="margin-bottom:14px;">
+                <div>Item 1</div>
+                <div>Item 2</div>
+                <div>Item 3</div>
+            </div>
+
+            <span class="label-after">✅ BAAD MEIN — display:flex lagaya: sab ek row mein, center aligned</span>
+            <div class="flex-wrap">
+                <div>Item 1</div>
+                <div>Item 2</div>
+                <div>Item 3</div>
+            </div>
+
+            <pre class="code-block">/* PEHLE — default block stacking */
+.container { /* kuch nahi */ }
+
+/* BAAD MEIN — flex */
+.container {
+    display: flex;         /* ← items row mein aa gaye */
+    gap: 10px;             /* items ke beech space */
+    align-items: center;   /* vertically center */
+}</pre>
+        </div>
+
+        <!-- ── 6. GRID ── -->
+        <div class="section">
+            <h2>6. display: grid</h2>
+            <p class="desc">
+                Grid se <strong>rows aur columns dono</strong> control kar sakte hain — 2D layout.
+                <br>
+                → Grid ka poora detail: <a href="../pages/grid.html">grid.html</a> mein dekho.
+            </p>
+
+            <span class="label-before">❌ PEHLE — bina grid ke: sab ek column mein stack ho rahe hain</span>
+            <div class="no-grid-wrap" style="margin-bottom:14px;">
+                <div>Card 1</div>
+                <div>Card 2</div>
+                <div>Card 3</div>
+                <div>Card 4</div>
+                <div>Card 5</div>
+                <div>Card 6</div>
+            </div>
+
+            <span class="label-after">✅ BAAD MEIN — display:grid lagaya (3 columns): gallery layout ban gayi</span>
+            <div class="grid-wrap">
+                <div>Card 1</div>
+                <div>Card 2</div>
+                <div>Card 3</div>
+                <div>Card 4</div>
+                <div>Card 5</div>
+                <div>Card 6</div>
+            </div>
+
+            <pre class="code-block">/* PEHLE — default block, ek column */
+.container { /* kuch nahi */ }
+
+/* BAAD MEIN — grid */
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* 3 equal columns */
+    gap: 10px;
+}</pre>
+        </div>
+
+        <!-- ── SUMMARY ── -->
+        <div class="section">
+            <h2>📋 Summary — Display Values</h2>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Value</th>
+                        <th>Puri width?</th>
+                        <th>Width/Height?</th>
+                        <th>Side-by-side?</th>
+                        <th>Use case</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>block</code></td>
+                        <td>✅ Haan</td>
+                        <td>✅ Haan</td>
+                        <td>❌ Nahi</td>
+                        <td>Headings, paragraphs, sections</td>
+                    </tr>
+                    <tr>
+                        <td><code>inline</code></td>
+                        <td>❌ Nahi</td>
+                        <td>❌ Nahi</td>
+                        <td>✅ Haan</td>
+                        <td>Text ke andar links, bold, span</td>
+                    </tr>
+                    <tr>
+                        <td><code>inline-block</code></td>
+                        <td>❌ Nahi</td>
+                        <td>✅ Haan</td>
+                        <td>✅ Haan</td>
+                        <td>Nav links, buttons, cards ek row mein</td>
+                    </tr>
+                    <tr>
+                        <td><code>none</code></td>
+                        <td colspan="3" style="text-align:center;">Poori tarah gayab — layout mein jagah bhi nahi</td>
+                        <td>Hide/show toggle</td>
+                    </tr>
+                    <tr>
+                        <td><code>flex</code></td>
+                        <td colspan="3" style="text-align:center;">Children row mein, alignment aasaan</td>
+                        <td>Navbar, card row, centering</td>
+                    </tr>
+                    <tr>
+                        <td><code>grid</code></td>
+                        <td colspan="3" style="text-align:center;">Children rows+columns dono mein</td>
+                        <td>Page layout, image gallery</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        © Code Core Computer Center — CSS Practice Lab
+    </footer>
+
+</body>
+</html>

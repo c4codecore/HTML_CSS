@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Effects — Code Core</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/effects.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="../index.html" class="brand">🏠 Code Core</a>
+        <ul>
+            <li><a href="../pages/font.html">Fonts</a></li>
+            <li><a href="../pages/box-model.html">Box Model</a></li>
+            <li><a href="../pages/display.html">Display</a></li>
+            <li><a href="../pages/flex.html">Flexbox</a></li>
+            <li><a href="../pages/grid.html">Grid</a></li>
+            <li><a href="../pages/position.html">Position</a></li>
+            <li><a href="../pages/pseudo.html">Pseudo</a></li>
+            <li><a href="../pages/effects.html" class="active">Effects</a></li>
+            <li><a href="../pages/portfolio.html">Portfolio</a></li>
+        </ul>
+    </nav>
+
+    <div class="page-header">
+        <h1>✨ CSS Visual Effects</h1>
+        <p>
+            Transition, Transform, Animation, Gradient, Shadow, Opacity, Overflow, Backdrop-filter, Gradient Text —
+            yeh sab milke ek page ko professional aur attractive banate hain.
+        </p>
+    </div>
+
+    <div class="container">
+
+        <!-- ══════════════════════════════════════
+             1. TRANSITION
+        ══════════════════════════════════════ -->
+        <div class="section">
+            <h2>1. transition — Smooth change</h2>
+            <p class="desc">
+                Jab koi CSS property change hoti hai (jaise hover pe) to by default woh
+                <strong>instantly</strong> badal jaati hai. <code>transition</code> se woh change
+                <strong>smoothly</strong> hota hai.
+                <br>
+                <strong>⚡ Rule:</strong> transition hamesha us element par likhte hain jo change hoga —
+                <code>:hover</code> par nahi!
+            </p>
+
+            <!-- Before/After -->
+            <span class="label-before">❌ Bina transition — instantly change hota hai</span>
+            <div class="demo-row" style="margin-bottom:14px;">
+                <button class="no-transition">Hover karo — instant</button>
+            </div>
+
+            <span class="label-after">✅ Transition ke saath — smoothly change hota hai</span>
+            <div class="demo-row" style="margin-bottom:14px;">
+                <button class="with-transition">Hover karo — smooth</button>
+            </div>
+
+            <pre class="code-block">/* ❌ Bina transition */
+.btn { background-color: blue; }
+.btn:hover { background-color: red; }   /* instantly red */
+
+/* ✅ Transition ke saath */
+.btn {
+    background-color: blue;
+    transition: background-color 0.4s ease;  /* yahan likhte hain */
+}
+.btn:hover { background-color: red; }   /* smoothly red */</pre>
+
+            <!-- Multiple properties -->
+            <span class="label-note">Multiple properties — alag alag time se</span>
+            <div class="demo-row" style="margin-bottom:14px;">
+                <button class="multi-transition">Hover — 3 cheezein badlengi</button>
+            </div>
+
+            <pre class="code-block">/* Multiple properties */
+.btn {
+    transition: background-color 0.3s ease,
+                border-color 0.3s ease,
+                font-size 0.3s ease;
+}
+
+/* Ya sab ek saath */
+.btn { transition: all 0.3s ease; }</pre>
+
+            <!-- transition: all -->
+            <span class="label-note">transition: all — shape bhi smoothly badlegi</span>
+            <div class="demo-row" style="margin-bottom:14px;">
+                <button class="transition-all">Hover — size + shape badlega</button>
+            </div>
+
+            <!-- Timing functions -->
+            <span class="label-note">Timing functions — speed ka pattern (sab par hover karo, farq dekho)</span>
+            <div class="demo-row" style="margin-bottom:14px;">
+                <div class="timing-box timing-ease">ease (default)</div>
+                <div class="timing-box timing-linear">linear</div>
+                <div class="timing-box timing-ease-in">ease-in</div>
+                <div class="timing-box timing-ease-out">ease-out</div>
+            </div>
+
+            <pre class="code-block">transition: background-color 1s ease;       /* slow-fast-slow (default) */
+transition: background-color 1s linear;     /* same speed throughout */
+transition: background-color 1s ease-in;    /* slow start, fast end */
+transition: background-color 1s ease-out;   /* fast start, slow end */</pre>
+
+            <!-- Delay -->
+            <span class="label-note">transition-delay — thodi der baad shuru ho</span>
+            <div class="demo-row" style="margin-bottom:14px;">
+                <button class="with-delay">Hover karo — 0.5s baad change hoga</button>
+            </div>
+
+            <pre class="code-block">/* property  duration  timing  delay */
+transition: background-color 0.4s ease 0.5s;
+/*                                     ↑ 0.5 second baad shuru hoga */</pre>
+
+            <!-- Summary -->
+            <table class="summary-table">
+                <thead><tr><th>Value</th><th>Matlab</th></tr></thead>
+                <tbody>
+                    <tr><td><code>transition: property duration</code></td><td>Basic syntax</td></tr>
+                    <tr><td><code>transition: all 0.3s ease</code></td><td>Sabhi properties smooth</td></tr>
+                    <tr><td><code>ease</code></td><td>Slow-fast-slow (default)</td></tr>
+                    <tr><td><code>linear</code></td><td>Same speed</td></tr>
+                    <tr><td><code>ease-in</code></td><td>Slow start</td></tr>
+                    <tr><td><code>ease-out</code></td><td>Slow end</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             2. TRANSFORM
+        ══════════════════════════════════════ -->
+        <div class="section">
+            <h2>2. transform — Move, Rotate, Scale, Skew</h2>
+            <p class="desc">
+                <code>transform</code> se element ko visually move, ghoomna, bada/chhota ya teda kar sakte hain
+                — <strong>bina layout affect kiye</strong>. Doosre elements apni jagah nahi chhodeenge.
+                <br>
+                Transform akela use karo ya <code>transition</code> ke saath smooth effect ke liye.
+            </p>
+
+            <span class="label-note">Sab boxes par hover karo — transform dekhne ke liye</span>
+            <div class="demo-row" style="flex-wrap:wrap; gap:20px; min-height:140px; align-items:center;">
+                <div class="transform-box translate-x">translateX<br>hover→right</div>
+                <div class="transform-box translate-y">translateY<br>hover→up</div>
+                <div class="transform-box rotate-box">rotate<br>hover→45°</div>
+                <div class="transform-box rotate-full">rotate<br>hover→360°</div>
+                <div class="transform-box scale-up">scale<br>hover→big</div>
+                <div class="transform-box scale-down">scale<br>hover→small</div>
+                <div class="transform-box skew-box">skewX<br>hover→teda</div>
+                <div class="transform-box multi-transform">multi<br>hover→both</div>
+            </div>
+
+            <pre class="code-block">/* translateX — horizontal move */
+.box:hover { transform: translateX(40px); }    /* 40px right */
+.box:hover { transform: translateX(-40px); }   /* 40px left */
+
+/* translateY — vertical move */
+.box:hover { transform: translateY(-20px); }   /* 20px upar */
+.box:hover { transform: translateY(20px); }    /* 20px neeche */
+
+/* rotate — ghoomna */
+.box:hover { transform: rotate(45deg); }       /* 45 degree */
+.box:hover { transform: rotate(360deg); }      /* poora chakkar */
+.box:hover { transform: rotate(-90deg); }      /* ulta */
+
+/* scale — size badlana */
+.box:hover { transform: scale(1.3); }          /* 1.3x bada */
+.box:hover { transform: scale(0.7); }          /* 0.7x chhota */
+
+/* skewX — teda karna */
+.box:hover { transform: skewX(20deg); }
+
+/* Multiple transforms — ek saath */
+.box:hover { transform: translateY(-8px) scale(1.1); }
+/* ↑ upar bhi gaya aur bada bhi hua — dono ek line mein */</pre>
+
+            <!-- Common use -->
+            <span class="label-note">✅ Sabse common use — card hover effect</span>
+            <div class="demo-row" style="gap:20px;">
+                <div style="background:#1e293b; border:1px solid #334155; border-radius:12px; padding:20px; width:180px; color:#f1f5f9; font-size:14px; cursor:pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 16px 32px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none'; this.style.boxShadow='none'">
+                    🎯 Card hover karo
+                    <br><small style="color:#94a3b8;">translateY(-8px)</small>
+                </div>
+            </div>
+
+            <pre class="code-block">/* Card hover — translateY aur transition saath mein */
+.card {
+    transition: transform 0.3s ease;     /* smooth */
+}
+.card:hover {
+    transform: translateY(-8px);         /* 8px upar utha */
+}</pre>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             3. @KEYFRAMES + ANIMATION
+        ══════════════════════════════════════ -->
+        <div class="section">
+            <h2>3. @keyframes + animation — Automatic movement</h2>
+            <p class="desc">
+                <code>transition</code> sirf hover pe kaam karta hai.<br>
+                <code>animation</code> automatic chalta hai — page load par, baar baar, ya kisi bhi waqt.
+                <br>
+                <strong>2 steps:</strong>
+                (1) <code>@keyframes</code> mein animation ke steps likhte hain,
+                (2) <code>animation</code> property se element par apply karte hain.
+            </p>
+
+            <!-- fadeIn -->
+            <span class="label-note">fadeIn — page load par appear hona</span>
+            <div class="demo-row" style="margin-bottom:14px;">
+                <div class="fade-in-box">Fade In — page refresh karo</div>
+            </div>
+
+            <pre class="code-block">/* Step 1 — @keyframes mein steps likhte hain */
+@keyframes fadeIn {
+    from { opacity: 0; }   /* shuru mein invisible */
+    to   { opacity: 1; }   /* end mein visible */
+}
+
+/* Step 2 — element par apply karo */
+.box {
+    animation: fadeIn 2s ease;
+/*             ↑name ↑time ↑timing */
+}</pre>
+
+            <!-- slideFromLeft -->
+            <span class="label-note">slideFromLeft — left se aana</span>
+            <div class="demo-row" style="margin-bottom:14px;">
+                <div class="slide-left-box">← Slide from Left</div>
+            </div>
+
+            <!-- slideUp -->
+            <span class="label-note">slideUp — neeche se upar aana (delay ke saath)</span>
+            <div class="demo-row" style="margin-bottom:14px;">
+                <div class="slide-up-box">↑ Slide Up (0.3s delay)</div>
+            </div>
+
+            <pre class="code-block">/* Slide from left */
+@keyframes slideFromLeft {
+    from { opacity: 0; margin-left: -100px; }
+    to   { opacity: 1; margin-left: 0; }
+}
+.box { animation: slideFromLeft 1s ease; }
+
+/* Slide up */
+@keyframes slideUp {
+    from { opacity: 0; margin-top: 40px; }
+    to   { opacity: 1; margin-top: 0; }
+}
+/* animation-delay — 0.3s baad shuru, both → start state mein raho */
+.box { animation: slideUp 1s ease 0.3s both; }</pre>
+
+            <!-- Infinite animations -->
+            <span class="label-note">Infinite animations — baar baar chalte rehna</span>
+            <div class="demo-row" style="gap:20px; align-items:center; margin-bottom:14px;">
+                <div class="pulse-box">Pulse</div>
+                <div class="bounce-box">Bounce</div>
+                <div class="spinner"></div>
+                <span style="font-size:18px; color:#1e293b;">|<span class="cursor"></span></span>
+                <div class="alternate-box">← Alternate →</div>
+            </div>
+
+            <pre class="code-block">/* Pulse — color badlata rahega */
+@keyframes pulse {
+    0%   { background-color: red; }
+    50%  { background-color: orange; }
+    100% { background-color: red; }
+}
+.box { animation: pulse 2s ease infinite; }
+
+/* Bounce — upar neeche */
+@keyframes bounce {
+    0%   { margin-top: 0; }
+    50%  { margin-top: -20px; }
+    100% { margin-top: 0; }
+}
+.box { animation: bounce 1s ease infinite; }
+
+/* Spinner — loading circle */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+.spinner { animation: spin 1s linear infinite; }
+
+/* Alternate — aage phir peeche */
+@keyframes moveRight {
+    from { margin-left: 0; }
+    to   { margin-left: 200px; }
+}
+.box { animation: moveRight 1.5s ease infinite alternate; }</pre>
+
+            <!-- Summary table -->
+            <table class="summary-table">
+                <thead><tr><th>Property</th><th>Kya karta hai</th><th>Example</th></tr></thead>
+                <tbody>
+                    <tr><td><code>animation-name</code></td><td>@keyframes ka naam</td><td>fadeIn</td></tr>
+                    <tr><td><code>animation-duration</code></td><td>Kitne time mein poori ho</td><td>1s, 0.5s</td></tr>
+                    <tr><td><code>animation-delay</code></td><td>Kitni der baad shuru ho</td><td>0.3s</td></tr>
+                    <tr><td><code>animation-iteration-count</code></td><td>Kitni baar</td><td>1, 3, infinite</td></tr>
+                    <tr><td><code>animation-direction</code></td><td>Kaun si direction</td><td>normal, alternate, reverse</td></tr>
+                    <tr><td><code>animation-fill-mode</code></td><td>Delay mein element kahan rahe</td><td>both, forwards</td></tr>
+                    <tr><td><code>animation</code> (shorthand)</td><td>Sab ek saath</td><td>fadeIn 1s ease 0.3s both</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             4. LINEAR-GRADIENT
+        ══════════════════════════════════════ -->
+        <div class="section">
+            <h2>4. linear-gradient — Color blend</h2>
+            <p class="desc">
+                Do ya zyada colors ko smoothly blend karna.
+                Yeh <code>background-image</code> ki jagah set hota hai — <code>background-color</code> nahi.
+                <br>
+                Syntax: <code>linear-gradient(direction, color1, color2)</code>
+            </p>
+
+            <div class="gradient-box grad-lr">to right — Blue se Purple</div>
+            <div class="gradient-box grad-tb">to bottom — Green se Dark</div>
+            <div class="gradient-box grad-diag">to right bottom — Diagonal</div>
+            <div class="gradient-box grad-45">45deg — Purple se Pink</div>
+            <div class="gradient-box grad-3">3 colors — Red → Orange → Green</div>
+            <div class="gradient-box grad-stops">Color stops — Blue 0% → Purple 50% → Pink 100%</div>
+            <div class="gradient-box grad-sharp">Sharp line — Blue 50% | Red 50% (koi blend nahi)</div>
+
+            <pre class="code-block">/* Left se right */
+background: linear-gradient(to right, blue, purple);
+
+/* Upar se neeche */
+background: linear-gradient(to bottom, green, black);
+
+/* Diagonal */
+background: linear-gradient(to right bottom, orange, red);
+
+/* Degree angle */
+background: linear-gradient(45deg, purple, pink);
+
+/* 3 colors */
+background: linear-gradient(to right, red, orange, green);
+
+/* Color stops — kahan se kahan tak */
+background: linear-gradient(to right,
+    blue   0%,     /* 0% tak blue */
+    purple 50%,    /* 50% par purple */
+    pink   100%);  /* 100% par pink */
+
+/* Sharp line — gradient nahi, seedha cut */
+background: linear-gradient(to right,
+    blue 50%,      /* 50% tak blue */
+    red  50%);     /* 50% se red — koi blend nahi */
+
+/* Semi-transparent gradient — navbar mein */
+background: linear-gradient(to right,
+    rgba(15, 23, 42, 0.95),
+    rgba(30, 41, 59, 0.95));</pre>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             5. BOX-SHADOW
+        ══════════════════════════════════════ -->
+        <div class="section">
+            <h2>5. box-shadow — Element ke around shadow</h2>
+            <p class="desc">
+                Element ke bahar ya andar shadow dena.
+                <br>
+                Syntax: <code>box-shadow: x y blur spread color;</code>
+                <br>
+                x = horizontal, y = vertical, blur = kitni blurry, spread = kitni badi, color = shadow ka rang.
+            </p>
+
+            <div class="shadow-box shadow-simple">box-shadow: 4px 4px 10px rgba(0,0,0,0.2) — Simple shadow</div>
+            <div class="shadow-box shadow-soft">box-shadow: 0 4px 20px rgba(0,0,0,0.1) — Soft shadow (cards mein common)</div>
+            <div class="shadow-box shadow-strong">box-shadow: 0 10px 40px rgba(0,0,0,0.3) — Strong shadow</div>
+            <div class="shadow-box shadow-colored" style="color:#fff;">box-shadow: 0 8px 24px rgba(59,130,246,0.5) — Colored shadow (blue)</div>
+            <div class="shadow-box shadow-multiple">box-shadow: multiple shadows — 3D effect</div>
+            <div class="shadow-box shadow-inset">box-shadow: inset — andar ki taraf (pressed look)</div>
+            <div class="shadow-box shadow-sharp" style="background:#fff;">box-shadow: 5px 5px 0px black — Sharp (no blur) — retro style</div>
+            <div class="shadow-box shadow-hover" style="color:#fff; cursor:pointer;">Hover karo — shadow badhegi</div>
+
+            <pre class="code-block">/* Syntax: x  y  blur  spread  color */
+box-shadow: 4px 4px 10px 0px rgba(0,0,0,0.2);
+/*          ↑x  ↑y  ↑blur ↑spread ↑color    */
+
+/* Neeche shadow (cards) */
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+/* Colored shadow — button ke color se match */
+box-shadow: 0 8px 24px rgba(59, 130, 246, 0.5);
+
+/* Multiple shadows */
+box-shadow: 2px 2px 4px rgba(0,0,0,0.1),
+           -2px -2px 4px rgba(255,255,255,0.8);
+
+/* Inset — andar ki taraf */
+box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2);
+
+/* Sharp — blur 0 */
+box-shadow: 5px 5px 0px #000000;</pre>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             6. OPACITY
+        ══════════════════════════════════════ -->
+        <div class="section">
+            <h2>6. opacity — Element kitna transparent ho</h2>
+            <p class="desc">
+                <code>opacity: 0</code> = poora invisible, <code>opacity: 1</code> = poora visible.
+                <br>
+                <strong>⚠️ Dhyan do:</strong> opacity se poora element transparent hota hai — text, background, border sab.
+                Agar sirf background transparent chahiye to <code>rgba()</code> use karo.
+            </p>
+
+            <div class="demo-row" style="gap:12px; flex-wrap:wrap; margin-bottom:14px;">
+                <div class="opacity-demo op-100">opacity: 1<br>(100%)</div>
+                <div class="opacity-demo op-75">opacity: 0.75<br>(75%)</div>
+                <div class="opacity-demo op-50">opacity: 0.5<br>(50%)</div>
+                <div class="opacity-demo op-25">opacity: 0.25<br>(25%)</div>
+                <div class="opacity-demo op-10">opacity: 0.1<br>(10%)</div>
+            </div>
+
+            <pre class="code-block">/* opacity — poora element transparent */
+.box { opacity: 1; }    /* fully visible */
+.box { opacity: 0.5; }  /* 50% transparent — text bhi */
+.box { opacity: 0; }    /* invisible (jagah rehti hai) */
+
+/* Hover pe dim karna */
+.box { opacity: 1; transition: opacity 0.3s ease; }
+.box:hover { opacity: 0.7; }</pre>
+
+            <hr class="divider">
+
+            <span class="label-note">opacity vs rgba — ka farq</span>
+            <div class="demo-row" style="gap:12px; flex-wrap:wrap;">
+                <div>
+                    <p style="font-size:13px; color:#64748b; margin-bottom:6px;">opacity: 0.5 — text bhi fade</p>
+                    <div style="background:#3b82f6; color:#fff; padding:14px 20px; border-radius:6px; font-weight:bold; opacity:0.5;">Text + Background dono fade</div>
+                </div>
+                <div>
+                    <p style="font-size:13px; color:#64748b; margin-bottom:6px;">rgba background — sirf background fade</p>
+                    <div style="background:rgba(59,130,246,0.3); color:#1e293b; padding:14px 20px; border-radius:6px; font-weight:bold;">Text clear, background transparent</div>
+                </div>
+            </div>
+
+            <pre class="code-block">/* opacity — POORA element transparent hota hai */
+.box {
+    background-color: blue;
+    opacity: 0.5;           /* text bhi 50% fade ho jaata hai */
+}
+
+/* rgba — SIRF background transparent */
+.box {
+    background-color: rgba(59, 130, 246, 0.3);  /* sirf background */
+    /* text poora visible rahega */
+}</pre>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             7. OVERFLOW
+        ══════════════════════════════════════ -->
+        <div class="section">
+            <h2>7. overflow — Content bahar jaaye to kya karein</h2>
+            <p class="desc">
+                Jab content apne container se bada ho jaaye — tab kya hoga?
+                <code>overflow</code> se yeh control karte hain.
+            </p>
+
+            <div class="demo-row" style="gap:16px; flex-wrap:wrap; align-items:flex-start; margin-bottom:14px;">
+                <div>
+                    <span class="label-before" style="display:block; margin-bottom:4px;">visible (default) — bahar dikhega</span>
+                    <div class="overflow-container overflow-visible">
+                        Yeh text container se bahar jaayega kyunki overflow:visible hai by default.
+                    </div>
+                </div>
+                <div>
+                    <span class="label-after" style="display:block; margin-bottom:4px;">hidden — kaat do</span>
+                    <div class="overflow-container overflow-hidden">
+                        Yeh text container se bahar jaayega lekin overflow:hidden se kaat diya jaayega.
+                    </div>
+                </div>
+                <div>
+                    <span class="label-note" style="display:block; margin-bottom:4px;">auto — zaroorat par scroll</span>
+                    <div class="overflow-container overflow-auto">
+                        Overflow auto hai — content zyada hoga to scrollbar automatically aayega. Yeh bahut useful hai.
+                    </div>
+                </div>
+            </div>
+
+            <!-- text truncate -->
+            <span class="label-note">Common use — long text truncate karo (...)</span>
+            <div class="demo-row" style="margin-bottom:14px;">
+                <div class="text-truncate">Yeh bahut lamba text hai jo ek line mein fit nahi hoga...</div>
+            </div>
+
+            <pre class="code-block">div { overflow: visible; }  /* default — bahar dikhega */
+div { overflow: hidden; }   /* bahar wala cut ho jaayega */
+div { overflow: scroll; }   /* hamesha scrollbar */
+div { overflow: auto; }     /* zaroorat par scrollbar */
+
+/* Long text truncate — 3 properties saath */
+.truncate {
+    width: 200px;
+    white-space: nowrap;         /* text wrap na kare ek line mein rahe */
+    overflow: hidden;            /* bahar kaat do */
+    text-overflow: ellipsis;     /* ... dikhao end mein */
+}
+
+/* overflow: hidden ka aur ek use */
+.card {
+    border-radius: 12px;
+    overflow: hidden;  /* image card ke border ke bahar nahi jaayegi */
+}</pre>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             8. BACKDROP-FILTER
+        ══════════════════════════════════════ -->
+        <div class="section">
+            <h2>8. backdrop-filter — Glass (blur) effect</h2>
+            <p class="desc">
+                <code>backdrop-filter</code> element ke <strong>peeche wali cheez</strong> par filter lagata hai.
+                Sabse common use hai <strong>blur</strong> — frosted glass jaisa effect.
+                <br>
+                <strong>⚠️ Zaroori:</strong> element ka background semi-transparent hona chahiye
+                (<code>rgba</code>) — warna peeche ka blur dikhega hi nahi.
+            </p>
+
+            <!-- Live demo on colored background -->
+            <span class="label-note">Colored background par glass effect dekhne ke liye</span>
+            <div class="colored-bg" style="min-height:180px; display:flex; gap:20px; flex-wrap:wrap; align-items:center; justify-content:center;">
+
+                <div class="glass-card" style="width:180px; text-align:center;">
+                    <p style="font-size:14px; font-weight:bold;">Glass Card</p>
+                    <p style="font-size:12px; color:rgba(255,255,255,0.7); margin-top:6px;">backdrop-filter: blur(10px)</p>
+                </div>
+
+                <div class="glass-navbar" style="width:220px; text-align:center; font-size:14px;">
+                    Glass Navbar Style<br>
+                    <span style="font-size:12px; font-weight:normal; opacity:0.7;">blur(14px) + rgba bg</span>
+                </div>
+
+            </div>
+
+            <pre class="code-block">/* Glass card effect */
+.glass-card {
+    background-color: rgba(255, 255, 255, 0.1);  /* semi-transparent */
+    backdrop-filter: blur(10px);                  /* peeche blur */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 24px;
+}
+
+/* Glass navbar — portfolio mein */
+.navbar {
+    background-color: rgba(15, 23, 42, 0.85);   /* dark + transparent */
+    backdrop-filter: blur(14px);
+    position: sticky;
+    top: 0;
+}
+
+/* Blur amounts */
+backdrop-filter: blur(4px);    /* thoda blur */
+backdrop-filter: blur(10px);   /* medium */
+backdrop-filter: blur(20px);   /* zyada blur */</pre>
+
+            <p style="font-size:13px; color:#b45309; background:#fef9c3; padding:10px; border-radius:6px; margin-top:12px;">
+                ⚠️ backdrop-filter sirf tab dikhega jab element ke peeche kuch ho —
+                colored/image background hona zaroori hai. Plain white page par effect nazar nahi aayega.
+            </p>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             9. BACKGROUND-CLIP: TEXT (Gradient Text)
+        ══════════════════════════════════════ -->
+        <div class="section">
+            <h2>9. background-clip: text — Gradient Text Effect</h2>
+            <p class="desc">
+                Text ke andar gradient color dikhane ke liye — portfolio headings, hero titles mein common.
+                <br>
+                <strong>3 steps:</strong>
+                (1) gradient set karo,
+                (2) <code>background-clip: text</code>,
+                (3) <code>color: transparent</code>
+            </p>
+
+            <div class="demo-box">
+                <div class="gradient-text-demo grad-text-1">Blue to Purple Gradient Text</div>
+                <div class="gradient-text-demo grad-text-2">Orange to Red Gradient Text</div>
+                <div class="gradient-text-demo grad-text-3">Rainbow Gradient Text ✨</div>
+            </div>
+
+            <pre class="code-block">/* 3 steps zaroori hain */
+h1 {
+    /* Step 1 — gradient set karo */
+    background: linear-gradient(to right, #3b82f6, #8b5cf6);
+
+    /* Step 2 — gradient sirf text ke andar clip karo */
+    background-clip: text;
+    -webkit-background-clip: text;        /* Safari ke liye */
+
+    /* Step 3 — actual text color transparent karo */
+    color: transparent;
+    -webkit-text-fill-color: transparent; /* Safari ke liye */
+}
+
+/* Agar color: transparent nahi likhoge to
+   gradient chhup jaayega — text ka color upar se dikhega */</pre>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             PORTFOLIO CONNECTION
+        ══════════════════════════════════════ -->
+        <div class="section">
+            <h2>✅ Portfolio mein yeh sab kahan use hota hai</h2>
+            <p class="desc">Ab portfolio.html kholo aur dekho — yeh sab cheezein wahan practically use hui hain.</p>
+
+            <table class="summary-table">
+                <thead>
+                    <tr><th>Portfolio Element</th><th>CSS Concept</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Navbar scroll pe chipakta hai</td><td><code>position: sticky</code></td></tr>
+                    <tr><td>Navbar ka frosted glass look</td><td><code>backdrop-filter: blur()</code> + <code>rgba background</code></td></tr>
+                    <tr><td>Hero heading ka gradient color</td><td><code>background-clip: text</code></td></tr>
+                    <tr><td>Hero text animate hokar aata hai</td><td><code>@keyframes</code> + <code>animation</code></td></tr>
+                    <tr><td>Skill cards hover pe uthe</td><td><code>transform: translateY()</code> + <code>transition</code></td></tr>
+                    <tr><td>Cards pe shadow</td><td><code>box-shadow</code></td></tr>
+                    <tr><td>Button gradient background</td><td><code>linear-gradient</code></td></tr>
+                    <tr><td>Cards ka shimmer hover effect</td><td><code>overflow: hidden</code> + <code>@keyframes</code></td></tr>
+                    <tr><td>Rotating badge</td><td><code>@keyframes rotateBadge</code> + <code>transform: rotate()</code></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             COMPLETE SUMMARY
+        ══════════════════════════════════════ -->
+        <div class="section">
+            <h2>📋 Complete Summary — Saari Properties</h2>
+            <table class="summary-table">
+                <thead>
+                    <tr><th>Property</th><th>Kya karta hai</th><th>Common use</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>transition</code></td><td>CSS change smooth karo</td><td>Hover effects</td></tr>
+                    <tr><td><code>transform</code></td><td>Move, rotate, scale, skew</td><td>Card hover, button press</td></tr>
+                    <tr><td><code>@keyframes</code></td><td>Animation ke steps define karo</td><td>Fade in, slide, bounce</td></tr>
+                    <tr><td><code>animation</code></td><td>@keyframes ko element par lagao</td><td>Page load effects, loaders</td></tr>
+                    <tr><td><code>linear-gradient</code></td><td>Color blend background</td><td>Navbar, buttons, cards</td></tr>
+                    <tr><td><code>box-shadow</code></td><td>Element ke around shadow</td><td>Cards, buttons depth</td></tr>
+                    <tr><td><code>opacity</code></td><td>Element transparent karo</td><td>Hover dim, overlays</td></tr>
+                    <tr><td><code>overflow</code></td><td>Bahar jaane wala content control</td><td>Cards, text truncate</td></tr>
+                    <tr><td><code>backdrop-filter</code></td><td>Peeche blur — glass effect</td><td>Navbar, modal overlay</td></tr>
+                    <tr><td><code>background-clip: text</code></td><td>Gradient text</td><td>Hero headings, titles</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        © Code Core Computer Center — CSS Practice Lab
+    </footer>
+
+</body>
+</html>

@@ -3,109 +3,101 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>CSS Practice Projects</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Core — CSS Practice Lab</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-    <header class="site-header">
-        <div class="main-nav">
-            <a href="index.html" class="brand">
-                <span class="brand-mark" aria-hidden="true">&#127968</span>
-                <span class="brand-name">Code Core</span>
-            </a>
+    <!-- ── NAVBAR ── -->
+    <nav class="navbar">
+        <a href="index.html" class="brand">🏠 Code Core</a>
+        <ul>
+            <li><a href="pages/font.html">Fonts</a></li>
+            <li><a href="pages/box-model.html">Box Model</a></li>
+            <li><a href="pages/display.html">Display</a></li>
+            <li><a href="pages/flex.html">Flexbox</a></li>
+            <li><a href="pages/grid.html">Grid</a></li>
+            <li><a href="pages/position.html">Position</a></li>
+            <li><a href="pages/pseudo.html">Pseudo</a></li>
+            <li><a href="pages/effects.html">Effects</a></li>
+            <li><a href="pages/portfolio.html">Portfolio</a></li>
+        </ul>
+    </nav>
 
-            <button class="nav-toggle" aria-expanded="false" aria-controls="primary-menu">
-                <span class="sr-only">Menu</span>
-                <span class="hamburger" aria-hidden="true"></span>
-            </button>
+    <!-- ── HERO ── -->
+    <div class="page-header">
+        <h1>Welcome to CSS Practice Lab 🎓</h1>
+        <p>
+            Yahan har CSS topic ko simple examples ke saath samjhaya gaya hai.
+            Koi bhi topic click karo aur seedha examples dekho.
+        </p>
+    </div>
 
-            <nav id="primary-menu" class="nav-links" aria-label="Primary">
-                <ul>
-                    <li><a href="Display-property/display.html">Display</a></li>
-                    <li><a href="Display-property/flex.html">Flexbox</a></li>
-                    <li><a href="Display-property/grid.html">Grid</a></li>
-                    <li><a href="Display-property/box-model.html">Box Model</a></li>
-                    <li><a href="Display-property/position_demo.html">Position</a></li>
-                    <li><a href="Display-property/pseudo_class.html">Pseudo</a></li>
-                    <li><a href="Bootstrap/first_example.html">Bootstrap</a></li>
-                </ul>
-            </nav>
+    <!-- ── TOPIC CARDS ── -->
+    <div class="cards-grid">
 
-            <div class="nav-actions">
-                <a class="btn primary" href="Display-property/typing.html">Start Typing</a>
-            </div>
-        </div>
-
-        <div class="header">
-            <h1>Welcome to CSS Practice Lab</h1>
-            <p>Click on any topic to start learning</p>
-        </div>
-    </header>
-
-    <main class="container">
-        <a href="font.html" class="card">
-            <h2>Fonts & Text</h2>
+        <a href="pages/font.html" class="card">
+            <div class="card-icon">🔤</div>
+            <h2>Fonts &amp; Text</h2>
             <p>font-family, font-size, font-weight, line-height, text-align, text-decoration</p>
         </a>
-      
-        
-        <a href="Display-property/box-model.html" class="card">
+
+        <a href="pages/box-model.html" class="card">
+            <div class="card-icon">📦</div>
             <h2>Box Model</h2>
-            <p>content, padding, border, and margin work together in the CSS box model</p>
+            <p>content, padding, border, margin — har element ek box hota hai</p>
         </a>
 
-        <a href="Display-property/display.html" class="card">
+        <a href="pages/display.html" class="card">
+            <div class="card-icon">🖥️</div>
             <h2>Display Property</h2>
             <p>block, inline, inline-block, none, flex, grid</p>
         </a>
 
-        <a href="Display-property/flex.html" class="card">
+        <a href="pages/flex.html" class="card">
+            <div class="card-icon">↔️</div>
             <h2>Flexbox</h2>
-            <p>Learn display:flex & layout concepts</p>
+            <p>1D layout — row ya column mein items arrange karo</p>
         </a>
 
-        <a href="Display-property/position_demo.html" class="card">
+        <a href="pages/grid.html" class="card">
+            <div class="card-icon">⊞</div>
+            <h2>CSS Grid</h2>
+            <p>2D layout — rows aur columns dono ek saath control karo</p>
+        </a>
+
+        <a href="pages/position.html" class="card">
+            <div class="card-icon">📌</div>
             <h2>CSS Position</h2>
-            <p>Static, Relative, Absolute, Fixed, Sticky</p>
+            <p>static, relative, absolute, fixed, sticky</p>
         </a>
 
-        <a href="Display-property/pseudo_class.html" class="card">
-            <h2>Pseudo Classes</h2>
-            <p>:hover, :active, :focus, :checked</p>
+        <a href="pages/pseudo.html" class="card">
+            <div class="card-icon">🎭</div>
+            <h2>Pseudo Classes &amp; Elements</h2>
+            <p>:hover, :focus, :nth-child, ::before, ::after</p>
         </a>
 
-        <a href="Display-property/resume.html" class="card">
-            <h2>Resume Layout</h2>
-            <p>Real-life CSS resume design</p>
+        <a href="pages/effects.html" class="card">
+            <div class="card-icon">✨</div>
+            <h2>CSS Effects</h2>
+            <p>Transition, Transform, Animation, Gradient, Shadow, Opacity, Overflow, Backdrop-filter</p>
         </a>
 
-        <a href="Display-property/typing.html" class="card">
-            <h2>Typing Practice</h2>
-            <p>HTML + CSS typing interface</p>
+        <a href="pages/portfolio.html" class="card">
+            <div class="card-icon">💼</div>
+            <h2>Portfolio — Real Project</h2>
+            <p>Saari CSS properties ek real page mein use karke dekho</p>
         </a>
 
-        <a href="Display-property/grid.html" class="card">
-            <h2>Grid Layout</h2>
-            <p>Learn CSS Grid layout</p>
-        </a>
+    </div>
 
-        <a href="Bootstrap/first_example.html" class="card">
-            <h2>Bootstrap</h2>
-            <p>Learn Bootstrap framework</p>
-        </a>
-
-        <a href="Display-property/portfolio.html" class="card">
-            <h2>Portfolio</h2>
-            <p>Responsive portfolio layout</p>
-        </a>
-
-    </main>
-
+    <!-- ── FOOTER ── -->
     <footer class="footer">
-        <p>© Code Core Computer Center | CSS Practice</p>
+        © Code Core Computer Center — CSS Practice Lab
     </footer>
-</body>
 
+</body>
 </html>

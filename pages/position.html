@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Position — Code Core</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/position.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="../index.html" class="brand">🏠 Code Core</a>
+        <ul>
+            <li><a href="../pages/font.html">Fonts</a></li>
+            <li><a href="../pages/box-model.html">Box Model</a></li>
+            <li><a href="../pages/display.html">Display</a></li>
+            <li><a href="../pages/flex.html">Flexbox</a></li>
+            <li><a href="../pages/grid.html">Grid</a></li>
+            <li><a href="../pages/position.html" class="active">Position</a></li>
+            <li><a href="../pages/pseudo.html">Pseudo</a></li>
+            <li><a href="../pages/effects.html">Effects</a></li>
+            <li><a href="../pages/portfolio.html">Portfolio</a></li>
+        </ul>
+    </nav>
+
+    <div class="page-header">
+        <h1>📌 CSS Position</h1>
+        <p>
+            Position property control karta hai ki element page par <strong>kahan dikhega</strong>.
+            5 values hain — static, relative, absolute, fixed, sticky.
+        </p>
+    </div>
+
+    <!-- Fixed demo button (actual fixed — bottom right) -->
+    <div class="actual-fixed-btn">📌 Fixed Button</div>
+
+    <div class="container">
+
+        <!-- ── OVERVIEW ── -->
+        <div class="section">
+            <h2>Position — Quick Overview</h2>
+            <table class="summary-table">
+                <thead>
+                    <tr><th>Value</th><th>Flow mein hai?</th><th>top/left kaam karta hai?</th><th>Position kahan se?</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>static</code></td><td>✅ Haan</td><td>❌ Nahi</td><td>Normal flow</td></tr>
+                    <tr><td><code>relative</code></td><td>✅ Haan (jagah reserved)</td><td>✅ Haan</td><td>Apni original jagah se</td></tr>
+                    <tr><td><code>absolute</code></td><td>❌ Nahi (flow se bahar)</td><td>✅ Haan</td><td>Nearest positioned parent</td></tr>
+                    <tr><td><code>fixed</code></td><td>❌ Nahi</td><td>✅ Haan</td><td>Viewport (browser window)</td></tr>
+                    <tr><td><code>sticky</code></td><td>✅ Haan (scroll tak)</td><td>✅ (top zaroori)</td><td>Scroll threshold tak relative</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ── 1. STATIC ── -->
+        <div class="section">
+            <h2>1. position: static — Default behavior</h2>
+            <p class="desc">
+                Yeh har element ka default value hai. Element normal document flow mein hota hai.
+                <br>
+                <strong>top, right, bottom, left — koi bhi kaam nahi karta</strong> static element par.
+                Explicitly likhne ki zaroorat nahi hoti.
+            </p>
+
+            <div class="flow-area">
+                Pehla element (static)
+                <div class="pos-box static-box" style="margin:8px 0;">position: static (default)</div>
+                Doosra element — upar wale ke baad normal flow mein
+            </div>
+
+            <pre class="code-block">div {
+    position: static;   /* yeh default hai — likhna zaroori nahi */
+    top: 20px;          /* yeh KAAM NAHI KAREGA — static par */
+    left: 40px;         /* yeh bhi IGNORED hai */
+}</pre>
+        </div>
+
+        <!-- ── 2. RELATIVE ── -->
+        <div class="section">
+            <h2>2. position: relative — Apni jagah se hatna</h2>
+            <p class="desc">
+                Element apni <strong>original jagah se</strong> top/left/right/bottom se move karta hai.
+                <br>
+                Important: <strong>Original jagah RESERVED rehti hai</strong> — dusre elements nahi shift karte.
+                <br>
+                Doosra use: absolute children ke liye positioned parent banana.
+            </p>
+
+            <div class="flow-area">
+                <p style="margin-bottom:8px;">⬆ Yeh text normal flow mein hai</p>
+
+                <span class="label-before">PEHLE — static (no offset)</span>
+                <div class="pos-box static-box" style="margin-bottom:6px;">Normal position</div>
+
+                <span class="label-after">BAAD MEIN — relative: top:20px left:40px</span>
+                <div class="pos-box relative-box">
+                    top:20px<br>left:40px
+                </div>
+
+                <p style="margin-top:32px; padding-top: 8px;">⬇ Yeh text neeche hai — orange box ki ORIGINAL jagah reserved thi isliye gap dikh raha hai</p>
+            </div>
+
+            <pre class="code-block">div {
+    position: relative;   /* ← flow mein rehta hai */
+    top: 20px;            /* original jagah se 20px neeche */
+    left: 40px;           /* original jagah se 40px right */
+    
+    /* Negative values bhi chal te hain */
+    /* top: -10px; → upar jaayega */
+}</pre>
+        </div>
+
+        <!-- ── 3. ABSOLUTE ── -->
+        <div class="section">
+            <h2>3. position: absolute — Nearest positioned parent ke relative</h2>
+            <p class="desc">
+                Absolute element <strong>normal flow se poori tarah bahar</strong> ho jaata hai — dusre elements uski jagah le lete hain.
+                <br>
+                Kahan position hoga? → Nearest parent jiska position static nahi ho. Agar koi nahi mila → body ke relative.
+                <br>
+                <strong>⚡ Rule: Parent par <code>position: relative</code> lagana mat bhoolein!</strong>
+            </p>
+
+            <span class="label-before">GALAT — parent par position: relative nahi lagaya — absolute element body ke relative jaayega</span>
+            <div style="background:#fef2f2; border:2px solid #fecaca; padding:16px; border-radius:8px; margin-bottom:14px; height:100px; font-size:13px; color:#991b1b;">
+                Parent box (no positioning)<br>
+                <small>Absolute child yahan kuch bhi kar sakta hai — body ke relative position hoga</small>
+            </div>
+
+            <span class="label-after">SAHI — parent par position: relative lagaya — child parent ke relative position hoga</span>
+            <div class="parent-relative" style="margin-bottom:14px;">
+                Parent box (position: relative) — yeh anchor hai
+                <div class="pos-box absolute-box">
+                    absolute<br>top:16px<br>right:16px
+                </div>
+                <small style="margin-top:30px; display:block;">Notice karo: parent ke right-top corner mein hai child</small>
+            </div>
+
+            <span class="label-note">Common trick: Absolute se perfectly center karna</span>
+            <div class="parent-relative" style="margin-bottom:8px; height:160px;">
+                Parent (position: relative)
+                <div class="pos-box absolute-center">Center mein!</div>
+            </div>
+
+            <pre class="code-block">/* ZAROORI — parent ko positioned banao */
+.parent {
+    position: relative;   /* ← anchor — absolute child yahan se measure karega */
+    height: 200px;
+}
+
+/* Child absolute */
+.child {
+    position: absolute;   /* ← normal flow se bahar */
+    top: 16px;            /* parent ke top se 16px */
+    right: 16px;          /* parent ke right se 16px */
+}
+
+/* Center karne ki trick */
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}</pre>
+        </div>
+
+        <!-- ── 4. FIXED ── -->
+        <div class="section">
+            <h2>4. position: fixed — Viewport par chipak jaata hai</h2>
+            <p class="desc">
+                Fixed element <strong>browser window (viewport)</strong> ke relative position hota hai.
+                <br>
+                <strong>Scroll karne par bhi apni jagah nahi chhodta</strong> — screen par chipka rehta hai.
+                <br>
+                👉 Is page ke <strong>bottom-right corner</strong> mein ek fixed button dikh raha hai — scroll karke dekho!
+            </p>
+
+            <div style="background:#fdf2f8; border:2px solid #f9a8d4; border-radius:8px; padding:16px; margin-bottom:14px;">
+                <p style="font-size:14px; color:#831843;">
+                    ✅ Is page ke <strong>bottom-right</strong> mein "📌 Fixed Button" dikh raha hai.<br>
+                    Page scroll karo — woh wahan hi rehega.
+                    Yahi hai <code>position: fixed</code> ka effect!
+                </p>
+            </div>
+
+            <pre class="code-block">/* Fixed element — scroll karne par bhi same jagah */
+.fixed-button {
+    position: fixed;    /* ← viewport ke relative */
+    bottom: 24px;       /* screen ke bottom se 24px */
+    right: 24px;        /* screen ke right se 24px */
+    z-index: 999;       /* sab elements ke upar */
+    
+    /* Background, padding etc. */
+    background: #e11d63;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 50px;
+}
+
+/* Common uses:
+   - Sticky navbar at top
+   - "Back to top" button
+   - Chat widget
+   - Cookie consent bar */</pre>
+        </div>
+
+        <!-- ── 5. STICKY ── -->
+        <div class="section">
+            <h2>5. position: sticky — Scroll karte waqt chipak jaata hai</h2>
+            <p class="desc">
+                Sticky element scroll karte waqt <strong>ek point tak relative jaisa</strong> behave karta hai.
+                Jab woh defined point (top: 0) par pahunche — tab <strong>wahan chipak jaata hai</strong>.
+                <br>
+                Neeche wala box scroll karke dekho — section headings chipakti hain.
+            </p>
+
+            <div class="sticky-demo-container">
+
+                <div class="sticky-heading">📌 Section 1 — Yeh sticky heading hai (scroll karo)</div>
+                <div class="sticky-content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Scroll karo aur dekho — yeh heading top par chipak jaayegi.
+                    <br><br>
+                    Relative position mein thi — scroll karte karte top:0 par pahunchi — ab sticky hai.
+                    <br><br>
+                    Yeh section ka content hai. Aur bhi scroll karo.
+                    <br><br>
+                    Abhi tak heading upar chipki hui hai — yahi sticky ka kaam hai.
+                </div>
+
+                <div class="sticky-heading" style="background:#0891b2;">📌 Section 2 — Doosri sticky heading</div>
+                <div class="sticky-content">
+                    Doosra section shuru hua.
+                    <br><br>
+                    Ab doosri heading upar aa jaayegi aur pehli replace ho jaayegi.
+                    <br><br>
+                    Yeh behavior table headers aur section titles ke liye bahut useful hai.
+                    <br><br>
+                    Scroll karte raho — teesra section bhi hai.
+                </div>
+
+                <div class="sticky-heading" style="background:#7c3aed;">📌 Section 3 — Teesri sticky heading</div>
+                <div class="sticky-content">
+                    Teesra section — sticky heading ne dobara replace kiya.
+                    <br><br>
+                    <strong>position: sticky</strong> ka fayda yeh hai ki element flow mein rehta hai
+                    (jagah bhi leta hai) lekin scroll par fixed jaisa behave karta hai.
+                </div>
+
+            </div>
+
+            <pre class="code-block">/* Sticky — scroll threshold tak relative, phir chipak jaata hai */
+.heading {
+    position: sticky;   /* ← relative + fixed ka combo */
+    top: 0;             /* ← yeh ZAROORI hai — kahan chipkna hai */
+    background: green;  /* background chahiye — nahi to transparent dikhega */
+    z-index: 10;
+}
+
+/* Common uses:
+   - Table headers
+   - Section headings (jaise upar dekha)
+   - Sidebar navigation
+   - Filter bar */</pre>
+        </div>
+
+        <!-- ── 6. Z-INDEX ── -->
+        <div class="section">
+            <h2>6. z-index — Overlap mein kaun upar?</h2>
+            <p class="desc">
+                Jab do elements overlap karein to <strong>kaun upar dikhega</strong> — yeh z-index decide karta hai.
+                <br>
+                Zyada z-index = upar. Default = auto (0 ke barabar).
+                <br>
+                <strong>Sirf positioned elements par kaam karta hai</strong> (static nahi).
+            </p>
+
+            <div class="z-container">
+                <div class="z-box z-1">z-index: 1 (neeche)</div>
+                <div class="z-box z-2">z-index: 2</div>
+                <div class="z-box z-3">z-index: 3 (sabse upar)</div>
+            </div>
+
+            <pre class="code-block">/* Z-index — layer order */
+.red-box   { position: absolute; z-index: 1; }   /* neeche */
+.blue-box  { position: absolute; z-index: 2; }   /* beech mein */
+.green-box { position: absolute; z-index: 3; }   /* sabse upar */
+
+/* Important rules:
+   1. Sirf non-static elements par kaam karta hai
+   2. Negative values bhi chal te hain (z-index: -1 = bahut neeche)
+   3. Navbar/modal always z-index zyada rakho */</pre>
+        </div>
+
+        <!-- ── SUMMARY ── -->
+        <div class="section">
+            <h2>📋 Summary — Position Values</h2>
+            <table class="summary-table">
+                <thead>
+                    <tr><th>Value</th><th>Flow</th><th>top/left</th><th>Anchor</th><th>Use case</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>static</code></td><td>Normal</td><td>❌</td><td>—</td><td>Default — kuch khaas nahi karna</td></tr>
+                    <tr><td><code>relative</code></td><td>Normal + jagah reserved</td><td>✅</td><td>Apni original jagah</td><td>Thoda shift, absolute ka parent</td></tr>
+                    <tr><td><code>absolute</code></td><td>Flow se bahar</td><td>✅</td><td>Nearest positioned parent</td><td>Tooltip, badge, overlay</td></tr>
+                    <tr><td><code>fixed</code></td><td>Flow se bahar</td><td>✅</td><td>Viewport</td><td>Navbar, chat button, cookie bar</td></tr>
+                    <tr><td><code>sticky</code></td><td>Normal (jab tak threshold)</td><td>✅ (top zaroori)</td><td>Scroll container</td><td>Table headers, section headings</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        © Code Core Computer Center — CSS Practice Lab
+    </footer>
+
+</body>
+</html>

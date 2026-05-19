@@ -1,0 +1,237 @@
+/* ================================================
+   position.css — CSS Position Property
+   
+   Position property control karta hai ki ek element
+   page par KAHAN dikhega — normal flow mein ya bahar.
+   
+   5 values hain:
+   1. static   → default, normal flow mein
+   2. relative → apni jagah se thoda hatna
+   3. absolute → nearest positioned parent ke relative
+   4. fixed    → viewport (screen) ke relative — scroll se nahi hilda
+   5. sticky   → scroll karte waqt ek point par chipak jaata hai
+   
+   IMPORTANT: top, right, bottom, left properties sirf
+   positioned elements par kaam karti hain (non-static).
+================================================ */
+
+/* ── demo box base ── */
+.pos-box {
+    width: 140px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 6px;
+    color: #fff;
+    padding: 8px;
+}
+
+/* ── surrounding area to show flow ── */
+.flow-area {
+    background: #f1f5f9;
+    border: 2px dashed #94a3b8;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    min-height: 80px;
+    font-size: 13px;
+    color: #64748b;
+    position: relative;   /* absolute children ke liye */
+}
+
+/* ================================================
+   1. position: static
+   
+   Default behavior — koi special positioning nahi.
+   Element normal document flow mein hota hai.
+   top/right/bottom/left kaam NAHI karte.
+================================================ */
+
+.static-box {
+    position: static;           /* default — explicitly likhna zaroori nahi */
+    background: #64748b;
+    /* top: 20px; — yeh KAAM NAHI KAREGA */
+}
+
+/* ================================================
+   2. position: relative
+   
+   Element apni ORIGINAL jagah se move karta hai.
+   Original jagah RESERVED rehti hai — dusre elements
+   wahan shift nahi karte.
+   
+   Iska ek aur use: absolute children ke liye
+   positioned parent banana.
+================================================ */
+
+.relative-box {
+    position: relative;   /* ← apni jagah se move karega */
+    top: 20px;            /* upar se 20px neeche */
+    left: 40px;           /* left se 40px right */
+    background: #f59e0b;
+    color: #1c1917;
+}
+
+/* ================================================
+   3. position: absolute
+   
+   Element NORMAL FLOW SE BAHAR ho jaata hai —
+   dusre elements uski jagah le lete hain.
+   
+   Positioning kahan se hogi?
+   → Nearest POSITIONED parent (non-static) ke relative.
+   → Koi positioned parent nahi mila to <body> ke relative.
+   
+   ZAROORI: Parent par position: relative lagao!
+================================================ */
+
+/* Parent ko positioned banana ZAROORI hai */
+.parent-relative {
+    position: relative;   /* ← absolute child ke liye anchor */
+    height: 200px;
+    background: #eff6ff;
+    border: 2px solid #93c5fd;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 13px;
+    color: #1e40af;
+}
+
+.absolute-box {
+    position: absolute;   /* ← normal flow se bahar */
+    top: 16px;            /* parent ke top se 16px */
+    right: 16px;          /* parent ke right se 16px */
+    background: #8b5cf6;
+}
+
+/* Absolute center karna — margin auto trick */
+.absolute-center {
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;        /* left+right auto = center mein */
+    width: 160px;
+    background: #ef4444;
+    text-align: center;
+}
+
+/* ================================================
+   4. position: fixed
+   
+   Viewport (browser window) ke relative position hota hai.
+   Scroll karne par bhi apni jagah nahi chhodta.
+   
+   Common use: Sticky header, floating button,
+   chat button, cookie banner.
+================================================ */
+
+/* NOTE: Actual fixed element neeche hai — yahan sirf
+   ek demo representation dikhaya gaya hai */
+
+.fixed-demo-representation {
+    background: #e11d63;
+    border: 3px solid #9d174d;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* Actual fixed button (bottom right corner mein) */
+.actual-fixed-btn {
+    position: fixed;    /* ← viewport ke relative */
+    bottom: 24px;
+    right: 24px;
+    background: #e11d63;
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 13px;
+    z-index: 999;       /* sab ke upar */
+    border: 3px solid #9d174d;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* ================================================
+   5. position: sticky
+   
+   Scroll karne tak relative jaisa behave karta hai.
+   Jab element screen ke defined point par pahunche —
+   wahan "chipak" jaata hai aur saath nahi jaata.
+   
+   Common use: Section headings, table headers, navbar.
+   
+   ZAROORAT: top/bottom value likhna zaroori hai.
+================================================ */
+
+.sticky-demo-container {
+    height: 320px;
+    overflow-y: scroll;   /* scroll area banane ke liye */
+    border: 2px solid #a7f3d0;
+    background: #f0fdf4;
+    border-radius: 8px;
+    padding: 0;
+}
+
+.sticky-heading {
+    position: sticky;     /* ← scroll karne tak relative, phir chipak jaata hai */
+    top: 0;               /* scroll karte waqt top: 0 par chipkegaa */
+    background: #059669;
+    color: #fff;
+    padding: 10px 16px;
+    font-weight: bold;
+    font-size: 14px;
+    z-index: 10;
+}
+
+.sticky-content {
+    padding: 16px;
+    font-size: 13px;
+    color: #374151;
+    line-height: 1.8;
+}
+
+/* ================================================
+   6. z-index — Layers control
+   
+   Jab elements overlap karein to kaun upar dikhega?
+   Zyada z-index = upar.
+   
+   Sirf POSITIONED elements par kaam karta hai
+   (non-static elements par).
+================================================ */
+
+.z-container {
+    position: relative;
+    height: 160px;
+    background: #f8fafc;
+    border: 2px dashed #cbd5e1;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.z-box {
+    position: absolute;
+    width: 120px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 13px;
+    border-radius: 8px;
+    color: #fff;
+    border: 3px solid rgba(0,0,0,0.15);
+}
+
+.z-1 { background: #ef4444; top: 20px; left: 20px; z-index: 1; }
+.z-2 { background: #3b82f6; top: 40px; left: 80px; z-index: 2; }   /* upar */
+.z-3 { background: #10b981; top: 60px; left: 140px; z-index: 3; }  /* sabse upar */
